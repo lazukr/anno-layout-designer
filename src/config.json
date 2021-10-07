@@ -1,0 +1,7 @@
+{
+    "editorSizeRange": {
+        "min": 10,
+        "max": 500,
+        "default": 10
+    }
+}
