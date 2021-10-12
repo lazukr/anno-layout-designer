@@ -1,48 +1,17 @@
 import { Menu, Tab } from "semantic-ui-react";
 import "fomantic-ui-css/semantic.css";
+import PopData from "../pop_data.json";
 
-const tabs = [
-    {
-        menuItem: "Farmers",
+const tabs = PopData.map(item => {
+    return {
+        menuItem: item.key,
         pane: {
-            key: "farmer",
-            content: "Farmers 1",
+            key: item.key,
+            content: item.content,
             inverted: true,
-        }
-    },
-    {
-        menuItem: "Workers",
-        pane: {
-            key: "worker",
-            content: "Workers 1",
-            inverted: true,
-        }
-    },
-    {
-        menuItem: "Artisans",
-        pane: {
-            key: "artisan",
-            content: "Artisans 1",
-            inverted: true,
-        }
-    },
-    {
-        menuItem: "Engineers",
-        pane: {
-            key: "engineers",
-            content: "Engineers 1",
-            inverted: true,
-        }
-    },
-    {
-        menuItem: "Investors",
-        pane: {
-            key: "investors",
-            content: "Investors 1",
-            inverted: true,
-        }
-    }
-];
+        },
+    };
+});
 
 export const EditPanel = () => {
     return (
@@ -52,8 +21,14 @@ export const EditPanel = () => {
             fluid
         >
             <Tab
-                style={{width:"100%"}}
-                menu={{attached:"bottom", inverted:true, className:"fluid"}}
+                style={{
+                    width:"100%"
+                }}
+                menu={{
+                    attached:"bottom", 
+                    inverted:true, 
+                    className:"fluid"
+                }}
                 renderActiveOnly={false}
                 panes={tabs}
             >
