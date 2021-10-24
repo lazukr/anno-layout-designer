@@ -1,11 +1,12 @@
-import React, { SetStateAction, useState, Dispatch } from "react";
-import { Input, Label, Button, Icon } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Input, Label, Button, Icon, Segment } from "semantic-ui-react";
 import { CustomModal } from "./CustomModal";
 import {
     MINIMUM_GRID_DIMENSION, 
     MAXIMUM_GRID_DIMENSION,
     DEFAULT_GRID_DIMENSION,
 } from "../Constants";
+import { Dimension } from "../Board";
 
 const isValidDimension = (value: number) => {
     if (isNaN(value) ||
@@ -17,19 +18,13 @@ const isValidDimension = (value: number) => {
 };
 
 export type NewModalProps = {
-    setWidth: Dispatch<SetStateAction<number>>;
-    setHeight: Dispatch<SetStateAction<number>>;
+    setDimension: (dimension: Dimension) => void;
 };
 
 export const NewModal = (props: NewModalProps) => {
     const [localWidth, setLocalWidth] = useState(DEFAULT_GRID_DIMENSION);
     const [localHeight, setLocalHeight] = useState(DEFAULT_GRID_DIMENSION);
     const [valid, setValid] = useState(true);
-
-    const {
-        setWidth,
-        setHeight,
-    } = props;
 
     const onChange = (value: number, updater: React.Dispatch<React.SetStateAction<number>>) => {
         if (! (isValidDimension(value))) {
@@ -41,8 +36,7 @@ export const NewModal = (props: NewModalProps) => {
     };
 
     const onSubmit = () => {
-        setWidth(localWidth);
-        setHeight(localHeight);
+        props.setDimension(new Dimension(localWidth, localHeight));
     };
 
     return (
@@ -62,34 +56,39 @@ export const NewModal = (props: NewModalProps) => {
                 onSubmit:onSubmit,
             }}
         >
-            <Input
-                className="large"
-                label="Width:"
-                type="number"
-                min={MINIMUM_GRID_DIMENSION}
-                max={MAXIMUM_GRID_DIMENSION}
-                defaultValue={localWidth}
-                onChange={e => onChange(e.target.valueAsNumber, setLocalWidth)}
-                required
+            <Segment 
+                className="basic"
+                textAlign="center"
             >
-            </Input>
-            <Input
-                className="large"
-                label="Height:"
-                type="number"
-                min={MINIMUM_GRID_DIMENSION}
-                max={MAXIMUM_GRID_DIMENSION}
-                defaultValue={localHeight}
-                onChange={e => onChange(e.target.valueAsNumber, setLocalHeight)}
-                required
-            >
-            </Input>
-            <Label
-                className={`red basic ${valid ? "hidden" : "visible"}`}
-            >
-                {`Minimum value is ${MINIMUM_GRID_DIMENSION} and
-                Maximum value is ${MAXIMUM_GRID_DIMENSION}`}
-            </Label>
+                <Input
+                    className="large"
+                    label="Width:"
+                    type="number"
+                    min={MINIMUM_GRID_DIMENSION}
+                    max={MAXIMUM_GRID_DIMENSION}
+                    defaultValue={localWidth}
+                    onChange={e => onChange(e.target.valueAsNumber, setLocalWidth)}
+                    required
+                >
+                </Input>
+                <Input
+                    className="large"
+                    label="Height:"
+                    type="number"
+                    min={MINIMUM_GRID_DIMENSION}
+                    max={MAXIMUM_GRID_DIMENSION}
+                    defaultValue={localHeight}
+                    onChange={e => onChange(e.target.valueAsNumber, setLocalHeight)}
+                    required
+                >
+                </Input>
+                <Label
+                    className={`red basic ${valid ? "hidden" : "visible"}`}
+                >
+                    {`Minimum value is ${MINIMUM_GRID_DIMENSION} and
+                    Maximum value is ${MAXIMUM_GRID_DIMENSION}`}
+                </Label>
+            </Segment>
         </CustomModal>
     );
 };

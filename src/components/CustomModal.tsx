@@ -45,7 +45,7 @@ export const CustomModal = (props: CustomModalProps) => {
             onOpen={toggleOpen}
             open={open}
             trigger={trigger}
-            className="ui mini"
+            className="ui tiny"
         >
             <Modal.Header>{header}</Modal.Header>
             <Modal.Content>
@@ -54,7 +54,6 @@ export const CustomModal = (props: CustomModalProps) => {
             <Modal.Actions>
                 {!hideSubmit && <Button
                     content={submitContent}
-                    labelPosition="right"
                     icon={submitIcon}
                     onClick={submit}
                     positive

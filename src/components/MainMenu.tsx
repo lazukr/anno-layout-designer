@@ -1,15 +1,16 @@
 import { Menu, Icon, Button, Dropdown } from "semantic-ui-react";
+import { Dimension } from "../Board";
 import { DownloadModal } from "./DownloadModal";
-import { NewModal, NewModalProps } from "./NewModal";
+import { NewModal } from "./NewModal";
 import { UploadModal } from "./UploadModal";
 
-export type MenuProps = {
-    newModalProps: NewModalProps;
+export interface MenuProps {
+    setDimension: (dimension: Dimension) => void;
 };
 
 export const MainMenu = (props: MenuProps) => {
     const {
-        newModalProps
+        setDimension
     } = props;
 
     return (
@@ -33,8 +34,7 @@ export const MainMenu = (props: MenuProps) => {
             </Dropdown>
             <Button.Group compact>
                 <NewModal 
-                    setHeight={newModalProps.setHeight}
-                    setWidth={newModalProps.setWidth}
+                    setDimension={setDimension}
                 />
                 <UploadModal />
                 <DownloadModal />

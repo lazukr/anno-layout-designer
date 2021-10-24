@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { CustomModal } from "./CustomModal";
-import { Input, Label, Button, Icon } from "semantic-ui-react";
+import { Input, Button, Icon, Divider, Segment } from "semantic-ui-react";
 
 export const UploadModal = () => {
-    const [valid, setValid] = useState(true);
+    const [valid] = useState(true);
     return (
         <CustomModal
             header="Upload"
@@ -21,22 +21,29 @@ export const UploadModal = () => {
                 onSubmit:() => {}
             }}
         >
-            <Input
-                type="file"
-                label="JSON:"
-                transparent
-                accept=".json"
+            <Segment 
+                className="basic" 
+                textAlign="center"
             >
-            </Input>
-            <Input
-                type="text"
-                label="Base 64"
-                action={{
-                    color:"green",
-                    content:"Load"
-                }}
-            >
-            </Input>
+                <Input
+                    type="file"
+                    label="JSON:"
+                    transparent
+                    accept=".json"
+                >
+                </Input>
+                <Divider horizontal>Or</Divider>
+                <Input
+                    type="text"
+                    label="Base 64"
+                    action={{
+                        color:"green",
+                        content:"Load",
+                        icon:"file outline"
+                    }}
+                >
+                </Input>
+            </Segment>
         </CustomModal>
     );
 };
