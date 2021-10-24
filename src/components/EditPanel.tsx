@@ -2,12 +2,13 @@ import { Menu, Tab, Grid, Image, Button } from "semantic-ui-react";
 import "fomantic-ui-css/semantic.css";
 import PopData from "../pop_data.json";
 import FarmerData from "../data/Farmers.json";
-import { CellCursor } from "../hooks/useBoardCursor";
 import { Dimension } from "../Board";
 
-interface Building {
+export interface Building {
     name: string,
     image: string,
+    colour: string,
+    level: string,
     dimension: Dimension,
 };
 
@@ -15,7 +16,7 @@ type Dict = {
     [index: string]: Building[]
 };
 
-const createBuildingList = (highlighter: (props: CellCursor) => void) => {
+const createBuildingList = (highlighter: (props: Building) => void) => {
     return (list: Building[]) => {
         return (
             <Grid centered>
@@ -24,12 +25,9 @@ const createBuildingList = (highlighter: (props: CellCursor) => void) => {
                         <Button
                             key={building.name}
                             basic
-                            onClick={() => highlighter({
-                                name: building.name,
-                                dimension: building.dimension,
-                            })}
+                            onClick={() => highlighter(building)}
                         >
-                        <Image src={`${process.env.PUBLIC_URL}/assets/images/${building.image}`} />
+                        <Image src={`${process.env.PUBLIC_URL}/assets/images/${building.level}/${building.image}`} />
                         </Button>
                     </Button.Group>
                 ))}
@@ -56,7 +54,7 @@ const getTabs = (tabCreator: (list: Building[]) => JSX.Element) => {
 };
 
 export interface EditPanelProps {
-    setSelectedBuilding: (props: CellCursor) => void
+    setSelectedBuilding: (props: Building) => void
 };
 
 export const EditPanel = (props: EditPanelProps) => {

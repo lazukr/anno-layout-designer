@@ -42,28 +42,3 @@ export const useBoardCursor = () => {
     
     return position;
 };
-
-/*
-
-    useEffect(() => {
-        const setEvent = (e: MouseEvent) => {
-            const elem = document.querySelector("#snap");
-            const bound = elem!.getBoundingClientRect();
-
-            const position = {
-                x: Math.floor((e.pageX - bound.left) / GRID_SIZE),
-                y: Math.floor((e.pageY - bound.top) / GRID_SIZE),
-            };
-            setCell({
-                name: name,
-                position: position,
-                dimension: dimension,
-            });
-        }
-        const editor = Snap("#snap");
-        editor.mousemove(setEvent);
-        return () => {
-            editor.unmousemove();
-        }
-    }, [dimension, name]);
-*/

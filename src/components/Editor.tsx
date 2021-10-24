@@ -1,14 +1,15 @@
 import { Segment } from "semantic-ui-react";
 import "fomantic-ui-css/semantic.css";
 import "../styles/editor.scss";
-import { useBoardCursor, CellCursor } from "../hooks/useBoardCursor";
+import { useBoardCursor } from "../hooks/useBoardCursor";
 import { useBoardDisplay } from "../hooks/useBoardDisplay";
 import { Dimension } from "../Board";
 import { usePlacementHighlight } from "../hooks/useBoardHighlight";
+import { Building } from "./EditPanel";
 
 export interface EditorProps {
     board: Dimension,
-    selection: CellCursor
+    selection: Building
 };
 
 export const Editor = (props: EditorProps) => {
@@ -20,12 +21,12 @@ export const Editor = (props: EditorProps) => {
 
 
     const position = useBoardCursor();
-    usePlacementHighlight(position, props.selection.dimension);
+    usePlacementHighlight(position, props.selection);
 
 
     const handleOnClick = () => {
         console.log(position);
-        //console.log(props.selection);
+        console.log(props.selection);
     };
 
     return (

@@ -2,9 +2,8 @@ import "../styles/App.scss";
 import { useState } from "react";
 import { Editor } from "./Editor";
 import { MainMenu } from "./MainMenu";
-import { EditPanel } from "./EditPanel";
+import { Building, EditPanel } from "./EditPanel";
 import { DEFAULT_GRID_DIMENSION } from "../Constants";
-import { CellCursor } from "../hooks/useBoardCursor";
 import { Dimension } from "../Board";
 
 export const App = () => {
@@ -14,12 +13,16 @@ export const App = () => {
 		height: DEFAULT_GRID_DIMENSION,
 	});
 
-	const [selectedBuilding, setSelectedBuilding] = useState<CellCursor>({
+	const [selectedBuilding, setSelectedBuilding] = useState<Building>({
 		name: "",
-		dimension: Dimension.Zero
+		image: "",
+		colour: "FFFFFF",
+		level: "",
+		dimension: Dimension.Zero,
+
   });
 
-	const setSelection = (selected: CellCursor) => {
+	const setSelection = (selected: Building) => {
 		setSelectedBuilding(selected);
 	}
 
