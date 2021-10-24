@@ -7,14 +7,7 @@ import { Building } from "../components/EditPanel";
 
 declare const Snap: typeof SNAPSVG_TYPE;
 
-
-
-
 export const usePlacementHighlight = (cell: Position, selection: Building) => {
-
-
-
-
     useEffect(() => {
         const {x, y} = cell;
         const {
@@ -38,7 +31,6 @@ export const usePlacementHighlight = (cell: Position, selection: Building) => {
             opacity: 0.3,
         });
 
-
         const squareSize = Math.min(width, height) / 2;
         const centerX = x + width / 2 - squareSize / 2;
         const centerY = y + height / 2 - squareSize / 2;
@@ -55,7 +47,6 @@ export const usePlacementHighlight = (cell: Position, selection: Building) => {
             opacity: 0.6,
         });
     
-
         return () => {
             highlight.remove();
             display.remove();
