@@ -4,25 +4,41 @@ import { Editor } from "./Editor";
 import { MainMenu } from "./MainMenu";
 import { EditPanel } from "./EditPanel";
 import { DEFAULT_GRID_DIMENSION } from "../Constants";
+import { CellCursor } from "../hooks/useBoardCursor";
+import { Dimension } from "../Board";
 
 export const App = () => {
 
-  const [boardWidth, setBoardWidth] = useState(DEFAULT_GRID_DIMENSION);
-  const [boardHeight, setBoardHeight] = useState(DEFAULT_GRID_DIMENSION);
+	const [boardDimension, setBoardDimension] = useState<Dimension>({
+		width: DEFAULT_GRID_DIMENSION,
+		height: DEFAULT_GRID_DIMENSION,
+	});
 
-  return (
-    <div className="App">
-      <MainMenu
-        newModalProps={{
-          setWidth: setBoardWidth,
-          setHeight: setBoardHeight,
-        }}
-      />
-      <Editor 
-        width={boardWidth} 
-        height={boardHeight}
-      />
-      <EditPanel/>
-    </div>
-  )
+	const [selectedBuilding, setSelectedBuilding] = useState<CellCursor>({
+		name: "",
+		dimension: Dimension.Zero
+  });
+
+	const setSelection = (selected: CellCursor) => {
+		setSelectedBuilding(selected);
+	}
+
+	const setDimension = (dimension: Dimension) => {
+		setBoardDimension(dimension);
+	}
+
+	return (
+		<div className="App">
+		<MainMenu
+			setDimension={setDimension}
+		/>
+		<Editor
+			board={boardDimension}
+			selection={selectedBuilding}
+		/>
+		<EditPanel
+			setSelectedBuilding={setSelection}
+		/>
+		</div>
+	)
 };

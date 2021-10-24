@@ -2,39 +2,68 @@ import { useEffect, useState } from "react";
 import "snapsvg-cjs";
 import SNAPSVG_TYPE from "snapsvg";
 import { GRID_SIZE } from "../Constants";
+import { Dimension, Position } from "../Board";
+import { usePlacementHighlight } from "./useBoardHighlight";
 
 declare const Snap: typeof SNAPSVG_TYPE;
 
+export interface CellCursor {
+    name: string;
+    dimension: Dimension;
+};
 
+export interface CursorInfo {
+    name: string;
+    position: Position;
+    dimension: Dimension
+}
+
+// need names and size
 export const useBoardCursor = () => {
-    const [cell, setCell] = useState({
-        x: 0,
-        y: 0,
-    });
+    const [position, setPosition] = useState<Position>(Position.Origin);
 
     useEffect(() => {
         const editor = Snap("#snap");
-        editor.unmousemove();
+        const elem = document.querySelector("#snap");
+        
+        const setFromEvent = (e: MouseEvent) => {
+            const bound = elem!.getBoundingClientRect();
+            setPosition({
+                x: Math.floor((e.pageX - bound.left) / GRID_SIZE),
+                y: Math.floor((e.pageY - bound.top) / GRID_SIZE),
+            });
+        }
+        
+        editor.mousemove(setFromEvent);
+        return () => {
+            editor.unmousemove();
+        };
+    }, []);
+    
+    return position;
+};
 
-        let highlight = editor.rect(0, 0, 0, 0);
-        editor.mousemove((e) => {
+/*
+
+    useEffect(() => {
+        const setEvent = (e: MouseEvent) => {
             const elem = document.querySelector("#snap");
             const bound = elem!.getBoundingClientRect();
-            const x = Math.floor((e.pageX - bound.left) / GRID_SIZE);
-            const y = Math.floor((e.pageY - bound.top) / GRID_SIZE);
+
+            const position = {
+                x: Math.floor((e.pageX - bound.left) / GRID_SIZE),
+                y: Math.floor((e.pageY - bound.top) / GRID_SIZE),
+            };
             setCell({
-                x: x,
-                y: y, 
+                name: name,
+                position: position,
+                dimension: dimension,
             });
-
-            highlight.remove();
-            highlight = editor.rect(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
-            highlight.attr({
-                fill: "red",
-                fillOpacity: 0.3,
-            });
-        });
-    }, []);
-
-    return cell;
-};
+        }
+        const editor = Snap("#snap");
+        editor.mousemove(setEvent);
+        return () => {
+            editor.unmousemove();
+        }
+    }, [dimension, name]);
+*/

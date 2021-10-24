@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { GRID_SIZE } from "../Constants";
 
 export interface Board {
@@ -24,7 +24,4 @@ export const useBoard = (props: Board) => {
         .map(i => new Array(height / GRID_SIZE).fill(null));
 
     }, [width, height]);
-
-
-
 };

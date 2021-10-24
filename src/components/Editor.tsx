@@ -1,23 +1,31 @@
 import { Segment } from "semantic-ui-react";
 import "fomantic-ui-css/semantic.css";
 import "../styles/editor.scss";
-import { useBoardCursor } from "../hooks/useBoardCursor";
+import { useBoardCursor, CellCursor } from "../hooks/useBoardCursor";
 import { useBoardDisplay } from "../hooks/useBoardDisplay";
-import { Board, useBoard } from "../hooks/useBoard";
+import { Dimension } from "../Board";
+import { usePlacementHighlight } from "../hooks/useBoardHighlight";
 
-export const Editor = (props: Board) => {
+export interface EditorProps {
+    board: Dimension,
+    selection: CellCursor
+};
+
+export const Editor = (props: EditorProps) => {
     const {
         boardWidth,
         boardHeight,
-    } = useBoardDisplay(props);
-    const cell = useBoardCursor();
-    const board = useBoard({
-        width: boardWidth,
-        height: boardHeight,
-    });
+    } = useBoardDisplay(props.board);
+
+
+
+    const position = useBoardCursor();
+    usePlacementHighlight(position, props.selection.dimension);
+
 
     const handleOnClick = () => {
-        console.log(cell);
+        console.log(position);
+        //console.log(props.selection);
     };
 
     return (

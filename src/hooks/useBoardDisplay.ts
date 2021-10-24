@@ -12,10 +12,46 @@ import {
 
 declare const Snap: typeof SNAPSVG_TYPE;
 
+const MAJOR_LINE_GRID = 10;
+const MINOR_LINE_GRID = 5;
+
 const getLineType = (i: number) => {
-    return i % 10 ? 
-        i % 5 ? NORMAL_LINE : SEMI_BOLDED_LINE
-        : BOLDED_LINE;
+    
+    // every 10 lines is a major line grid
+    if (i % MAJOR_LINE_GRID === 0) {
+        return BOLDED_LINE;
+    }
+
+    // every 5 lines is a minor line grid
+    if (i % MINOR_LINE_GRID === 0) {
+        return SEMI_BOLDED_LINE;
+    }
+
+    // every other line should be normal
+    return NORMAL_LINE;
+};
+
+type LinePoints = [number, number, number, number];
+
+const getBordersPoints = (width: number, height: number): LinePoints[] => {
+    return [
+        [0, 0, width, 0], // top
+        [0, 0, 0, height], // left
+        [0, height, width, height], // bottom
+        [width, 0, width, height], // right
+    ];
+};
+
+const getCurrentColPoints = (offset: number, length: number): LinePoints => {
+    return [offset, 0, offset, length];
+};
+
+const getCurrentRowPoints = (offset: number, length: number): LinePoints => {
+    return [0, offset, length, offset];
+};
+
+const getZeroToNList = (n: number) => {
+    return Array.from(Array(n).keys());
 };
 
 export const useBoardDisplay = (props: Board) => {
@@ -28,32 +64,31 @@ export const useBoardDisplay = (props: Board) => {
         const editor = Snap("#snap");
         editor.clear();
 
-        const rowLines = Array.from(Array(height).keys());
-        const colLines = Array.from(Array(width).keys());
+        const createLines = (
+            dimensions: number, 
+            orientationLength: number, 
+            orientationFunction: (offset: number, length: number) => LinePoints
+            ) => {
+
+            getZeroToNList(dimensions)
+                .map(i => orientationFunction(i * GRID_SIZE, orientationLength))
+                .map(linepoints => editor.line(...linepoints))
+                .map((line, i) => line.attr(getLineType(i)));
+        };
+
+        const createBorderLines = (width: number, height: number) => {
+            getBordersPoints(width, height)
+                .map(linepoints => editor.line(...linepoints))
+                .map(line => line.attr(BORDER_LINE));
+        };
+
         const realWidth = width * GRID_SIZE;
         const realHeight = height * GRID_SIZE;
 
-        colLines.forEach(i => {
-            const currentPosition = i * GRID_SIZE;
-            const line = editor.line(currentPosition, 0, currentPosition, realHeight);
-            line.attr(getLineType(i));
-        });
+        createLines(width, realHeight, getCurrentColPoints);
+        createLines(height, realWidth, getCurrentRowPoints);
+        createBorderLines(realWidth, realHeight);
 
-        rowLines.forEach(i => {
-            const currentPosition = i * GRID_SIZE;
-            const line = editor.line(0, currentPosition, realWidth, currentPosition);
-            line.attr(getLineType(i));
-        });
-
-        const topBorder = editor.line(0, 0, realWidth, 0);
-        const leftBorder = editor.line(0, 0, 0, realHeight);
-        const bottomBorder = editor.line(0, realHeight, realWidth, realHeight);
-        const rightBorder = editor.line(realWidth, 0, realWidth, realHeight);
-
-        topBorder.attr(BORDER_LINE);
-        bottomBorder.attr(BORDER_LINE);
-        leftBorder.attr(BORDER_LINE);
-        rightBorder.attr(BORDER_LINE);        
     }, [width, height]);
 
     return {
