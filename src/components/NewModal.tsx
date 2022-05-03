@@ -1,94 +1,88 @@
 import React, { useState } from "react";
-import { Input, Label, Button, Icon, Segment } from "semantic-ui-react";
-import { CustomModal } from "./CustomModal";
-import {
-    MINIMUM_GRID_DIMENSION, 
-    MAXIMUM_GRID_DIMENSION,
-    DEFAULT_GRID_DIMENSION,
-} from "../Constants";
-import { Dimension } from "../Board";
-
-const isValidDimension = (value: number) => {
-    if (isNaN(value) ||
-        value < MINIMUM_GRID_DIMENSION ||
-        value > MAXIMUM_GRID_DIMENSION) {
-        return false;
-    }
-    return true;
-};
+import { Input, Button, Modal, Form } from "semantic-ui-react";
+import { GRID } from "../utils/Constants";
 
 export type NewModalProps = {
-    setDimension: (dimension: Dimension) => void;
+    currentWidth: number;
+    currentHeight: number;
+    setDimension: (width: number, height: number) => void;
 };
 
-export const NewModal = (props: NewModalProps) => {
-    const [localWidth, setLocalWidth] = useState(DEFAULT_GRID_DIMENSION);
-    const [localHeight, setLocalHeight] = useState(DEFAULT_GRID_DIMENSION);
-    const [valid, setValid] = useState(true);
+export const NewModal = ({
+    currentWidth,
+    currentHeight,
+    setDimension,
+}: NewModalProps) => {
+    const [open, setOpen] = useState(false);
+    const [width, setWidth] = useState(currentWidth);
+    const [height, setHeight] = useState(currentHeight);
+    const submit = () => {
+        setDimension(width, height);
+        setOpen(false);
+    }
 
-    const onChange = (value: number, updater: React.Dispatch<React.SetStateAction<number>>) => {
-        if (! (isValidDimension(value))) {
-            setValid(false);
-            return;
-        }
-        updater(value);
-        setValid(true);
-    };
-
-    const onSubmit = () => {
-        props.setDimension(new Dimension(localWidth, localHeight));
-    };
+    const closeModal = () => {
+        setWidth(currentWidth);
+        setHeight(currentHeight);
+        setOpen(false);
+    }
 
     return (
-        <CustomModal
-            header="New Layout"
+        <Modal
+            as={Form}
+            className="ui tiny"
+            onClose={() => closeModal()}
+            onOpen={() => setOpen(true)}
+            onSubmit={() => submit()}
+            open={open}
             trigger={
-                <Button secondary>
-                    <Icon name="file" />
-                    New
-                </Button>
+                <Button 
+                    secondary
+                    icon="file"
+                    content="New"
+                />
             }
-            valid={valid}
-            submitButton={{
-                submitContent:"Create",
-                submitIcon:"plus",
-                hideSubmit:false,
-                onSubmit:onSubmit,
-            }}
         >
-            <Segment 
-                className="basic"
-                textAlign="center"
-            >
+            <Modal.Header>New Layout</Modal.Header>
+            <Modal.Content>
                 <Input
                     className="large"
-                    label="Width:"
+                    inline
+                    label="Width"
                     type="number"
-                    min={MINIMUM_GRID_DIMENSION}
-                    max={MAXIMUM_GRID_DIMENSION}
-                    defaultValue={localWidth}
-                    onChange={e => onChange(e.target.valueAsNumber, setLocalWidth)}
+                    min={GRID.MIN_DIMENSION}
+                    max={GRID.MAX_DIMENSION}
+                    defaultValue={width}
+                    control={Input}
                     required
-                >
-                </Input>
+                    onChange={(e) => setWidth(e.target.valueAsNumber)}
+                />
                 <Input
                     className="large"
-                    label="Height:"
+                    inline
+                    label="Height"
                     type="number"
-                    min={MINIMUM_GRID_DIMENSION}
-                    max={MAXIMUM_GRID_DIMENSION}
-                    defaultValue={localHeight}
-                    onChange={e => onChange(e.target.valueAsNumber, setLocalHeight)}
+                    min={GRID.MIN_DIMENSION}
+                    max={GRID.MAX_DIMENSION}
+                    defaultValue={height}
+                    control={Input}
                     required
-                >
-                </Input>
-                <Label
-                    className={`red basic ${valid ? "hidden" : "visible"}`}
-                >
-                    {`Minimum value is ${MINIMUM_GRID_DIMENSION} and
-                    Maximum value is ${MAXIMUM_GRID_DIMENSION}`}
-                </Label>
-            </Segment>
-        </CustomModal>
+                    onChange={(e) => setHeight(e.target.valueAsNumber)}
+                />
+            </Modal.Content>
+            <Modal.Actions>
+                <Button
+                    negative
+                    icon="close"
+                    content="Cancel"
+                    onClick={() => closeModal()}
+                />
+                <Button
+                    positive
+                    icon="plus"
+                    content="Create"
+                />
+            </Modal.Actions>
+        </Modal>
     );
 };

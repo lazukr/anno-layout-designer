@@ -1,47 +1,38 @@
+import { GRID } from "../utils/Constants";
 import "../styles/App.scss";
-import { useState } from "react";
 import { Editor } from "./Editor";
 import { MainMenu } from "./MainMenu";
-import { Building, EditPanel } from "./EditPanel";
-import { DEFAULT_GRID_DIMENSION } from "../Constants";
-import { Dimension } from "../Board";
+import { useState } from "react";
 
 export const App = () => {
+	const [width, setWidth] = useState(GRID.DEFAULT_DIMENSION);
+	const [height, setHeight] = useState(GRID.DEFAULT_DIMENSION);
+	const [selection, setSelection] = useState("cursor");
 
-	const [boardDimension, setBoardDimension] = useState<Dimension>({
-		width: DEFAULT_GRID_DIMENSION,
-		height: DEFAULT_GRID_DIMENSION,
-	});
+	const setDimension = (width: number, height: number) => {
+		setWidth(width);
+		setHeight(height);
+	};
 
-	const [selectedBuilding, setSelectedBuilding] = useState<Building>({
-		name: "",
-		image: "",
-		colour: "FFFFFF",
-		level: "",
-		dimension: Dimension.Zero,
-
-  });
-
-	const setSelection = (selected: Building) => {
-		setSelectedBuilding(selected);
-	}
-
-	const setDimension = (dimension: Dimension) => {
-		setBoardDimension(dimension);
+	const updateSelection = (selection: string) => {
+		setSelection(selection);
 	}
 
 	return (
 		<div className="App">
-		<MainMenu
-			setDimension={setDimension}
-		/>
-		<Editor
-			board={boardDimension}
-			selection={selectedBuilding}
-		/>
-		<EditPanel
-			setSelectedBuilding={setSelection}
-		/>
+			<MainMenu
+				currentWidth={width}
+				currentHeight={height}
+				setDimension={setDimension}
+				selection={selection}
+				updateSelection={updateSelection}
+			/>
+			<Editor
+				width={width}
+				height={height}
+				canvas={"svg"}
+				selection={selection}
+			/>
 		</div>
 	)
 };

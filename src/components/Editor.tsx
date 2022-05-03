@@ -1,49 +1,49 @@
-import { Segment } from "semantic-ui-react";
 import "fomantic-ui-css/semantic.css";
 import "../styles/editor.scss";
-import { useBoardCursor } from "../hooks/useBoardCursor";
-import { useBoardDisplay } from "../hooks/useBoardDisplay";
-import { Dimension } from "../Board";
-import { usePlacementHighlight } from "../hooks/useBoardHighlight";
-import { Building } from "./EditPanel";
+import { Board } from "../editor/Board";
+import { Cursor } from "../editor/Cursor";
+import { useEffect, useRef } from "react";
+import { GRID } from "../utils/Constants";
 
 export interface EditorProps {
-    board: Dimension,
-    selection: Building
+    width: number,
+    height: number,
+    canvas: string,
+    selection: string
 };
 
-export const Editor = (props: EditorProps) => {
-    const {
-        boardWidth,
-        boardHeight,
-    } = useBoardDisplay(props.board);
+export const Editor = ({
+    width,
+    height,
+    canvas,
+    selection,
+}: EditorProps) => {
 
+    const board = useRef<Board>();
+    const cursor = useRef<Cursor>();
 
+    useEffect(() => {
+        board.current = new Board({
+            width: width,
+            height: height,
+            canvas: canvas,
+        });
 
-    const position = useBoardCursor();
-    usePlacementHighlight(position, props.selection);
+        cursor.current = new Cursor({
+            board: board.current,
+            selection: "cursor",
+        });
+    }, [width, height, canvas]);
 
-
-    const handleOnClick = () => {
-        console.log(position);
-        console.log(props.selection);
-    };
+    useEffect(() => {
+        cursor.current?.setSelection(selection);
+    }, [selection]);
 
     return (
-        <Segment 
-            basic
-            style={{
-                overflow:"auto", 
-                maxWidth:"90wh", 
-                maxHeight:"80vh"
-            }}
-        >
-            <svg 
-                id="snap" 
-                width={boardWidth}
-                height={boardHeight}
-                onClick={handleOnClick}
-            />
-        </Segment>
-    );
+        <svg
+            id={canvas}
+            width={width * GRID.SIZE}
+            height={height * GRID.SIZE}
+        />
+    )
 };
