@@ -40,7 +40,7 @@ export class Cursor {
             const pt = this.point.matrixTransform(this.board.elem.getScreenCTM()?.inverse());
             this.x = Math.max(Math.min(this.getXPosition(pt.x), this.board.width - this.selection.width), 0);
             this.y = Math.max(Math.min(this.getYPosition(pt.y), this.board.height - this.selection.height), 0);
-            this.selection!.updatePosition(this.x * GRID.SIZE, this.y * GRID.SIZE);
+            this.selection!.updatePosition(this.x, this.y);
         });
     }
 
@@ -58,11 +58,12 @@ export class Cursor {
             dataId: selection,
             x: this.x,
             y: this.y,
+            placementMode: true,
         });
     }
 
     setSelection = (selection: string) => {
-        this.selection?.sprite.remove();
+        this.selection.clear();
         this.selection = this.createSelection(selection);
     }
 

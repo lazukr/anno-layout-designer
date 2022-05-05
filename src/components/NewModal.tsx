@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input, Button, Modal, Form } from "semantic-ui-react";
 import { GRID } from "../utils/Constants";
-
-export type NewModalProps = {
+interface NewModalProps {
     currentWidth: number;
     currentHeight: number;
     setDimension: (width: number, height: number) => void;

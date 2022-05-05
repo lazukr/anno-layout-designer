@@ -5,7 +5,7 @@ import { Cursor } from "../editor/Cursor";
 import { useEffect, useRef } from "react";
 import { GRID } from "../utils/Constants";
 
-export interface EditorProps {
+interface EditorProps {
     width: number,
     height: number,
     canvas: string,

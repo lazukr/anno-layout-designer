@@ -1,6 +1,8 @@
 import "snapsvg-cjs";
 import SNAPSVG_TYPE from "snapsvg";
 import { GRID, LINE } from "../utils/Constants";
+import { BUILDING_NAMES } from "../data/DataMapper";
+import { Building } from "./Building";
 
 declare const Snap: typeof SNAPSVG_TYPE;
 
@@ -50,6 +52,8 @@ export class Board {
         this.snap = Snap(svgId);
         this.snap.clear();
         this.bbox = this.snap.getBBox();
+        
+        this.createUseElements();
         this.drawGrid();
     }
 
@@ -74,5 +78,16 @@ export class Board {
                     .attr(LINE.NORMAL);
             }
         }
+    }
+
+    private createUseElements = () => {
+        BUILDING_NAMES.forEach(building => {
+            Building.createSpriteModel({
+                snap: this.snap,
+                id: building,
+            }).attr({
+                id: building,
+            }).toDefs();
+        });
     }
 };

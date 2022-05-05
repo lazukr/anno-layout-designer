@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Menu, Icon, Button, Dropdown, Image, Tab } from "semantic-ui-react";
+import { Menu, Icon, Button, Dropdown } from "semantic-ui-react";
 import { NewModal } from "./NewModal";
-import GameList from "../data/game.json";
-import _gamePopMap from "../data/gamePopMap.json";
+import { GAME_LIST } from "../data/DataMapper";
 import { DEFAULT_GAME, DEFAULT_POP } from "../utils/Constants";
 import { CitizenMenuGenerator, BuildingMenuGenerator } from "./MenuItem";
-export interface MenuProps {
+interface MenuProps {
     currentWidth: number;
     currentHeight: number;
     setDimension: (width: number, height: number) => void;
@@ -43,7 +42,7 @@ export const MainMenu = ({
                     compact
                     closeOnEscape
                     selection
-                    options={GameList}
+                    options={GAME_LIST}
                     defaultValue={game}
                     onChange={(_, {value}) => updateGame(value as string)}
                 >
@@ -65,7 +64,7 @@ export const MainMenu = ({
                         <Icon name="eraser"></Icon>
                     </Button>
                 </Button.Group>
-                {CitizenMenuGenerator(game, citizen, setCitizen)[game]}
+                {CitizenMenuGenerator(citizen, setCitizen)[game]}
                 <Menu.Menu position="right">
                     <Menu.Item
                         icon="github"
@@ -80,7 +79,7 @@ export const MainMenu = ({
             attached
             inverted
             >
-                {BuildingMenuGenerator(game, selection, updateSelection)[citizen]}
+                {BuildingMenuGenerator(selection, updateSelection)[citizen]}
             </Menu>
         </>
     );

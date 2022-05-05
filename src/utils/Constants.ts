@@ -34,3 +34,5 @@ export const DEFAULT_GAME = "1800";
 export const DEFAULT_POP: {[key: string]: string} = {
     "1800": "1800_Farmers"
 }
+
+export const IMAGE_PATH = `${process.env.PUBLIC_URL}/assets/images/`;

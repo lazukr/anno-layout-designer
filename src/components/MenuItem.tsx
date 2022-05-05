@@ -1,17 +1,9 @@
 import { Menu, Image } from "semantic-ui-react";
-import _gamePopMap from "../data/gamePopMap.json";
-import _popBuildingMap from "../data/popBuildingMap.json";
+import { GAME_POP_MAP, POP_BUILDING_MAP } from "../data/DataMapper";
 
-interface PopBuildingMapProps {
+interface KeyStringList {
     [key: string]: string[];
 };
-
-interface GamePopMapProps {
-    [key: string]: string[];
-}
-
-const PopBuildingMap: PopBuildingMapProps = _popBuildingMap;
-const GamePopMap: GamePopMapProps = _gamePopMap;
 
 interface MenuItemProps {
     currentItem: string;
@@ -19,7 +11,17 @@ interface MenuItemProps {
     setItem: (item: string) => void;
 };
 
-const MenuItem = ({
+interface KeyComponentList {
+    [key: string]: JSX.Element[]
+};
+interface ComponentGeneratorFromKeyComponentList {
+    (currentItem: string, setItem: (item: string) => void): KeyComponentList
+};
+
+const PopBuildingMap: KeyStringList = POP_BUILDING_MAP;
+const GamePopMap: KeyStringList = GAME_POP_MAP;
+
+export const MenuItem = ({
     currentItem,
     item,
     setItem,
@@ -41,32 +43,23 @@ const MenuItem = ({
     );
 }
 
-export const CitizenMenuGenerator = (game: string, currentPop: string, setCitizen: (citizen: string) => void) => {
-    const generator: {[key: string]: JSX.Element[]} = {};
-    for (const [key, pops] of Object.entries(GamePopMap)) {
-        generator[key] = pops.map(pop => (
-            <MenuItem
-                key={pop}
-                currentItem={currentPop}
-                item={pop}
-                setItem={setCitizen}
-            />
-        ));
+const DataListComponentGenerator = (source: KeyStringList) => {
+    const generator: ComponentGeneratorFromKeyComponentList = (currentItem, setItem) => {
+        const keyElementMap: KeyComponentList = {};
+        for (const [key, items] of Object.entries(source)) {
+            keyElementMap[key] = items.map(item => (
+                <MenuItem
+                    key={item}
+                    currentItem={currentItem}
+                    item={item}
+                    setItem={setItem}
+                />
+            ));
+        }
+        return keyElementMap;
     }
     return generator;
-};
+}
 
-export const BuildingMenuGenerator = (game: string, currentBuilding: string, setBuilding: (building: string) => void) => {
-    const generator: {[key: string]: JSX.Element[]} = {};
-    for (const [key, buildings] of Object.entries(PopBuildingMap)) {
-        generator[key] = buildings.map(building => (
-            <MenuItem
-                key={building}
-                currentItem={currentBuilding}
-                item={building}
-                setItem={setBuilding}
-            />
-        ));
-    }
-    return generator;
-};
+export const CitizenMenuGenerator = DataListComponentGenerator(GamePopMap);
+export const BuildingMenuGenerator = DataListComponentGenerator(PopBuildingMap);
