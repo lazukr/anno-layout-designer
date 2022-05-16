@@ -2,7 +2,6 @@ import "snapsvg-cjs";
 import { Board } from "./Board";
 import { Building } from "./Building";
 import { GRID } from "../utils/Constants";
-
 export interface CursorProps { 
     board: Board;
     selection: string;
@@ -29,11 +28,12 @@ export class Cursor {
         this.selection = this.createSelection(selection);
         this.selectMode = false;
         this.eraseMode = false;
-        this.addMouseEvent();
+        this.addMouseMoveEvent();
+        this.addMouseDownEvent();
         this.point = new DOMPoint(0, 0);
     }
 
-    private addMouseEvent = () => {
+    private addMouseMoveEvent = () => {
         this.snap.mousemove((event: MouseEvent) => {
             this.point.x = event.clientX;
             this.point.y = event.clientY;
@@ -41,6 +41,13 @@ export class Cursor {
             this.x = Math.max(Math.min(this.getXPosition(pt.x), this.board.width - this.selection.width), 0);
             this.y = Math.max(Math.min(this.getYPosition(pt.y), this.board.height - this.selection.height), 0);
             this.selection!.updatePosition(this.x, this.y);
+        });
+    }
+
+    private addMouseDownEvent = () => {
+        this.snap.unmouseup();
+        this.snap.mouseup((event: MouseEvent) => {
+            this.board.addBuilding(Building.clone(this.selection));
         });
     }
 

@@ -2,216 +2,259 @@
     "cursor": {
         "id": "cursor",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Schnapps": {
         "id": "1800_Schnapps",
         "width": 3,
-        "height": 4
+        "height": 4,
+        "colour": "#FFF"
     },
     "1800_Clay": {
         "id": "1800_Clay",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Flour": {
         "id": "1800_Flour",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Engineers": {
         "id": "1800_Engineers",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Pigs": {
         "id": "1800_Pigs",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Steel_beams": {
         "id": "1800_Steel_beams",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Malt": {
         "id": "1800_Malt",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Beer": {
         "id": "1800_Beer",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Timber": {
         "id": "1800_Timber",
         "width": 3,
-        "height": 4
+        "height": 4,
+        "colour": "#FFF"
     },
     "1800_Wood": {
         "id": "1800_Wood",
         "width": 4,
-        "height": 4
+        "height": 4,
+        "colour": "#FFF"
     },
     "1800_Dirt_road": {
         "id": "1800_Dirt_road",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Charcoal_kiln": {
         "id": "1800_Charcoal_kiln",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Residence": {
         "id": "1800_Residence",
         "width": 3,
-        "height": 3
+        "height": 3,
+        "colour": "#FFF"
     },
     "1800_Tallow": {
         "id": "1800_Tallow",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Bread": {
         "id": "1800_Bread",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Pub": {
         "id": "1800_Pub",
         "width": 4,
-        "height": 6
+        "height": 6,
+        "colour": "#FFF"
     },
     "1800_Wool": {
         "id": "1800_Wool",
         "width": 3,
-        "height": 3
+        "height": 3,
+        "colour": "#FFF"
     },
     "1800_Weapons": {
         "id": "1800_Weapons",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Paved_street": {
         "id": "1800_Paved_street",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Potato": {
         "id": "1800_Potato",
         "width": 3,
-        "height": 3
+        "height": 3,
+        "colour": "#FFF"
     },
     "1800_Sails": {
         "id": "1800_Sails",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Steel": {
         "id": "1800_Steel",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Police_Station": {
         "id": "1800_Police_Station",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#00F"
     },
     "1800_Bricks": {
         "id": "1800_Bricks",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Work_clothes": {
         "id": "1800_Work_clothes",
         "width": 4,
-        "height": 4
+        "height": 4,
+        "colour": "#FFF"
     },
     "1800_School": {
         "id": "1800_School",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Farmers": {
         "id": "1800_Farmers",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Church": {
         "id": "1800_Church",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Trade_Union": {
         "id": "1800_Trade_Union",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Hops": {
         "id": "1800_Hops",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Fish": {
         "id": "1800_Fish",
         "width": 5,
-        "height": 11
+        "height": 11,
+        "colour": "#FFF"
     },
     "1800_Sausages": {
         "id": "1800_Sausages",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Marketplace": {
         "id": "1800_Marketplace",
         "width": 5,
-        "height": 6
+        "height": 6,
+        "colour": "#FFF"
     },
     "1800_Warehouse": {
         "id": "1800_Warehouse",
         "width": 5,
-        "height": 5
+        "height": 5,
+        "colour": "#FFF"
     },
     "1800_Fire_station": {
         "id": "1800_Fire_station",
         "width": 3,
-        "height": 5
+        "height": 5,
+        "colour": "#FFF"
     },
     "1800_Soap": {
         "id": "1800_Soap",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Iron": {
         "id": "1800_Iron",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Investors": {
         "id": "1800_Investors",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Grain": {
         "id": "1800_Grain",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Workers": {
         "id": "1800_Workers",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Farm_module": {
         "id": "1800_Farm_module",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     },
     "1800_Artisans": {
         "id": "1800_Artisans",
         "width": 1,
-        "height": 1
+        "height": 1,
+        "colour": "#FFF"
     }
 }

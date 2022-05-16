@@ -11,6 +11,7 @@ interface BuildingData {
     id: string;
     width: number;
     height: number;
+    colour: string;
 }
 
 export const GAME_LIST = _gameList;

@@ -57,12 +57,15 @@ export const MainMenu = ({
                 <Button.Group
                     icon
                     size="big">
-                    <Button positive>
-                        <Icon name="pencil"></Icon>
-                    </Button>
-                    <Button negative>
-                        <Icon name="eraser"></Icon>
-                    </Button>
+                    <Button 
+                        icon="mouse pointer"
+                    />
+                    <Button  
+                        icon="pencil"
+                    />
+                    <Button 
+                        icon="eraser"
+                    />
                 </Button.Group>
                 {CitizenMenuGenerator(citizen, setCitizen)[game]}
                 <Menu.Menu position="right">

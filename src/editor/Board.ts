@@ -39,6 +39,12 @@ export class Board {
     height: number;
     bbox: Snap.BBox;
     elem: SVGGraphicsElement;
+    buildings: {[key:string]: Building};
+    buildingSet: Snap.Paper;
+
+    get buildingList(): Building[] {
+        return Object.values(this.buildings);
+    }
 
     constructor({
         width,
@@ -49,32 +55,42 @@ export class Board {
         this.elem = document.querySelector(svgId) as SVGGraphicsElement;
         this.width = width;
         this.height = height;
+        this.buildings = {};
+
         this.snap = Snap(svgId);
         this.snap.clear();
         this.bbox = this.snap.getBBox();
         
+        this.buildingSet = this.snap.group();
+        this.buildingSet.clear();
+
         this.createUseElements();
         this.drawGrid();
     }
 
-    private drawGrid = () => {
-        this.drawLines(this.width, rowGenerator);
-        this.drawLines(this.height, colGenerator);
+    addBuilding(building: Building) {
+        this.buildings[building.bid] = building;
+        this.buildingSet.add(building.set);
     }
 
-    private drawLines = (maxSize: number, lineGenerator: LineGenerator) => {
-        for (let i = 0; i < maxSize + 1; ++i) {
-            if (i === 0 || i === maxSize) { // add border lines
+    private drawGrid = () => {
+        this.drawLines(this.height, this.width, rowGenerator);
+        this.drawLines(this.width, this.height, colGenerator);
+    }
+
+    private drawLines = (numLines: number, lineLength: number,  lineGenerator: LineGenerator) => {
+        for (let i = 0; i < numLines + 1; ++i) {
+            if (i === 0 || i === numLines) { // add border lines
                 this.snap
-                    .line(...lineGenerator(i, maxSize))
+                    .line(...lineGenerator(i, lineLength))
                     .attr(LINE.BORDER);
             } else if (i % 5 === 0) {       // add semi bold lines
                 this.snap
-                    .line(...lineGenerator(i, maxSize))
+                    .line(...lineGenerator(i, lineLength))
                     .attr(LINE.BOLD);
             } else {                        // regular lines
                 this.snap
-                    .line(...lineGenerator(i, maxSize))
+                    .line(...lineGenerator(i, lineLength))
                     .attr(LINE.NORMAL);
             }
         }

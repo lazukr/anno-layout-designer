@@ -8,6 +8,7 @@ export const App = () => {
     const [width, setWidth] = useState(GRID.DEFAULT_DIMENSION);
     const [height, setHeight] = useState(GRID.DEFAULT_DIMENSION);
     const [selection, setSelection] = useState("cursor");
+    
 
     const setDimension = (width: number, height: number) => {
         setWidth(width);
