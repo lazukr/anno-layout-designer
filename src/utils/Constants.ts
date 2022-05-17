@@ -36,3 +36,16 @@ export const DEFAULT_POP: {[key: string]: string} = {
 }
 
 export const IMAGE_PATH = `${process.env.PUBLIC_URL}/assets/images/`;
+export enum SelectMode {
+    SELECT,
+    ADD,
+    ERASE,
+}
+
+export const getXPosition = (x: number) => {
+    return Math.floor(x / GRID.SIZE);
+}
+
+export const getYPosition = (y: number) => {
+    return Math.floor(y / GRID.SIZE);
+}

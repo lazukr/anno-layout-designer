@@ -3,13 +3,14 @@ import "../styles/editor.scss";
 import { Board } from "../editor/Board";
 import { Cursor } from "../editor/Cursor";
 import { useEffect, useRef } from "react";
-import { GRID } from "../utils/Constants";
+import { GRID, SelectMode } from "../utils/Constants";
 
 interface EditorProps {
     width: number,
     height: number,
     canvas: string,
-    selection: string
+    selection: string,
+    selectMode: SelectMode,
 };
 
 export const Editor = ({
@@ -17,6 +18,7 @@ export const Editor = ({
     height,
     canvas,
     selection,
+    selectMode,
 }: EditorProps) => {
 
     const board = useRef<Board>();
@@ -38,6 +40,10 @@ export const Editor = ({
     useEffect(() => {
         cursor.current?.setSelection(selection);
     }, [selection]);
+
+    useEffect(() => {
+        cursor.current?.updateSelectMode(selectMode);
+    }, [selectMode]);
 
     return (
         <svg

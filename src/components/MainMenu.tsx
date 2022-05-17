@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Menu, Icon, Button, Dropdown } from "semantic-ui-react";
+import { Menu, Button, Dropdown } from "semantic-ui-react";
 import { NewModal } from "./NewModal";
 import { GAME_LIST } from "../data/DataMapper";
-import { DEFAULT_GAME, DEFAULT_POP } from "../utils/Constants";
+import { DEFAULT_GAME, DEFAULT_POP, SelectMode } from "../utils/Constants";
 import { CitizenMenuGenerator, BuildingMenuGenerator } from "./MenuItem";
 interface MenuProps {
     currentWidth: number;
@@ -10,6 +10,8 @@ interface MenuProps {
     setDimension: (width: number, height: number) => void;
     selection: string;
     updateSelection: (selection: string) => void;
+    setSelectMode: (selectMode: SelectMode) => void;
+    selectMode: SelectMode;
 };
 
 export const MainMenu = ({
@@ -18,6 +20,8 @@ export const MainMenu = ({
     setDimension,
     selection,
     updateSelection,
+    setSelectMode,
+    selectMode,
 }: MenuProps) => {
     const [game, setGame] = useState(DEFAULT_GAME);
     const [citizen, setCitizen] = useState(DEFAULT_POP[game]);
@@ -59,12 +63,18 @@ export const MainMenu = ({
                     size="big">
                     <Button 
                         icon="mouse pointer"
+                        active={selectMode === SelectMode.SELECT}
+                        onClick={() => setSelectMode(SelectMode.SELECT)}
                     />
                     <Button  
                         icon="pencil"
+                        active={selectMode === SelectMode.ADD}
+                        onClick={() => setSelectMode(SelectMode.ADD)}
                     />
                     <Button 
                         icon="eraser"
+                        active={selectMode === SelectMode.ERASE}
+                        onClick={() => setSelectMode(SelectMode.ERASE)}
                     />
                 </Button.Group>
                 {CitizenMenuGenerator(citizen, setCitizen)[game]}

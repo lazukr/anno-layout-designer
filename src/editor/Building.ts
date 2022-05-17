@@ -41,6 +41,7 @@ export class Building {
         this.x = x;
         this.y = y;
         this.set = this.snap.use(dataId) as Snap.Element;
+        this.set.attr({id: this.bid});
 
         if (placementMode) {
             this.set.attr({
@@ -77,7 +78,17 @@ export class Building {
             placementMode: false,
         });
     }
-
+    
+    static create = (snap: Snap.Paper, selection: string, x: number, y: number) => {
+        return new Building({
+            snap: snap,
+            dataId: selection,
+            x: x,
+            y: y,
+            placementMode: true,
+        });
+    }
+    
     static createSpriteModel = ({
         snap,
         id,

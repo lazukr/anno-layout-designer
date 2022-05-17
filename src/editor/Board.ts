@@ -40,7 +40,6 @@ export class Board {
     bbox: Snap.BBox;
     elem: SVGGraphicsElement;
     buildings: {[key:string]: Building};
-    buildingSet: Snap.Paper;
 
     get buildingList(): Building[] {
         return Object.values(this.buildings);
@@ -60,9 +59,6 @@ export class Board {
         this.snap = Snap(svgId);
         this.snap.clear();
         this.bbox = this.snap.getBBox();
-        
-        this.buildingSet = this.snap.group();
-        this.buildingSet.clear();
 
         this.createUseElements();
         this.drawGrid();
@@ -70,7 +66,17 @@ export class Board {
 
     addBuilding(building: Building) {
         this.buildings[building.bid] = building;
-        this.buildingSet.add(building.set);
+    }
+
+    getBuilding(x: number, y: number) {
+        const elem = Snap.getElementByPoint(x, y);
+        return elem;
+    }
+
+    deleteBuilding(id: string) {
+        const building = this.buildings[id];
+        building?.clear();
+        delete this.buildings[id];
     }
 
     private drawGrid = () => {
