@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.572b812b.chunk.css",
-    "main.js": "/static/js/main.3578e194.chunk.js",
-    "main.js.map": "/static/js/main.3578e194.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.b010636e.js",
-    "runtime-main.js.map": "/static/js/runtime-main.b010636e.js.map",
-    "static/css/2.70fdd7df.chunk.css": "/static/css/2.70fdd7df.chunk.css",
-    "static/js/2.80e9c51e.chunk.js": "/static/js/2.80e9c51e.chunk.js",
-    "static/js/2.80e9c51e.chunk.js.map": "/static/js/2.80e9c51e.chunk.js.map",
-    "static/js/3.aeace2e1.chunk.js": "/static/js/3.aeace2e1.chunk.js",
-    "static/js/3.aeace2e1.chunk.js.map": "/static/js/3.aeace2e1.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.70fdd7df.chunk.css.map": "/static/css/2.70fdd7df.chunk.css.map",
-    "static/css/main.572b812b.chunk.css.map": "/static/css/main.572b812b.chunk.css.map",
-    "static/js/2.80e9c51e.chunk.js.LICENSE.txt": "/static/js/2.80e9c51e.chunk.js.LICENSE.txt",
-    "static/media/semantic.css": "/static/media/outline-icons.c5240512.woff2"
+    "main.css": "/anno-layout-designer/static/css/main.572b812b.chunk.css",
+    "main.js": "/anno-layout-designer/static/js/main.ba7e3c7a.chunk.js",
+    "main.js.map": "/anno-layout-designer/static/js/main.ba7e3c7a.chunk.js.map",
+    "runtime-main.js": "/anno-layout-designer/static/js/runtime-main.5f5a556a.js",
+    "runtime-main.js.map": "/anno-layout-designer/static/js/runtime-main.5f5a556a.js.map",
+    "static/css/2.ca61de25.chunk.css": "/anno-layout-designer/static/css/2.ca61de25.chunk.css",
+    "static/js/2.80e9c51e.chunk.js": "/anno-layout-designer/static/js/2.80e9c51e.chunk.js",
+    "static/js/2.80e9c51e.chunk.js.map": "/anno-layout-designer/static/js/2.80e9c51e.chunk.js.map",
+    "static/js/3.aeace2e1.chunk.js": "/anno-layout-designer/static/js/3.aeace2e1.chunk.js",
+    "static/js/3.aeace2e1.chunk.js.map": "/anno-layout-designer/static/js/3.aeace2e1.chunk.js.map",
+    "index.html": "/anno-layout-designer/index.html",
+    "static/css/2.ca61de25.chunk.css.map": "/anno-layout-designer/static/css/2.ca61de25.chunk.css.map",
+    "static/css/main.572b812b.chunk.css.map": "/anno-layout-designer/static/css/main.572b812b.chunk.css.map",
+    "static/js/2.80e9c51e.chunk.js.LICENSE.txt": "/anno-layout-designer/static/js/2.80e9c51e.chunk.js.LICENSE.txt",
+    "static/media/semantic.css": "/anno-layout-designer/static/media/outline-icons.c5240512.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.b010636e.js",
-    "static/css/2.70fdd7df.chunk.css",
+    "static/js/runtime-main.5f5a556a.js",
+    "static/css/2.ca61de25.chunk.css",
     "static/js/2.80e9c51e.chunk.js",
     "static/css/main.572b812b.chunk.css",
-    "static/js/main.3578e194.chunk.js"
+    "static/js/main.ba7e3c7a.chunk.js"
   ]
 }
