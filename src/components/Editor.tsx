@@ -1,80 +1,55 @@
-import React, { useEffect } from "react";
-import "snapsvg-cjs";
-import SNAPSVG_TYPE from "snapsvg";
+import "fomantic-ui-css/semantic.css";
 import "../styles/editor.scss";
+import { Board } from "../editor/Board";
+import { Cursor } from "../editor/Cursor";
+import { useEffect, useRef } from "react";
+import { GRID, SelectMode } from "../utils/Constants";
 
-declare const Snap: typeof SNAPSVG_TYPE;
-
-export interface EditorProps {
-    width: number;
-    height: number;
+interface EditorProps {
+    width: number,
+    height: number,
+    canvas: string,
+    selection: string,
+    selectMode: SelectMode,
 };
 
-const lineProps = {
-    stroke: 'black',
-    strokeWidth: 0.25,
-    width: 1,
-};
+export const Editor = ({
+    width,
+    height,
+    canvas,
+    selection,
+    selectMode,
+}: EditorProps) => {
 
-const boldedLineProps = {
-    stroke: 'black',
-    strokeWidth: 1,
-    width: 1,
-};
-
-const borderLineProps = {
-    stroke: 'black',
-    strokeWidth: 5,
-    width: 1,
-}
-
-const GRID_SIZE = 32;
-
-export const Editor = (props: EditorProps) => {
-    const {
-        width,
-        height,
-    } = props;
+    const board = useRef<Board>();
+    const cursor = useRef<Cursor>();
 
     useEffect(() => {
-        const editor = Snap('#snap');
-        editor.clear();
-
-        const rowLines = Array.from(Array(width + 1).keys());
-        const colLines = Array.from(Array(height + 1).keys());
-        const realWidth = width * GRID_SIZE;
-        const realHeight = height * GRID_SIZE;
-
-        colLines.forEach(i => {
-            const currentPosition = i * GRID_SIZE;
-            const line = editor.line(currentPosition, 0, currentPosition, realHeight);
-            line.attr(i % 10 ? lineProps : boldedLineProps);
+        board.current = new Board({
+            width: width,
+            height: height,
+            canvas: canvas,
         });
 
-        rowLines.forEach(i => {
-            const currentPosition = i * GRID_SIZE;
-            const line = editor.line(0, currentPosition, realWidth, currentPosition);
-            line.attr(i % 10 ? lineProps : boldedLineProps);
+        cursor.current = new Cursor({
+            board: board.current,
+            selection: "cursor",
         });
+    }, [width, height, canvas]);
 
-        const topBorder = editor.line(0, 0, realWidth, 0);
-        const bottomBorder = editor.line(0, realHeight, realWidth, realHeight);
-        const leftBorder = editor.line(0, 0, 0, realHeight);
-        const rightBorder = editor.line(realWidth, 0, realWidth, realHeight);
-        topBorder.attr(borderLineProps);
-        bottomBorder.attr(borderLineProps);
-        leftBorder.attr(borderLineProps);
-        rightBorder.attr(borderLineProps);
-    }, [width, height]);
+    useEffect(() => {
+        cursor.current?.setSelection(selection);
+    }, [selection]);
+
+    useEffect(() => {
+        cursor.current?.updateSelectMode(selectMode);
+    }, [selectMode]);
 
     return (
-        <div className="ui basic segment"
-            style={{overflow:"auto", maxWidth:"90wh", maxHeight:"80vh"}}>
-            <svg 
-                id="snap" 
-                width={props.width * GRID_SIZE}
-                height={props.height * GRID_SIZE}
-            />
-        </div>
-    );
+        <svg
+            id={canvas}
+            width={width * GRID.SIZE}
+            height={height * GRID.SIZE}
+        />
+    )
 };

@@ -1,32 +1,46 @@
+import { GRID, SelectMode } from "../utils/Constants";
 import "../styles/App.scss";
-import { useState } from "react";
 import { Editor } from "./Editor";
-import { SidePanel } from "./SidePanel";
-import { Menu } from "./Menu";
+import { MainMenu } from "./MainMenu";
+import { useState } from "react";
 
 export const App = () => {
+    const [width, setWidth] = useState(GRID.DEFAULT_DIMENSION);
+    const [height, setHeight] = useState(GRID.DEFAULT_DIMENSION);
+    const [selection, setSelection] = useState("cursor");
+    const [selectMode, setSelectMode] = useState(SelectMode.ADD);
 
-  const [boardWidth, setBoardWidth] = useState(150);
-  const [boardHeight, setBoardHeight] = useState(150);
+    const setDimension = (width: number, height: number) => {
+        setWidth(width);
+        setHeight(height);
+    };
 
-  const newGrid = (width: number, height: number): void => {
-    setBoardWidth(width);
-    setBoardHeight(height);
-  }
+    const updateSelection = (selection: string) => {
+        setSelection(selection);
+    }
 
-  return (
-    <div className="App">
-      <Menu/>
-      <Editor 
-        width={boardWidth} 
-        height={boardHeight}
-      />
-      {/*
-      <div>
-        <SidePanel width={boardWidth} height={boardHeight} newGrid={newGrid} />
-        <Editor width={boardWidth} height={boardHeight}/>
-      </div>
-      */}
-    </div>
-  )
+    const updateSelectMode = (selectMode: SelectMode) => {
+        setSelectMode(selectMode);
+    }
+
+    return (
+        <div className="App">
+            <MainMenu
+                currentWidth={width}
+                currentHeight={height}
+                setDimension={setDimension}
+                selection={selection}
+                updateSelection={updateSelection}
+                setSelectMode={updateSelectMode}
+                selectMode={selectMode}
+            />
+            <Editor
+                width={width}
+                height={height}
+                canvas={"svg"}
+                selection={selection}
+                selectMode={selectMode}
+            />
+        </div>
+    )
 };
