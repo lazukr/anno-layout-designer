@@ -82,7 +82,7 @@ export const MainMenu = ({
                     <Menu.Item
                         icon="github"
                         name="Github"
-                        href="https://github.com/lazukr"
+                        href="https://github.com/lazukr/anno-layout-designer"
                         target="_blank"
                         rel="noreferrer">
                     </Menu.Item>
