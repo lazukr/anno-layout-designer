@@ -1,8 +1,9 @@
 import "snapsvg-cjs";
 import SNAPSVG_TYPE from "snapsvg";
-import { GRID, LINE } from "../utils/Constants";
-import { BUILDING_NAMES } from "../data/DataMapper";
+import { GRID } from "../utils/Constants";
 import { Building } from "./Building";
+import { GridBoard } from "./GridBoard";
+import { BuildingBoard } from "./BuildingBoard";
 
 declare const Snap: typeof SNAPSVG_TYPE;
 
@@ -12,38 +13,14 @@ export interface BoardProps {
     height: number;
 };
 
-type LineArray = [number, number, number, number];
-type LineGenerator = (index: number, max: number) => LineArray;
-
-const rowGenerator: LineGenerator = (index, max) => {
-    return [
-        0, 
-        index * GRID.SIZE,
-        max * GRID.SIZE,
-        index * GRID.SIZE,
-    ];
-}
-
-const colGenerator: LineGenerator = (index, max) => {
-    return [ 
-        index * GRID.SIZE,
-        0,
-        index * GRID.SIZE,
-        max * GRID.SIZE,
-    ];
-}
-
 export class Board {
     snap: Snap.Paper;
     width: number;
     height: number;
-    bbox: Snap.BBox;
     elem: SVGGraphicsElement;
+    gridBoard: GridBoard;
+    buildingBoard: BuildingBoard;
     buildings: {[key:string]: Building};
-
-    get buildingList(): Building[] {
-        return Object.values(this.buildings);
-    }
 
     constructor({
         width,
@@ -58,10 +35,19 @@ export class Board {
 
         this.snap = Snap(svgId);
         this.snap.clear();
-        this.bbox = this.snap.getBBox();
 
-        this.createUseElements();
-        this.drawGrid();
+        // creates the grids
+        this.gridBoard = new GridBoard({
+            snap: this.snap,
+            width: width,
+            height: height,
+            gridSize: GRID.SIZE,
+        });
+
+        this.buildingBoard = new BuildingBoard({
+            snap: this.snap,
+            gridSize: GRID.SIZE,
+        });
     }
 
     addBuilding(building: Building) {
@@ -77,49 +63,5 @@ export class Board {
         const building = this.buildings[id];
         building?.clear();
         delete this.buildings[id];
-    }
-
-    private drawGrid = () => {
-        this.drawLines(this.height, this.width, rowGenerator);
-        this.drawLines(this.width, this.height, colGenerator);
-    }
-
-    private drawLines = (numLines: number, lineLength: number,  lineGenerator: LineGenerator) => {
-        for (let i = 0; i < numLines + 1; ++i) {
-            if (i === 0 || i === numLines) { // add border lines
-                this.snap
-                    .line(...lineGenerator(i, lineLength))
-                    .attr(LINE.BORDER);
-            } else if (i % 5 === 0) {       // add semi bold lines
-                this.snap
-                    .line(...lineGenerator(i, lineLength))
-                    .attr(LINE.BOLD);
-            } else {                        // regular lines
-                this.snap
-                    .line(...lineGenerator(i, lineLength))
-                    .attr(LINE.NORMAL);
-            }
-        }
-    }
-
-    private createUseElements = () => {
-        BUILDING_NAMES.forEach(building => {
-            Building.createSpriteModel({
-                snap: this.snap,
-                id: building,
-                rotated: false,
-            }).attr({
-                id: building,
-            }).toDefs();
-
-            // rotated version
-            Building.createSpriteModel({
-                snap: this.snap,
-                id: building,
-                rotated: true,
-            }).attr({
-                id: `${building}_rotated`,
-            }).toDefs();
-        });
     }
 };
