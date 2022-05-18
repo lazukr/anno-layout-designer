@@ -26,7 +26,7 @@ export class Cursor {
         this.snap = this.board.snap;
         this.x = 0;
         this.y = 0;
-        this.selection = Building.create(this.snap, selection, this.x, this.y);
+        this.selection = Building.create(this.snap, selection, this.x, this.y, false);
         this.selectMode = SelectMode.ADD;
         this.isSelected = false;
         this.updateSelectMode(this.selectMode);
@@ -46,6 +46,12 @@ export class Cursor {
         if (this.selection.dataId === "cursor") {
             return;
         }
+
+        if (event.ctrlKey) {
+            this.setSelection(this.selection.dataId, !this.selection.isRotated);
+            return;
+        }
+
         this.board.addBuilding(Building.clone(this.selection));
     }
 
@@ -78,7 +84,7 @@ export class Cursor {
                 return;
             }
 
-            this.setSelection(building.dataId);
+            this.setSelection(building.dataId, building.isRotated);
             this.isSelected = true;
             this.board.deleteBuilding(id);
             return;
@@ -126,12 +132,12 @@ export class Cursor {
         });
     }
 
-    setSelection = (selection: string) => {
+    setSelection = (selection: string, rotated: boolean = false) => {
         if (this.selectMode === SelectMode.ERASE) {
             return;
         }
         this.selection.clear();
-        this.selection = Building.create(this.snap, selection, this.x, this.y);
+        this.selection = Building.create(this.snap, selection, this.x, this.y, rotated);
     }
 
     updateSelectMode = (selectMode: SelectMode) => {

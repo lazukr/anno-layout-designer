@@ -7,12 +7,14 @@ interface BuildingProps {
     snap: Snap.Paper;
     x: number;
     y: number;
+    rotated: boolean;
     placementMode: boolean;
 }
 
 interface SpriteModelProps {
     id: string;
     snap: Snap.Paper;
+    rotated: boolean;
 }
 
 export class Building {
@@ -22,6 +24,7 @@ export class Building {
     set: Snap.Element;
     width: number;
     height: number;
+    isRotated: boolean;
     x: number;
     y: number;
 
@@ -30,17 +33,20 @@ export class Building {
         dataId,
         x,
         y,
+        rotated,
         placementMode,
     }: BuildingProps) {
         this.bid = uuidv4();
         this.snap = snap;
+        this.isRotated = rotated;
         this.dataId = dataId;
         const info = BUILDINGS[dataId];
-        this.width = info.width;
-        this.height = info.height;
+        this.width = this.isRotated ? info.height : info.width;
+        this.height = this.isRotated ? info.width : info.height;
         this.x = x;
         this.y = y;
-        this.set = this.snap.use(dataId) as Snap.Element;
+        const rotateDataIdMap = `${this.dataId}${rotated ? "_rotated" : ""}`;
+        this.set = this.snap.use(rotateDataIdMap) as Snap.Element;
         this.set.attr({id: this.bid});
 
         if (placementMode) {
@@ -68,6 +74,7 @@ export class Building {
             dataId,
             x,
             y,
+            isRotated,
         } = building;
 
         return new Building({
@@ -75,16 +82,18 @@ export class Building {
             dataId: dataId,
             x: x,
             y: y,
+            rotated: isRotated,
             placementMode: false,
         });
     }
     
-    static create = (snap: Snap.Paper, selection: string, x: number, y: number) => {
+    static create = (snap: Snap.Paper, selection: string, x: number, y: number, rotated: boolean) => {
         return new Building({
             snap: snap,
             dataId: selection,
             x: x,
             y: y,
+            rotated: rotated,
             placementMode: true,
         });
     }
@@ -92,17 +101,20 @@ export class Building {
     static createSpriteModel = ({
         snap,
         id,
+        rotated,
     }: SpriteModelProps) => {
 
-        const {width, height, colour } = BUILDINGS[id];
-        const squareSize = Math.min(width, height) / 2;
-        const centerX = width / 2 - squareSize / 2;
-        const centerY = height / 2 - squareSize / 2;
+        const { width, height, colour } = BUILDINGS[id];
+        const actualWidth = rotated ? height : width;
+        const actualHeight = rotated ? width : height;
+        const squareSize = Math.min(actualWidth, actualHeight) / 2;
+        const centerX = actualWidth / 2 - squareSize / 2;
+        const centerY = actualHeight / 2 - squareSize / 2;
         const background = snap.rect(
             0.5,
             0.5,
-            width * GRID.SIZE - 1, 
-            height * GRID.SIZE - 1)
+            actualWidth * GRID.SIZE - 1, 
+            actualHeight * GRID.SIZE - 1)
             .attr({
                 "fill-opacity": 1,
                 stroke: "#000",

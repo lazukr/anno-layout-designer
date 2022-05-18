@@ -107,8 +107,18 @@ export class Board {
             Building.createSpriteModel({
                 snap: this.snap,
                 id: building,
+                rotated: false,
             }).attr({
                 id: building,
+            }).toDefs();
+
+            // rotated version
+            Building.createSpriteModel({
+                snap: this.snap,
+                id: building,
+                rotated: true,
+            }).attr({
+                id: `${building}_rotated`,
             }).toDefs();
         });
     }
