@@ -120,7 +120,7 @@
         "colour": "#FFF"
     },
     "1800_Church_new_world": {
-        "id": "1800_Church",
+        "id": "1800_Church_new_world",
         "width": 3,
         "height": 4,
         "colour": "#FFF"
@@ -330,7 +330,7 @@
         "colour": "#FFF"
     },
     "1800_Hospital_new_world": {
-        "id": "1800_Hospital",
+        "id": "1800_Hospital_new_world",
         "width": 5,
         "height": 6,
         "colour": "#FFF"
@@ -450,7 +450,7 @@
         "colour": "#FFF"
     },
     "1800_Police_Station_new_world": {
-        "id": "1800_Police_Station",
+        "id": "1800_Police_Station_new_world",
         "width": 4,
         "height": 5,
         "colour": "#FFF"
