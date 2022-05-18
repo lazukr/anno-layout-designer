@@ -2,6 +2,7 @@
   "name": "anno-layout-designer",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lazukr.github.io/anno-layout-designer",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -12,6 +13,7 @@
     "@types/react-color": "^3.0.4",
     "@types/react-dom": "^17.0.0",
     "@types/snapsvg": "^0.5.1",
+    "@types/uuid": "^8.3.4",
     "fomantic-ui-css": "^2.8.8",
     "react": "^17.0.2",
     "react-color": "^2.19.3",
@@ -28,7 +30,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^4.0.0",
     "sass": "^1.42.1"
   }
 }
