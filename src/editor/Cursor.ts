@@ -36,7 +36,7 @@ export class Cursor {
     private mouseMoveEvent = (event: MouseEvent) => {
         this.point.x = event.clientX;
         this.point.y = event.clientY;
-        const pt = this.point.matrixTransform(this.board.elem.getScreenCTM()?.inverse());
+        const pt = this.point.matrixTransform(this.board.cursorGridMatrix);
         this.x = Math.max(Math.min(getXPosition(pt.x), this.board.width - this.selection.width), 0);
         this.y = Math.max(Math.min(getYPosition(pt.y), this.board.height - this.selection.height), 0);
         this.selection!.updatePosition(this.x, this.y);

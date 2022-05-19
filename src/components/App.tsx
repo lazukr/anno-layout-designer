@@ -37,7 +37,6 @@ export const App = () => {
             <Editor
                 width={width}
                 height={height}
-                canvas={"svg"}
                 selection={selection}
                 selectMode={selectMode}
             />

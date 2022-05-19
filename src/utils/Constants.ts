@@ -49,3 +49,5 @@ export const getXPosition = (x: number) => {
 export const getYPosition = (y: number) => {
     return Math.floor(y / GRID.SIZE);
 }
+
+export const SVG_ID = "svg";

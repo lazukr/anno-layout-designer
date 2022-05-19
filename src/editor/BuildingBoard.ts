@@ -1,7 +1,9 @@
 import "snapsvg-cjs";
+import SNAPSVG_TYPE from "snapsvg";
 import { BUILDINGS, BUILDING_NAMES } from "../data/DataMapper";
 import { IMAGE_PATH } from "../utils/Constants";
 
+declare const Snap: typeof SNAPSVG_TYPE;
 interface BuildingBoardProps {
     snap: Snap.Paper;
     gridSize: number;
@@ -27,16 +29,20 @@ export class BuildingBoard {
         this.createUseElements();
     }
 
+    createElement(id: string, x: number, y: number) {
+        const elem = this.snap.use(id) as Snap.Element;
+        elem.transform(`t${x * this.gridSize},${y * this.gridSize}`);
+        return elem;
+    }
+
     getElement(x: number, y: number) {
-
+        const elem = Snap.getElementByPoint(x, y);
+        return elem;
     }
 
-    selectElement(id: string) {
-
-    }
-
-    deleteElement(id: string) {
-
+    deleteElement(x: number, y: number) {
+        const elem = this.getElement(x, y);
+        elem.remove();
     }
 
     private createUseElements = () => {

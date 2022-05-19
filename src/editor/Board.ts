@@ -14,10 +14,11 @@ export interface BoardProps {
 };
 
 export class Board {
+    private elem: SVGGraphicsElement;
     snap: Snap.Paper;
     width: number;
     height: number;
-    elem: SVGGraphicsElement;
+
     gridBoard: GridBoard;
     buildingBoard: BuildingBoard;
     buildings: {[key:string]: Building};
@@ -48,6 +49,10 @@ export class Board {
             snap: this.snap,
             gridSize: GRID.SIZE,
         });
+    }
+
+    get cursorGridMatrix() {
+        return this.elem.getScreenCTM()!.inverse();
     }
 
     addBuilding(building: Building) {
