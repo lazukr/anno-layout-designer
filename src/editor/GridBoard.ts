@@ -67,8 +67,8 @@ export class GridBoard {
         gridSize,
     }: GridBoardProps) {
         this.snap = snap;
-        this.drawLines(gridWidth, gridHeight, gridSize, rowGenerator);
-        this.drawLines(gridHeight, gridWidth, gridSize, colGenerator);
+        this.drawLines(gridWidth, gridHeight, gridSize, colGenerator);
+        this.drawLines(gridHeight, gridWidth, gridSize, rowGenerator);
     }
 
     private drawLines: LineDrawProps = (numLines, lineLength, gridSize, lineGenerator) => {

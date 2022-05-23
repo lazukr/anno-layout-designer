@@ -46,14 +46,12 @@ export const NewEditor = ({
             height: height,
         });
 
-    }, [width, height, canvas]);
-
-    useEffect(() => {
         cursorObject.current = new CursorObject({
             displayBoard: displayBoard.current!,
             dataBoard: dataBoard.current!,
         });
-    }, [selectMode]);
+
+    }, [width, height, canvas]);
 
     useEffect(() => {
         cursorObject.current?.setSelectObject(selection);

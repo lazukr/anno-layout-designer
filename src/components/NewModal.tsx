@@ -46,25 +46,21 @@ export const NewModal = ({
             <Modal.Content>
                 <Input
                     className="large"
-                    inline
                     label="Width"
                     type="number"
                     min={GRID.MIN_DIMENSION}
                     max={GRID.MAX_DIMENSION}
                     defaultValue={width}
-                    control={Input}
                     required
                     onChange={(e) => setWidth(e.target.valueAsNumber)}
                 />
                 <Input
                     className="large"
-                    inline
                     label="Height"
                     type="number"
                     min={GRID.MIN_DIMENSION}
                     max={GRID.MAX_DIMENSION}
                     defaultValue={height}
-                    control={Input}
                     required
                     onChange={(e) => setHeight(e.target.valueAsNumber)}
                 />
