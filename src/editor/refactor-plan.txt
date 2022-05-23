@@ -1,0 +1,4 @@
+Snap --> Display Board --> Grid Board
+ |          |         |
+ |          V         V
+ |-----> Cursor --> Data Storage

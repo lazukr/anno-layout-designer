@@ -3,6 +3,7 @@ import "../styles/App.scss";
 import { Editor } from "./Editor";
 import { MainMenu } from "./MainMenu";
 import { useState } from "react";
+import { NewEditor } from "./NewEditor";
 
 export const App = () => {
     const [width, setWidth] = useState(GRID.DEFAULT_DIMENSION);
@@ -34,7 +35,7 @@ export const App = () => {
                 setSelectMode={updateSelectMode}
                 selectMode={selectMode}
             />
-            <Editor
+            <NewEditor
                 width={width}
                 height={height}
                 canvas={"svg"}
