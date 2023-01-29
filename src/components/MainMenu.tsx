@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, Button, Dropdown } from "semantic-ui-react";
+import {Menu, Button, Dropdown } from "semantic-ui-react";
 import { NewModal } from "./NewModal";
 import { GAME_LIST } from "../data/DataMapper";
 import { DEFAULT_GAME, DEFAULT_POP, SelectMode } from "../utils/Constants";
