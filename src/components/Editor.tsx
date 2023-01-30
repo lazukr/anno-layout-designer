@@ -1,5 +1,3 @@
-import "fomantic-ui-css/semantic.css";
-import "../styles/editor.scss";
 import { Board } from "../editor/Board";
 import { Cursor } from "../editor/Cursor";
 import { useEffect, useRef } from "react";

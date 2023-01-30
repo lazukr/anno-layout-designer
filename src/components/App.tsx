@@ -1,7 +1,6 @@
 import { GRID, SelectMode } from "../utils/Constants";
-import "../styles/App.scss";
 import { Editor } from "./NewEditor";
-import { MainMenu } from "./MainMenu";
+import { MainMenu } from "./NewMainMenu";
 import { useState } from "react";
 
 export const App = () => {
@@ -25,20 +24,14 @@ export const App = () => {
 
     return (
         <div className="App">
-            {/*}
             <MainMenu
                 currentWidth={width}
                 currentHeight={height}
-                setDimension={setDimension}
-                selection={selection}
-                updateSelection={updateSelection}
-                setSelectMode={updateSelectMode}
-                selectMode={selectMode}
-    />*/}
+            />
             <Editor
                 width={width}
                 height={height}
-                gridSize={32}
+                gridSize={64}
                 action={""}
                 selection={""}
             />

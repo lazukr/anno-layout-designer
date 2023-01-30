@@ -23,21 +23,26 @@ export const Editor = ({
     const position = useRef<PositionTracker>();
 
     useEffect(() => {
-        const board = new NewBoard({
-            snap: snap.current!,
-            bound: bound.current!,
-            width: width,
-            height: height,
-            gridSize: gridSize,
-        });
+        if (snap.current && bound.current) {
+            snap.current.clear();
+            new NewBoard({
+                snap: snap.current,
+                bound: bound.current,
+                width: width,
+                height: height,
+                gridSize: gridSize,
+            });
+        }
     }, [width, height, gridSize]);
 
     useEffect(() => {
-        position.current = new PositionTracker({
-            snap: snap.current!,
-            bound: bound.current!,
-            gridSize: gridSize,
-        });
+        if (snap.current && bound.current) {
+            position.current = new PositionTracker({
+                snap: snap.current!,
+                bound: bound.current!,
+                gridSize: gridSize,
+            });
+        }
     }, [gridSize]);
 
     return (
