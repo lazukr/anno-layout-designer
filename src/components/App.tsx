@@ -1,12 +1,12 @@
 import { GRID, SelectMode } from "../utils/Constants";
 import "../styles/App.scss";
-import { Editor } from "./Editor";
+import { Editor } from "./NewEditor";
 import { MainMenu } from "./MainMenu";
 import { useState } from "react";
 
 export const App = () => {
-    const [width, setWidth] = useState(GRID.DEFAULT_DIMENSION);
-    const [height, setHeight] = useState(GRID.DEFAULT_DIMENSION);
+    const [width, setWidth] = useState(10);
+    const [height, setHeight] = useState(10);
     const [selection, setSelection] = useState("cursor");
     const [selectMode, setSelectMode] = useState(SelectMode.ADD);
 
@@ -25,6 +25,7 @@ export const App = () => {
 
     return (
         <div className="App">
+            {/*}
             <MainMenu
                 currentWidth={width}
                 currentHeight={height}
@@ -33,13 +34,13 @@ export const App = () => {
                 updateSelection={updateSelection}
                 setSelectMode={updateSelectMode}
                 selectMode={selectMode}
-            />
+    />*/}
             <Editor
                 width={width}
                 height={height}
-                canvas={"svg"}
-                selection={selection}
-                selectMode={selectMode}
+                gridSize={32}
+                action={""}
+                selection={""}
             />
         </div>
     )
