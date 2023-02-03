@@ -1,0 +1,827 @@
+{
+    "1800": {
+        "name": "1800",
+        "title": "Anno 1800",
+        "citizens": {
+            "farmer": {
+                "name": "farmer",
+                "imagePath": "assets/images/1800/farmer/farmer.png",
+                "buildings": [
+                    {
+                        "name": "fire_station",
+                        "imagePath": "assets/images/1800/farmer/fire_station.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "framework_knitters",
+                        "imagePath": "assets/images/1800/farmer/framework_knitters.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "sheep_farm",
+                        "imagePath": "assets/images/1800/farmer/sheep_farm.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "farmer_residence",
+                        "imagePath": "assets/images/1800/farmer/farmer_residence.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "lumberjacks_hut",
+                        "imagePath": "assets/images/1800/farmer/lumberjacks_hut.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "pub",
+                        "imagePath": "assets/images/1800/farmer/pub.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "dirt_road",
+                        "imagePath": "assets/images/1800/farmer/dirt_road.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "schnapps_distillery",
+                        "imagePath": "assets/images/1800/farmer/schnapps_distillery.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "potato_farm",
+                        "imagePath": "assets/images/1800/farmer/potato_farm.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "marketplace",
+                        "imagePath": "assets/images/1800/farmer/marketplace.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "warehouse",
+                        "imagePath": "assets/images/1800/farmer/warehouse.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "farmer",
+                        "imagePath": "assets/images/1800/farmer/farmer.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "sawmill",
+                        "imagePath": "assets/images/1800/farmer/sawmill.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "fishery",
+                        "imagePath": "assets/images/1800/farmer/fishery.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    }
+                ]
+            },
+            "jornalero": {
+                "name": "jornalero",
+                "imagePath": "assets/images/1800/jornalero/jornalero.png",
+                "buildings": [
+                    {
+                        "name": "Alpaca_wool",
+                        "imagePath": "assets/images/1800/jornalero/Alpaca_wool.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "jornalero",
+                        "imagePath": "assets/images/1800/jornalero/jornalero.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Poncho",
+                        "imagePath": "assets/images/1800/jornalero/Poncho.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Fried_plantains",
+                        "imagePath": "assets/images/1800/jornalero/Fried_plantains.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Fish_Oil",
+                        "imagePath": "assets/images/1800/jornalero/Fish_Oil.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Plantains",
+                        "imagePath": "assets/images/1800/jornalero/Plantains.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    }
+                ]
+            },
+            "artisan": {
+                "name": "artisan",
+                "imagePath": "assets/images/1800/artisan/artisan.png",
+                "buildings": [
+                    {
+                        "name": "Red_peppers",
+                        "imagePath": "assets/images/1800/artisan/Red_peppers.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Hospital",
+                        "imagePath": "assets/images/1800/artisan/Hospital.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Goulash",
+                        "imagePath": "assets/images/1800/artisan/Goulash.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Quartz_sand",
+                        "imagePath": "assets/images/1800/artisan/Quartz_sand.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Furs",
+                        "imagePath": "assets/images/1800/artisan/Furs.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Cotton",
+                        "imagePath": "assets/images/1800/artisan/Cotton.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Fur_Coats",
+                        "imagePath": "assets/images/1800/artisan/Fur_Coats.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Cotton_fabric",
+                        "imagePath": "assets/images/1800/artisan/Cotton_fabric.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Sugar_cane",
+                        "imagePath": "assets/images/1800/artisan/Sugar_cane.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Coal",
+                        "imagePath": "assets/images/1800/artisan/Coal.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Beef",
+                        "imagePath": "assets/images/1800/artisan/Beef.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Rum",
+                        "imagePath": "assets/images/1800/artisan/Rum.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Canned_food",
+                        "imagePath": "assets/images/1800/artisan/Canned_food.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "artisan",
+                        "imagePath": "assets/images/1800/artisan/artisan.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "University",
+                        "imagePath": "assets/images/1800/artisan/University.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Windows",
+                        "imagePath": "assets/images/1800/artisan/Windows.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Town_Hall",
+                        "imagePath": "assets/images/1800/artisan/Town_Hall.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Glass",
+                        "imagePath": "assets/images/1800/artisan/Glass.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Museum",
+                        "imagePath": "assets/images/1800/artisan/Museum.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Variety_theatre",
+                        "imagePath": "assets/images/1800/artisan/Variety_theatre.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Sewing_machines",
+                        "imagePath": "assets/images/1800/artisan/Sewing_machines.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    }
+                ]
+            },
+            "obrero": {
+                "name": "obrero",
+                "imagePath": "assets/images/1800/obrero/obrero.png",
+                "buildings": [
+                    {
+                        "name": "Tortilla",
+                        "imagePath": "assets/images/1800/obrero/Tortilla.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Cocoa",
+                        "imagePath": "assets/images/1800/obrero/Cocoa.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Sugar",
+                        "imagePath": "assets/images/1800/obrero/Sugar.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Corn",
+                        "imagePath": "assets/images/1800/obrero/Corn.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Bowler_hats",
+                        "imagePath": "assets/images/1800/obrero/Bowler_hats.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Felt",
+                        "imagePath": "assets/images/1800/obrero/Felt.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Boxing_Arena",
+                        "imagePath": "assets/images/1800/obrero/Boxing_Arena.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "obrero",
+                        "imagePath": "assets/images/1800/obrero/obrero.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Chocolate",
+                        "imagePath": "assets/images/1800/obrero/Chocolate.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    }
+                ]
+            },
+            "investor": {
+                "name": "investor",
+                "imagePath": "assets/images/1800/investor/investor.png",
+                "buildings": [
+                    {
+                        "name": "Jewelry",
+                        "imagePath": "assets/images/1800/investor/Jewelry.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "investor",
+                        "imagePath": "assets/images/1800/investor/investor.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Steam_carriages",
+                        "imagePath": "assets/images/1800/investor/Steam_carriages.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Tobacco",
+                        "imagePath": "assets/images/1800/investor/Tobacco.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Grapes",
+                        "imagePath": "assets/images/1800/investor/Grapes.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Gramophone",
+                        "imagePath": "assets/images/1800/investor/Gramophone.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Cigars",
+                        "imagePath": "assets/images/1800/investor/Cigars.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Chassis",
+                        "imagePath": "assets/images/1800/investor/Chassis.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Members_club",
+                        "imagePath": "assets/images/1800/investor/Members_club.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Pearls",
+                        "imagePath": "assets/images/1800/investor/Pearls.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Champagne",
+                        "imagePath": "assets/images/1800/investor/Champagne.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Wood_veneers",
+                        "imagePath": "assets/images/1800/investor/Wood_veneers.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    }
+                ]
+            },
+            "worker": {
+                "name": "worker",
+                "imagePath": "assets/images/1800/worker/worker.png",
+                "buildings": [
+                    {
+                        "name": "school",
+                        "imagePath": "assets/images/1800/worker/school.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "malthouse",
+                        "imagePath": "assets/images/1800/worker/malthouse.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "charcoal_kiln",
+                        "imagePath": "assets/images/1800/worker/charcoal_kiln.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "brewery",
+                        "imagePath": "assets/images/1800/worker/brewery.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "sailmakers",
+                        "imagePath": "assets/images/1800/worker/sailmakers.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "clay_pit",
+                        "imagePath": "assets/images/1800/worker/clay_pit.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "church",
+                        "imagePath": "assets/images/1800/worker/church.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "bakery",
+                        "imagePath": "assets/images/1800/worker/bakery.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "police_station",
+                        "imagePath": "assets/images/1800/worker/police_station.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "paved_street",
+                        "imagePath": "assets/images/1800/worker/paved_street.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "furnace",
+                        "imagePath": "assets/images/1800/worker/furnace.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "steelworks",
+                        "imagePath": "assets/images/1800/worker/steelworks.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "pig_farm",
+                        "imagePath": "assets/images/1800/worker/pig_farm.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "worker",
+                        "imagePath": "assets/images/1800/worker/worker.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "trade_union",
+                        "imagePath": "assets/images/1800/worker/trade_union.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "soap_factory",
+                        "imagePath": "assets/images/1800/worker/soap_factory.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "grain_farm",
+                        "imagePath": "assets/images/1800/worker/grain_farm.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "weapon_factory",
+                        "imagePath": "assets/images/1800/worker/weapon_factory.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "iron_mine",
+                        "imagePath": "assets/images/1800/worker/iron_mine.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "flour_mill",
+                        "imagePath": "assets/images/1800/worker/flour_mill.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "hop_farm",
+                        "imagePath": "assets/images/1800/worker/hop_farm.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "slaughterhouse",
+                        "imagePath": "assets/images/1800/worker/slaughterhouse.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "rendering_works",
+                        "imagePath": "assets/images/1800/worker/rendering_works.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "brick_factory",
+                        "imagePath": "assets/images/1800/worker/brick_factory.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    }
+                ]
+            },
+            "engineer": {
+                "name": "engineer",
+                "imagePath": "assets/images/1800/engineer/engineer.png",
+                "buildings": [
+                    {
+                        "name": "Oil",
+                        "imagePath": "assets/images/1800/engineer/Oil.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Coffee",
+                        "imagePath": "assets/images/1800/engineer/Coffee.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Railway",
+                        "imagePath": "assets/images/1800/engineer/Railway.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Pocket_watch",
+                        "imagePath": "assets/images/1800/engineer/Pocket_watch.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Light_bulb",
+                        "imagePath": "assets/images/1800/engineer/Light_bulb.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "High_wheeler",
+                        "imagePath": "assets/images/1800/engineer/High_wheeler.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Caoutchouc",
+                        "imagePath": "assets/images/1800/engineer/Caoutchouc.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Coffee_beans",
+                        "imagePath": "assets/images/1800/engineer/Coffee_beans.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Advanced_weapons",
+                        "imagePath": "assets/images/1800/engineer/Advanced_weapons.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Brass",
+                        "imagePath": "assets/images/1800/engineer/Brass.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Gold_Ore",
+                        "imagePath": "assets/images/1800/engineer/Gold_Ore.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Cement",
+                        "imagePath": "assets/images/1800/engineer/Cement.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Copper",
+                        "imagePath": "assets/images/1800/engineer/Copper.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Steam_motors",
+                        "imagePath": "assets/images/1800/engineer/Steam_motors.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Saltpeter",
+                        "imagePath": "assets/images/1800/engineer/Saltpeter.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "OilWell",
+                        "imagePath": "assets/images/1800/engineer/OilWell.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Dynamite",
+                        "imagePath": "assets/images/1800/engineer/Dynamite.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Bank",
+                        "imagePath": "assets/images/1800/engineer/Bank.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Zinc",
+                        "imagePath": "assets/images/1800/engineer/Zinc.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Carbon_filament",
+                        "imagePath": "assets/images/1800/engineer/Carbon_filament.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "engineer",
+                        "imagePath": "assets/images/1800/engineer/engineer.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Reinforced_concrete",
+                        "imagePath": "assets/images/1800/engineer/Reinforced_concrete.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Oil_Power_Plant",
+                        "imagePath": "assets/images/1800/engineer/Oil_Power_Plant.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Gold",
+                        "imagePath": "assets/images/1800/engineer/Gold.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    {
+                        "name": "Glasses",
+                        "imagePath": "assets/images/1800/engineer/Glasses.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    }
+                ]
+            }
+        }
+    }
+}

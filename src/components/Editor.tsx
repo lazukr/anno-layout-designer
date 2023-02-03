@@ -1,53 +1,58 @@
-import { Board } from "../editor/Board";
-import { Cursor } from "../editor/Cursor";
+import "snapsvg-cjs";
+import SNAPSVG_TYPE from "snapsvg";
 import { useEffect, useRef } from "react";
-import { GRID, SelectMode } from "../utils/Constants";
+import { Board } from "../editor/Board";
+import { PositionTracker } from "../editor/PositionTracker";
+declare const Snap: typeof SNAPSVG_TYPE;
 
-interface EditorProps {
-    width: number,
-    height: number,
-    canvas: string,
-    selection: string,
-    selectMode: SelectMode,
+export interface EditorProps {
+    width: number;
+    height: number;
+    gridSize: number;
+    selection: string;
+    action: string;
 };
 
 export const Editor = ({
     width,
     height,
-    canvas,
-    selection,
-    selectMode,
+    gridSize
 }: EditorProps) => {
-
-    const board = useRef<Board>();
-    const cursor = useRef<Cursor>();
-
-    useEffect(() => {
-        board.current = new Board({
-            width: width,
-            height: height,
-            canvas: canvas,
-        });
-
-        cursor.current = new Cursor({
-            board: board.current,
-            selection: "cursor",
-        });
-    }, [width, height, canvas]);
+    const snap = useRef<Snap.Paper>();
+    const bound = useRef<DOMRect>();
+    const position = useRef<PositionTracker>();
 
     useEffect(() => {
-        cursor.current?.setSelection(selection);
-    }, [selection]);
+        if (snap.current) {
+            snap.current.clear();
+            new Board({
+                snap: snap.current,
+                width: width,
+                height: height,
+                gridSize: gridSize,
+            });
+        }
+    }, [width, height, gridSize]);
 
     useEffect(() => {
-        cursor.current?.updateSelectMode(selectMode);
-    }, [selectMode]);
+        if (snap.current && bound.current) {
+            position.current = new PositionTracker({
+                snap: snap.current!,
+                bound: bound.current!,
+                gridSize: gridSize,
+            });
+        }
+    }, [gridSize]);
 
     return (
         <svg
-            id={canvas}
-            width={width * GRID.SIZE}
-            height={height * GRID.SIZE}
-        />
-    )
+            ref={elem => {
+                snap.current = Snap(elem!);
+                bound.current = snap.current.node.getBoundingClientRect();
+            }}
+            width={width * gridSize}
+            height={height * gridSize}
+        >
+        </svg>
+    );
 };

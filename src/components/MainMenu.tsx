@@ -1,99 +1,82 @@
+
+import "bootstrap/dist/css/bootstrap.css";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import { Github, EraserFill, HandIndexFill } from "react-bootstrap-icons";
+import { getBuildingSelections, getCitizenSelections, getGame } from "../data/Series";
 import { useState } from "react";
-import {Menu, Button, Dropdown } from "semantic-ui-react";
-import { NewModal } from "./NewModal";
-import { GAME_LIST } from "../data/DataMapper";
-import { DEFAULT_GAME, DEFAULT_POP, SelectMode } from "../utils/Constants";
-import { CitizenMenuGenerator, BuildingMenuGenerator } from "./MenuItem";
+
 interface MenuProps {
-    currentWidth: number;
-    currentHeight: number;
-    setDimension: (width: number, height: number) => void;
-    selection: string;
-    updateSelection: (selection: string) => void;
-    setSelectMode: (selectMode: SelectMode) => void;
-    selectMode: SelectMode;
 };
 
 export const MainMenu = ({
-    currentWidth,
-    currentHeight,
-    setDimension,
-    selection,
-    updateSelection,
-    setSelectMode,
-    selectMode,
 }: MenuProps) => {
-    const [game, setGame] = useState(DEFAULT_GAME);
-    const [citizen, setCitizen] = useState(DEFAULT_POP[game]);
+    const [game, setGame] = useState("1800");
+    const gameData = getGame(game);
+    const [citizen, setCitizen] = useState(Object.values(gameData.citizens)[0].name);
+    const [building, setBuilding] = useState(Object.values(gameData.citizens[citizen].buildings)[0].name);
+    const citizenResult = getCitizenSelections({
+        citizens: Object.values(gameData.citizens),
+        defaultSelectValue: citizen,
+        setSelect: (value: string) => setCitizen(value)
+    });
 
-    const updateGame = (game: string) => {
-        setGame(game);
-        setCitizen(DEFAULT_POP[game]);
-    };
+    const buildingResult = getBuildingSelections({
+        buildings: gameData.citizens[citizen].buildings,
+        defaultSelectValue: building,
+        setSelect: (value: string) => setBuilding(value)
+    });
 
     return (
         <>
-            <Menu
-                inverted
-                attached
-                size="huge">
-                <Menu.Item header>
-                    Anno Layout Designer
-                </Menu.Item>
-                <Dropdown
-                    item
-                    placeholder="Game"
-                    compact
-                    closeOnEscape
-                    selection
-                    options={GAME_LIST}
-                    defaultValue={game}
-                    onChange={(_, {value}) => updateGame(value as string)}
-                >
-                </Dropdown>
-                <Button.Group compact>
-                    <NewModal
-                        currentWidth={currentWidth}
-                        currentHeight={currentHeight}
-                        setDimension={setDimension}
-                    />
-                </Button.Group>
-                <Button.Group
-                    icon
-                    size="big">
-                    <Button 
-                        icon="mouse pointer"
-                        active={selectMode === SelectMode.SELECT}
-                        onClick={() => setSelectMode(SelectMode.SELECT)}
-                    />
-                    <Button  
-                        icon="pencil"
-                        active={selectMode === SelectMode.ADD}
-                        onClick={() => setSelectMode(SelectMode.ADD)}
-                    />
-                    <Button 
-                        icon="eraser"
-                        active={selectMode === SelectMode.ERASE}
-                        onClick={() => setSelectMode(SelectMode.ERASE)}
-                    />
-                </Button.Group>
-                {CitizenMenuGenerator(citizen, setCitizen)[game]}
-                <Menu.Menu position="right">
-                    <Menu.Item
-                        icon="github"
-                        name="Github"
-                        href="https://github.com/lazukr/anno-layout-designer"
-                        target="_blank"
-                        rel="noreferrer">
-                    </Menu.Item>
-                </Menu.Menu>
-            </Menu>
-            <Menu
-            attached
-            inverted
+            <Navbar
+                expand="lg"
+                bg="dark"
+                variant="dark"
             >
-                {BuildingMenuGenerator(selection, updateSelection)[citizen]}
-            </Menu>
+                <Container fluid>
+                    <Navbar.Brand>Anno 1800 Layout Planner</Navbar.Brand>
+                    <Nav className="me-auto">
+                    <ToggleButtonGroup 
+                        type="radio" 
+                        name="action" 
+                        size="lg" 
+                        defaultValue={"select"}
+                    >
+                        <ToggleButton 
+                            id="tbg-radio-1" 
+                            value={"select"} 
+                            variant="dark"
+                            title="Select Tool"
+                        >
+                        <HandIndexFill color="green"/>
+                        </ToggleButton>
+                        <ToggleButton id="tbg-radio-2" value={"erase"} variant="dark">
+                            <EraserFill color="red"/>
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+                    {citizenResult}
+                    </Nav>
+                    <Nav className="justify-content-end">
+                        <Nav.Link 
+                            href="https://github.com/lazukr/anno-layout-designer"
+                            target="_blank">
+                            <Github/>
+                        </Nav.Link>
+                    </Nav>
+                </Container>
+            </Navbar>
+            <Navbar
+                expand="lg"
+                bg="dark"
+                variant="dark"
+                className="fixed-bottom"
+            >
+                {buildingResult}
+            </Navbar>
         </>
     );
 };

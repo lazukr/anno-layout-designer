@@ -49,8 +49,6 @@ export const getLineArgs = (isHorizontal: boolean, index: number, max: number, g
 export const getAttrArgs = (index: number, max: number): SnapLineAttribute => {
     if (index === 0 || index === max) {
         return BORDER_LINE;
-    } else if (index % 5 === 0) {
-        return BOLD_LINE;
     } else {
         return NORMAL_LINE;
     }

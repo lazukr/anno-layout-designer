@@ -1,115 +1,49 @@
 import "snapsvg-cjs";
-import SNAPSVG_TYPE from "snapsvg";
-import { GRID, LINE } from "../utils/Constants";
-import { BUILDING_NAMES } from "../data/DataMapper";
-import { Building } from "./Building";
+import { Direction, getAttrArgs, getLineArgs } from "../utils/drawing";
 
-declare const Snap: typeof SNAPSVG_TYPE;
 
 export interface BoardProps {
-    canvas: string;
+    snap: Snap.Paper;
     width: number;
     height: number;
+    gridSize: number;
 };
-
-type LineArray = [number, number, number, number];
-type LineGenerator = (index: number, max: number) => LineArray;
-
-const rowGenerator: LineGenerator = (index, max) => {
-    return [
-        0, 
-        index * GRID.SIZE,
-        max * GRID.SIZE,
-        index * GRID.SIZE,
-    ];
-}
-
-const colGenerator: LineGenerator = (index, max) => {
-    return [ 
-        index * GRID.SIZE,
-        0,
-        index * GRID.SIZE,
-        max * GRID.SIZE,
-    ];
-}
 
 export class Board {
     snap: Snap.Paper;
     width: number;
     height: number;
-    bbox: Snap.BBox;
-    elem: SVGGraphicsElement;
-    buildings: {[key:string]: Building};
-
-    get buildingList(): Building[] {
-        return Object.values(this.buildings);
-    }
-
+    gridSize: number;
+    
     constructor({
+        snap,
         width,
         height,
-        canvas,
+        gridSize,
     }: BoardProps) {
-        const svgId = `#${canvas}`;
-        this.elem = document.querySelector(svgId) as SVGGraphicsElement;
+        this.snap = snap;
         this.width = width;
         this.height = height;
-        this.buildings = {};
-
-        this.snap = Snap(svgId);
-        this.snap.clear();
-        this.bbox = this.snap.getBBox();
-
-        this.createUseElements();
+        this.gridSize = gridSize;
         this.drawGrid();
     }
 
-    addBuilding(building: Building) {
-        this.buildings[building.bid] = building;
+    drawGrid = () => {
+        // draw rows 
+        this.drawDirection(Direction.Horizontal);
+        // draw cols
+        this.drawDirection(Direction.Vertical);
     }
 
-    getBuilding(x: number, y: number) {
-        const elem = Snap.getElementByPoint(x, y);
-        return elem;
-    }
+    drawDirection(direction: Direction) {
+        const isHorizontal = direction === Direction.Horizontal;
+        const numOfLines = isHorizontal ? this.width : this.height;
+        const max = isHorizontal ? this.height : this.width;
 
-    deleteBuilding(id: string) {
-        const building = this.buildings[id];
-        building?.clear();
-        delete this.buildings[id];
-    }
-
-    private drawGrid = () => {
-        this.drawLines(this.height, this.width, rowGenerator);
-        this.drawLines(this.width, this.height, colGenerator);
-    }
-
-    private drawLines = (numLines: number, lineLength: number,  lineGenerator: LineGenerator) => {
-        for (let i = 0; i < numLines + 1; ++i) {
-            if (i === 0 || i === numLines) { // add border lines
-                this.snap
-                    .line(...lineGenerator(i, lineLength))
-                    .attr(LINE.BORDER);
-            } else if (i % 5 === 0) {       // add semi bold lines
-                this.snap
-                    .line(...lineGenerator(i, lineLength))
-                    .attr(LINE.BOLD);
-            } else {                        // regular lines
-                this.snap
-                    .line(...lineGenerator(i, lineLength))
-                    .attr(LINE.NORMAL);
-            }
+        for (let i = 0; i < numOfLines + 1; i++) {
+            const { x1, y1, x2, y2 } = getLineArgs(isHorizontal, i, max, this.gridSize);
+            const attrArgs = getAttrArgs(i, numOfLines);
+            this.snap.line(x1, y1, x2, y2).attr(attrArgs);
         }
     }
-
-    private createUseElements = () => {
-        BUILDING_NAMES.forEach(building => {
-            Building.createSpriteModel({
-                snap: this.snap,
-                id: building,
-            }).attr({
-                id: building,
-            }).toDefs();
-        });
-    }
-};
+}
