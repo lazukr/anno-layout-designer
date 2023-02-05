@@ -1,7 +1,16 @@
-@import "properties.scss";
+svg use.highlight {
+  opacity: 0.7;
+  stroke-width: 3;
+}
 
-#editor {
-  border: 1px solid $annoblue;
-  border-radius: 0.25rem;
-  padding: 1rem 1rem 1rem 1rem;
+svg use.create {
+  stroke: blue;
+}
+
+svg use.delete {
+  stroke: red;
+}
+
+svg use.select {
+  stroke: greenyellow;
 }

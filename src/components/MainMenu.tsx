@@ -7,7 +7,8 @@ import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import { Github, EraserFill, HandIndexFill } from "react-bootstrap-icons";
 import { getBuildingSelections, getCitizenSelections, getGame } from "../data/Series";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Editor } from "./Editor";
 
 interface MenuProps {
 };
@@ -15,21 +16,15 @@ interface MenuProps {
 export const MainMenu = ({
 }: MenuProps) => {
     const [game, setGame] = useState("1800");
-    const gameData = getGame(game);
-    const [citizen, setCitizen] = useState(Object.values(gameData.citizens)[0].name);
-    const [building, setBuilding] = useState(Object.values(gameData.citizens[citizen].buildings)[0].name);
-    const citizenResult = getCitizenSelections({
-        citizens: Object.values(gameData.citizens),
-        defaultSelectValue: citizen,
-        setSelect: (value: string) => setCitizen(value)
-    });
+    const [gameData, setGameData] = useState(getGame(game));
+    const [citizen, setCitizen] = useState(Object.values(gameData.citizens)[0]);
+    const [building, setBuilding] = useState(Object.values(citizen.buildings)[0]);
+    const [action, setAction] = useState("create");
 
-    const buildingResult = getBuildingSelections({
-        buildings: gameData.citizens[citizen].buildings,
-        defaultSelectValue: building,
-        setSelect: (value: string) => setBuilding(value)
-    });
-
+    useEffect(() => {
+        setGameData(getGame(game));
+    }, [game]);
+    
     return (
         <>
             <Navbar
@@ -41,10 +36,11 @@ export const MainMenu = ({
                     <Navbar.Brand>Anno 1800 Layout Planner</Navbar.Brand>
                     <Nav className="me-auto">
                     <ToggleButtonGroup 
-                        type="radio" 
+                        type="radio"
                         name="action" 
                         size="lg" 
-                        defaultValue={"select"}
+                        defaultValue={action}
+                        onChange={(value: string) => setAction(value)}
                     >
                         <ToggleButton 
                             id="tbg-radio-1" 
@@ -52,13 +48,21 @@ export const MainMenu = ({
                             variant="dark"
                             title="Select Tool"
                         >
-                        <HandIndexFill color="green"/>
+                            <HandIndexFill color="green"/>
                         </ToggleButton>
-                        <ToggleButton id="tbg-radio-2" value={"erase"} variant="dark">
+                        <ToggleButton 
+                            id="tbg-radio-2" 
+                            value={"delete"} 
+                            variant="dark"
+                        >
                             <EraserFill color="red"/>
                         </ToggleButton>
                     </ToggleButtonGroup>
-                    {citizenResult}
+                    {getCitizenSelections({
+                        citizens: Object.values(gameData.citizens),
+                        defaultSelectValue: citizen.name,
+                        setSelect: (value: string) => setCitizen(gameData.citizens[value])
+                    })}
                     </Nav>
                     <Nav className="justify-content-end">
                         <Nav.Link 
@@ -75,8 +79,22 @@ export const MainMenu = ({
                 variant="dark"
                 className="fixed-bottom"
             >
-                {buildingResult}
+                {getBuildingSelections({
+                    buildings: Object.values(citizen.buildings),
+                    defaultSelectValue: building.name,
+                    setSelect: (value: string) => {
+                        setBuilding(citizen.buildings[value]);
+                        setAction("create");
+                    },
+                })}
             </Navbar>
+            <Editor
+                width={20}
+                height={20}
+                gridSize={32}
+                action={action}
+                selection={building}
+            />
         </>
     );
 };

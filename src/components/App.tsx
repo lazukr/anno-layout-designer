@@ -19,13 +19,6 @@ export const App = () => {
     return (
         <div className="App">
             <MainMenu />
-            <Editor
-                width={width}
-                height={height}
-                gridSize={32}
-                action={""}
-                selection={""}
-            />
         </div>
     )
 };
