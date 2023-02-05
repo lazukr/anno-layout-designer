@@ -28,21 +28,23 @@ def write_citizen_json(gameDir: os.DirEntry):
     citizenList = {}
     for citizenDir in os.scandir(gameDir):
         if (citizenDir.is_dir()):
+            name = f"{gameDir.name}_{citizenDir.name}"
             path = os.path.join(imagePath, gameDir.name, citizenDir.name, f"{citizenDir.name}.png")
-            citizenList[citizenDir.name] = {
-                "name": citizenDir.name,
+            citizenList[name] = {
+                "name": name,
                 "imagePath": path,
                 "buildings": write_buildings_json(gameDir.name, citizenDir)
             }
     return citizenList
         
 def write_buildings_json(game: str, citizenDir: os.DirEntry):
-    buildingList = []
+    buildingList = {}
     for buildingFile in os.scandir(citizenDir):
         if (buildingFile.is_file() and not buildingFile.name.startswith(".")):
+            name = f"{game}_{citizenDir.name}_{buildingFile.name.split('.')[0]}"
             path = os.path.join(imagePath, game, citizenDir.name, f"{buildingFile.name}")
-            buildingList.append({
-                "name": buildingFile.name.split('.')[0],
+            buildingList[name] = ({
+                "name": name,
                 "imagePath": path,
                 "width": 1,
                 "height": 1,

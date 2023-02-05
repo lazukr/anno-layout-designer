@@ -57,3 +57,22 @@ export const getBuildingSelections = ({
         setSelect: setSelect
     });
 }
+
+export const getAllBuildingData = () => {
+    const games = Object.values(series);
+    const citizens = games
+        .map(game => Object.values(game.citizens))
+        .reduce((acc, cur) => {
+            acc.push(...cur);
+            return acc;
+        }, []);
+
+    const buildings = citizens
+        .map(citizen => Object.values(citizen.buildings))
+        .reduce((acc, cur) => {
+            acc.push(...cur);
+            return acc;
+        }, []);
+
+    return buildings;
+}
