@@ -9,17 +9,20 @@ import { Github, EraserFill, HandIndexFill } from "react-bootstrap-icons";
 import { getBuildingSelections, getCitizenSelections, getGame } from "../data/Series";
 import { useEffect, useState } from "react";
 import { Editor } from "./Editor";
+import { Action } from "../editor/Cursor";
 
 interface MenuProps {
 };
 
+const DEFAULT_GAME = "1800";
+
 export const MainMenu = ({
 }: MenuProps) => {
-    const [game, setGame] = useState("1800");
+    const [game, setGame] = useState(DEFAULT_GAME);
     const [gameData, setGameData] = useState(getGame(game));
     const [citizen, setCitizen] = useState(Object.values(gameData.citizens)[0]);
     const [building, setBuilding] = useState(Object.values(citizen.buildings)[0]);
-    const [action, setAction] = useState("create");
+    const [action, setAction] = useState(Action.Create);
 
     useEffect(() => {
         setGameData(getGame(game));
@@ -37,22 +40,21 @@ export const MainMenu = ({
                     <Nav className="me-auto">
                     <ToggleButtonGroup 
                         type="radio"
-                        name="action" 
-                        size="lg" 
-                        defaultValue={action}
-                        onChange={(value: string) => setAction(value)}
+                        name="actions" 
+                        size="lg"
+                        value={action}
+                        onChange={e => setAction(e)}
                     >
                         <ToggleButton 
-                            id="tbg-radio-1" 
-                            value={"select"} 
+                            id="tbg-radio-select" 
+                            value={Action.Select} 
                             variant="dark"
-                            title="Select Tool"
                         >
                             <HandIndexFill color="green"/>
                         </ToggleButton>
                         <ToggleButton 
-                            id="tbg-radio-2" 
-                            value={"delete"} 
+                            id="tbg-radio-delete" 
+                            value={Action.Delete} 
                             variant="dark"
                         >
                             <EraserFill color="red"/>
@@ -81,10 +83,10 @@ export const MainMenu = ({
             >
                 {getBuildingSelections({
                     buildings: Object.values(citizen.buildings),
-                    defaultSelectValue: building.name,
+                    defaultSelectValue: action === Action.Create ? building.name : action.toString(),
                     setSelect: (value: string) => {
                         setBuilding(citizen.buildings[value]);
-                        setAction("create");
+                        setAction(Action.Create);
                     },
                 })}
             </Navbar>

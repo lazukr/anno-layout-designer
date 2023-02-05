@@ -39,8 +39,8 @@ export class Board {
 
     drawDirection(direction: Direction) {
         const isHorizontal = direction === Direction.Horizontal;
-        const numOfLines = isHorizontal ? this.width : this.height;
-        const max = isHorizontal ? this.height : this.width;
+        const numOfLines = isHorizontal ? this.height : this.width;
+        const max = isHorizontal ? this.width : this.height;
 
         for (let i = 0; i < numOfLines + 1; i++) {
             const { x1, y1, x2, y2 } = getLineArgs(isHorizontal, i, max, this.gridSize);

@@ -3,7 +3,7 @@ import SNAPSVG_TYPE from "snapsvg";
 import { useEffect, useRef } from "react";
 import { Board, createAllBuildings } from "../editor/Board";
 import { PositionTracker } from "../editor/PositionTracker";
-import { Cursor } from "../editor/Cursor";
+import { Action, Cursor } from "../editor/Cursor";
 import { BuildingData } from "../data/BuildingData";
 import "../styles/editor.scss";
 
@@ -14,7 +14,7 @@ export interface EditorProps {
     height: number;
     gridSize: number;
     selection: BuildingData;
-    action: string;
+    action: Action;
 };
 
 export const Editor = ({

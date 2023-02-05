@@ -4,16 +4,20 @@ import { PositionTracker } from "./PositionTracker";
 
 interface CursorProps {
     snap: Snap.Paper;
-    action: string;
+    action: Action;
     position: PositionTracker;
     buildingData: BuildingData;
     gridSize: number;
 }
 
-
+export enum Action {
+    Create,
+    Select,
+    Delete,
+}
 export class Cursor {
     snap: Snap.Paper;
-    action: string;
+    action: Action;
     position: PositionTracker;
     buildingData: BuildingData | null;
     element: Snap.Element | null;
@@ -34,13 +38,13 @@ export class Cursor {
         this.action = action;
         
         switch (action) {
-            case "create":
-                this.actionCreate();
+            case Action.Select:
                 break;
-            case "select":
-                break;
-            case "delete":
+            case Action.Delete:
                 this.actionDelete();
+                break;
+            case Action.Create:
+                this.actionCreate();
                 break;
         }
     }
@@ -67,7 +71,7 @@ export class Cursor {
 
     actionDelete() {
         this.snap.mouseup(event => {
-            const elem = this.position.getRectElementFromMouseEvent(event);
+            const elem = this.position.getUseElementFromMouseEvent(event);
             elem?.remove();
         });
     }
@@ -90,10 +94,10 @@ export class Cursor {
         });
         cur?.hover(() => {
             cur.toggleClass("highlight", true);
-            cur.toggleClass(this.action, true);
+            //cur.toggleClass(Action[this.action].toLowerCase(), true);
         }, () => {
             cur.toggleClass("highlight", false);
-            cur.toggleClass(this.action, false);
+            //cur.toggleClass(Action[this.action].toLowerCase(), false);
         });
     }
 

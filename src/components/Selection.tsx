@@ -20,7 +20,7 @@ export const Selection = ({
     return (
         <ToggleButtonGroup
             name={name}
-            defaultValue={defaultValue}
+            value={defaultValue}
             size="lg"
             type="radio"
             onChange={e => setSelect(e)}
