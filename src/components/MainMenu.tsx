@@ -95,7 +95,7 @@ export const MainMenu = ({
                 height={20}
                 gridSize={32}
                 action={action}
-                selection={building}
+                buildingName={building.name}
             />
         </>
     );

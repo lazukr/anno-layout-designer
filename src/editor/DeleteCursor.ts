@@ -1,5 +1,4 @@
 import "snapsvg-cjs";
-import { BuildingData } from "../data/BuildingData";
 import { PositionTracker } from "./PositionTracker";
 
 interface DeleteCursorProps {
@@ -7,7 +6,6 @@ interface DeleteCursorProps {
     position: PositionTracker;
     gridSize: number;
 }
-
 
 export class DeleteCursor {
     snap: Snap.Paper;
@@ -32,6 +30,7 @@ export class DeleteCursor {
     actionDelete() {
         this.snap.mouseup(event => {
             const elem = this.position.getUseElementFromMouseEvent(event);
+            console.log(elem?.attr("href"));
             elem?.remove();
         });
     }

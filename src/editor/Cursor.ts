@@ -6,8 +6,12 @@ interface CursorProps {
     snap: Snap.Paper;
     action: Action;
     position: PositionTracker;
-    buildingData: BuildingData;
+    buildingName: string;
     gridSize: number;
+}
+
+export interface EditorCursor {
+    destroy: () => void;
 }
 
 export enum Action {
@@ -15,30 +19,33 @@ export enum Action {
     Select,
     Delete,
 }
-export class Cursor {
+export class Cursor implements EditorCursor {
     snap: Snap.Paper;
     action: Action;
     position: PositionTracker;
-    buildingData: BuildingData | null;
+    buildingName: string;
     element: Snap.Element | null;
     gridSize: number;
+    isSelectDeleteMode: boolean;
     
     constructor({
         snap,
         action,
         position,
-        buildingData,
+        buildingName,
         gridSize,
     }: CursorProps) {
         this.snap = snap;
         this.position = position;
-        this.buildingData = buildingData;
+        this.buildingName = buildingName;
         this.gridSize = gridSize;
         this.element = null;
         this.action = action;
+        this.isSelectDeleteMode = true;
         
         switch (action) {
             case Action.Select:
+                this.actionSelect();
                 break;
             case Action.Delete:
                 this.actionDelete();
@@ -56,10 +63,7 @@ export class Cursor {
     }
 
     actionCreate() {
-        const {
-            name,
-        } = this.buildingData!;
-        this.element = this.snap.use(name) as Snap.Element;
+        this.element = this.snap.use(this.buildingName) as Snap.Element;
         this.element.attr({
             opacity: 0.5,
         });
@@ -77,7 +81,40 @@ export class Cursor {
     }
 
     actionSelect() {
+        this.element?.remove();
+        this.snap.unmouseup();
+        if (this.isSelectDeleteMode) {
+            this.actionSelectDelete();
+        }else {
+            this.actionSelectCreate();
+        }
+    }
 
+    actionSelectDelete() {
+        this.snap.mouseup(event => {
+            const elem = this.position.getUseElementFromMouseEvent(event);
+            if (elem) {
+                this.buildingName = elem.attr("href").replace("#", "");
+                elem.remove();
+                this.isSelectDeleteMode = false;
+                this.actionSelect();
+            } 
+        });
+    }
+
+    actionSelectCreate() {
+        this.element = this.snap.use(this.buildingName) as Snap.Element;
+        this.element.attr({
+            opacity: 0.5,
+        });
+
+        this.elementMove(this.position);
+        this.snap.mousemove(this.getElementMove());
+        this.snap.mouseup(() => {
+            this.elmentMouseUp(this.element);
+            this.isSelectDeleteMode = true;
+            this.actionSelect();
+        });
     }
 
     getElementMouseUp() {
@@ -116,3 +153,22 @@ export class Cursor {
         this.element?.transform(`T${gridX * this.gridSize},${gridY * this.gridSize}`);
     }
 }
+
+
+/*
+
+delete
+    - find element
+    - if use, delete it
+
+create
+    - add new element
+    - continuously add new
+
+
+select
+    - find element
+    - if use, select it
+    - now behaves like create
+    - once you click, it should create and goes back to being select
+*/
