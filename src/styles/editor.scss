@@ -1,17 +1,10 @@
 svg use.highlight {
   opacity: 0.7;
-  stroke-width: 3;
-  stroke: blue;
+  stroke-width: 3 !important;
+  stroke: red !important;
 }
 
-svg use.create {
-  stroke: blue;
-}
-
-svg use.delete {
-  stroke: red;
-}
-
-svg use.select {
-  stroke: greenyellow;
+svg use {
+  stroke-width: 1;
+  stroke: black;
 }

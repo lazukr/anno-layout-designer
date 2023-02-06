@@ -79,7 +79,6 @@ export const MainMenu = ({
                 expand="lg"
                 bg="dark"
                 variant="dark"
-                className="fixed-bottom"
             >
                 {getBuildingSelections({
                     buildings: Object.values(citizen.buildings),
@@ -91,8 +90,8 @@ export const MainMenu = ({
                 })}
             </Navbar>
             <Editor
-                width={20}
-                height={20}
+                width={30}
+                height={30}
                 gridSize={32}
                 action={action}
                 buildingName={building.name}

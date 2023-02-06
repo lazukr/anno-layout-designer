@@ -65,12 +65,13 @@ const createBuilding = (snap: Snap.Paper, building: BuildingData, gridSize: numb
         name,
     } = building;
 
-    const squareSize = Math.min(width, height) / 2;
+    const area = width * height;
+    const squareSize = area > 1 ? Math.min(width, height) / 2 : 1;
     const centerX = width / 2 - squareSize / 2;
     const centerY = height / 2 - squareSize / 2;
     
     const background = snap
-        .rect(1, 1, width * gridSize - 2, height * gridSize - 2)
+        .rect(0.25, 0.25, width * gridSize - 0.5, height * gridSize - 0.5)
         .attr({
             fill: colour,
         });

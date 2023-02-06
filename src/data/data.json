@@ -7,48 +7,6 @@
                 "name": "1800_farmer",
                 "imagePath": "assets/images/1800/farmer/farmer.png",
                 "buildings": {
-                    "1800_farmer_fire_station": {
-                        "name": "1800_farmer_fire_station",
-                        "imagePath": "assets/images/1800/farmer/fire_station.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_farmer_framework_knitters": {
-                        "name": "1800_farmer_framework_knitters",
-                        "imagePath": "assets/images/1800/farmer/framework_knitters.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_farmer_sheep_farm": {
-                        "name": "1800_farmer_sheep_farm",
-                        "imagePath": "assets/images/1800/farmer/sheep_farm.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_farmer_farmer_residence": {
-                        "name": "1800_farmer_farmer_residence",
-                        "imagePath": "assets/images/1800/farmer/farmer_residence.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_farmer_lumberjacks_hut": {
-                        "name": "1800_farmer_lumberjacks_hut",
-                        "imagePath": "assets/images/1800/farmer/lumberjacks_hut.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_farmer_pub": {
-                        "name": "1800_farmer_pub",
-                        "imagePath": "assets/images/1800/farmer/pub.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
                     "1800_farmer_dirt_road": {
                         "name": "1800_farmer_dirt_road",
                         "imagePath": "assets/images/1800/farmer/dirt_road.png",
@@ -56,53 +14,88 @@
                         "height": 1,
                         "colour": "#FFF"
                     },
-                    "1800_farmer_schnapps_distillery": {
-                        "name": "1800_farmer_schnapps_distillery",
-                        "imagePath": "assets/images/1800/farmer/schnapps_distillery.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_farmer_potato_farm": {
-                        "name": "1800_farmer_potato_farm",
-                        "imagePath": "assets/images/1800/farmer/potato_farm.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
                     "1800_farmer_marketplace": {
                         "name": "1800_farmer_marketplace",
                         "imagePath": "assets/images/1800/farmer/marketplace.png",
-                        "width": 1,
-                        "height": 1,
+                        "width": 5,
+                        "height": 6,
+                        "colour": "#FFF"
+                    },
+                    "1800_farmer_farmer_residence": {
+                        "name": "1800_farmer_farmer_residence",
+                        "imagePath": "assets/images/1800/farmer/farmer_residence.png",
+                        "width": 3,
+                        "height": 3,
                         "colour": "#FFF"
                     },
                     "1800_farmer_warehouse": {
                         "name": "1800_farmer_warehouse",
                         "imagePath": "assets/images/1800/farmer/warehouse.png",
-                        "width": 1,
-                        "height": 1,
+                        "width": 5,
+                        "height": 5,
                         "colour": "#FFF"
                     },
-                    "1800_farmer_farmer": {
-                        "name": "1800_farmer_farmer",
-                        "imagePath": "assets/images/1800/farmer/farmer.png",
-                        "width": 1,
-                        "height": 1,
+                    "1800_farmer_lumberjacks_hut": {
+                        "name": "1800_farmer_lumberjacks_hut",
+                        "imagePath": "assets/images/1800/farmer/lumberjacks_hut.png",
+                        "width": 4,
+                        "height": 4,
                         "colour": "#FFF"
                     },
                     "1800_farmer_sawmill": {
                         "name": "1800_farmer_sawmill",
                         "imagePath": "assets/images/1800/farmer/sawmill.png",
-                        "width": 1,
-                        "height": 1,
+                        "width": 3,
+                        "height": 4,
                         "colour": "#FFF"
                     },
                     "1800_farmer_fishery": {
                         "name": "1800_farmer_fishery",
                         "imagePath": "assets/images/1800/farmer/fishery.png",
-                        "width": 1,
-                        "height": 1,
+                        "width": 5,
+                        "height": 11,
+                        "colour": "#FFF"
+                    },
+                    "1800_farmer_potato_farm": {
+                        "name": "1800_farmer_potato_farm",
+                        "imagePath": "assets/images/1800/farmer/potato_farm.png",
+                        "width": 3,
+                        "height": 3,
+                        "colour": "#FFF"
+                    },
+                    "1800_farmer_schnapps_distillery": {
+                        "name": "1800_farmer_schnapps_distillery",
+                        "imagePath": "assets/images/1800/farmer/schnapps_distillery.png",
+                        "width": 3,
+                        "height": 4,
+                        "colour": "#FFF"
+                    },
+                    "1800_farmer_sheep_farm": {
+                        "name": "1800_farmer_sheep_farm",
+                        "imagePath": "assets/images/1800/farmer/sheep_farm.png",
+                        "width": 3,
+                        "height": 3,
+                        "colour": "#FFF"
+                    },
+                    "1800_farmer_framework_knitters": {
+                        "name": "1800_farmer_framework_knitters",
+                        "imagePath": "assets/images/1800/farmer/framework_knitters.png",
+                        "width": 4,
+                        "height": 4,
+                        "colour": "#FFF"
+                    },
+                    "1800_farmer_fire_station": {
+                        "name": "1800_farmer_fire_station",
+                        "imagePath": "assets/images/1800/farmer/fire_station.png",
+                        "width": 3,
+                        "height": 5,
+                        "colour": "#FFF"
+                    },
+                    "1800_farmer_pub": {
+                        "name": "1800_farmer_pub",
+                        "imagePath": "assets/images/1800/farmer/pub.png",
+                        "width": 4,
+                        "height": 6,
                         "colour": "#FFF"
                     }
                 }
