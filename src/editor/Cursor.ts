@@ -1,5 +1,4 @@
 import "snapsvg-cjs";
-import { BuildingData } from "../data/BuildingData";
 import { PositionTracker } from "./PositionTracker";
 
 interface CursorProps {
@@ -57,9 +56,9 @@ export class Cursor implements EditorCursor {
     }
 
     destroy() {
+        this.snap.unmousemove(this.getElementMove());
         this.element?.remove();
         this.snap.unmouseup();
-        this.snap.unmousemove(this.getElementMove());
     }
 
     actionCreate() {
@@ -111,7 +110,7 @@ export class Cursor implements EditorCursor {
         this.elementMove(this.position);
         this.snap.mousemove(this.getElementMove());
         this.snap.mouseup(() => {
-            this.elmentMouseUp(this.element);
+            this.elementMouseUp(this.element);
             this.isSelectDeleteMode = true;
             this.actionSelect();
         });
@@ -120,14 +119,15 @@ export class Cursor implements EditorCursor {
     getElementMouseUp() {
         return () => {
             const element = this.element;
-            return this.elmentMouseUp(element);
+            return this.elementMouseUp(element);
         };
     }
 
-    elmentMouseUp(element: Snap.Element | null) {
+    elementMouseUp(element: Snap.Element | null) {
         const cur = element?.clone();
         cur?.attr({
             opacity: "",
+            placed: true,
         });
         cur?.hover(() => {
             cur.toggleClass("highlight", true);
@@ -150,6 +150,7 @@ export class Cursor implements EditorCursor {
             gridX,
             gridY,
         } = position;
+
         this.element?.transform(`T${gridX * this.gridSize},${gridY * this.gridSize}`);
     }
 }

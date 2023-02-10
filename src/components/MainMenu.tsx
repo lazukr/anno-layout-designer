@@ -14,7 +14,14 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
-import { Github, EraserFill, HandIndexFill, FileEarmarkArrowDown, FileEarmarkArrowUp } from "react-bootstrap-icons";
+import { 
+    Github, 
+    EraserFill, 
+    HandIndexFill, 
+    FileEarmarkArrowDown, 
+    FileEarmarkArrowUp,
+    FiletypePng,
+ } from "react-bootstrap-icons";
 
 declare const Snap: typeof SNAPSVG_TYPE;
 
@@ -67,24 +74,13 @@ export const MainMenu = () => {
                         <Button variant="dark">
                             <FileEarmarkArrowUp />
                         </Button>
-                        <Button variant="dark"
-                            onClick={async event => {
-                                const result = Snap("#svg");
-                                const data = result.toDataURL();
-                                const blob = await (await fetch(data)).blob();
-                                var url = window.URL.createObjectURL(blob);
-                                const a = document.createElement("a");
-                                a.href = url;
-                                a.download = "anno-layout.svg";
-                                a.click();
-                                window.URL.revokeObjectURL(url);
-                                a.remove();
-                            }}
-                        >
+                        <Button variant="dark" onClick={saveAsSVG}>
                             <FileEarmarkArrowDown />
                         </Button>
+                        <Button variant="dark" onClick={saveAsPNG}>
+                            <FiletypePng />
+                        </Button>
                     </ButtonGroup>
-
                     {getCitizenSelections({
                         citizens: Object.values(gameData.citizens),
                         defaultSelectValue: citizen.name,
@@ -124,3 +120,52 @@ export const MainMenu = () => {
         </>
     );
 };
+
+const saveAsSVG = async () => {
+    const result = Snap("#svg");
+    const data = result.toDataURL();
+    const blob = await (await fetch(data)).blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "anno-layout.svg";
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+}
+
+const downloadFromCanvas = (canvas: HTMLCanvasElement) => {
+    canvas.toBlob(blob => {
+        const url = window.URL.createObjectURL(blob!);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "anno-layout.png";
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove();
+    });
+}
+
+const saveAsPNG = () => {
+    // snap svg doesn't include the xml namespace in the image tags
+    // xmlns:ns1="http://www.w3.org/1999/xlink"
+    // thus it doesn't work properly when trying to use the data url
+    // thus I grabbed it directly from the dom and used xml serializer
+    const svg = document.getElementById("svg");
+    const data = new XMLSerializer().serializeToString(svg! as Node);
+    const image = new Image();
+    image.onload = () => {
+        const {
+            width,
+            height,
+        } = svg!.getBoundingClientRect();
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const context = canvas.getContext("2d");
+        context!.drawImage(image, 0, 0);
+        downloadFromCanvas(canvas);
+    }
+    image.src = `data:image/svg+xml,${encodeURIComponent(data)}`;
+}

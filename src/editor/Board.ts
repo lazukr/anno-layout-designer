@@ -27,17 +27,18 @@ export class Board {
         this.width = width;
         this.height = height;
         this.gridSize = gridSize;
+        this.drawBackground();
         this.drawGrid();
     }
 
-    drawGrid = () => {
+    private drawGrid = () => {
         // draw rows 
         this.drawDirection(Direction.Horizontal);
         // draw cols
         this.drawDirection(Direction.Vertical);
     }
 
-    drawDirection(direction: Direction) {
+    private drawDirection(direction: Direction) {
         const isHorizontal = direction === Direction.Horizontal;
         const numOfLines = isHorizontal ? this.height : this.width;
         const max = isHorizontal ? this.width : this.height;
@@ -48,46 +49,12 @@ export class Board {
             this.snap.line(x1, y1, x2, y2).attr(attrArgs);
         }
     }
-}
 
-export const createAllBuildings = (snap: Snap.Paper, gridSize: number) => {
-    const buildings = getAllBuildingData();
-    buildings.forEach(building => {
-        createBuilding(snap, building, gridSize);
-    });
-}
-
-const createBuilding = (snap: Snap.Paper, building: BuildingData, gridSize: number) => {
-    const {
-        width,
-        height,
-        colour,
-        name,
-    } = building;
-
-    const area = width * height;
-    const squareSize = area > 1 ? Math.min(width, height) / 2 : 1;
-    const centerX = width / 2 - squareSize / 2;
-    const centerY = height / 2 - squareSize / 2;
-    
-    const background = snap
-        .rect(0.25, 0.25, width * gridSize - 0.5, height * gridSize - 0.5)
-        .attr({
-            fill: colour,
-        });
-
-    const sprite = snap.image(
-        Path.join(process.env.PUBLIC_URL, building.imagePath),
-        centerX * gridSize,
-        centerY * gridSize,
-        squareSize * gridSize,
-        squareSize * gridSize,
-    );
-
-    const model = snap.g(...[background, sprite])
-        .attr({
-            id: name,
-        });
-
-    model.toDefs();
+    private drawBackground() {
+        this.snap
+            .rect(0, 0, this.width * this.gridSize, this.height * this.gridSize)
+            .attr({
+                fill: "#ffffff",
+            });
+    }
 }
