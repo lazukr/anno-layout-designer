@@ -152,7 +152,25 @@ const saveAsPNG = () => {
     // thus it doesn't work properly when trying to use the data url
     // thus I grabbed it directly from the dom and used xml serializer
     const svg = document.getElementById("svg");
-    const data = new XMLSerializer().serializeToString(svg! as Node);
+    // make a copy
+    const svgCopy = svg!.cloneNode(true) as HTMLElement;
+    const rectdefs = svgCopy.querySelectorAll("rect");
+    const uses = svgCopy.querySelectorAll("use");
+
+    // create the border of each element
+    rectdefs.forEach(rect => {
+        rect.style.stroke = "#000";
+        rect.style.strokeWidth = "1";
+    });
+
+    // remove the current cursor
+    uses.forEach(use => {
+        if (!use.attributes.getNamedItem("placed")) {
+            use.remove();
+        }
+    });
+
+    const data = new XMLSerializer().serializeToString(svgCopy as Node);
     const image = new Image();
     image.onload = () => {
         const {
