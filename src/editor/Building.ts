@@ -69,3 +69,21 @@ const createBuilding = (snap: Snap.Paper, building: BuildingData, gridSize: numb
 
     model.toDefs();
 }
+
+/*
+colour schemes
+resident - cccc00
+materials - dddd88
+goods - ffff88
+
+- worker - grey? => 
+- artisan - red => 
+- engineer - blue => 
+- investor - green => 
+- jornaleros - orange => 
+- obreros - purple => 
+- 
+
+
+
+*/

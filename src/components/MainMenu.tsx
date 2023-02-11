@@ -121,28 +121,26 @@ export const MainMenu = () => {
     );
 };
 
-const saveAsSVG = async () => {
-    const result = Snap("#svg");
-    const data = result.toDataURL();
-    const blob = await (await fetch(data)).blob();
+const save = (name: string, blob: Blob) => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "anno-layout.svg";
+    a.download = name;
     a.click();
     window.URL.revokeObjectURL(url);
     a.remove();
 }
 
+const saveAsSVG = async () => {
+    const result = Snap("#svg");
+    const data = result.toDataURL();
+    const blob = await (await fetch(data)).blob();
+    save("anno-layout.svg", blob);
+}
+
 const downloadFromCanvas = (canvas: HTMLCanvasElement) => {
     canvas.toBlob(blob => {
-        const url = window.URL.createObjectURL(blob!);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "anno-layout.png";
-        a.click();
-        window.URL.revokeObjectURL(url);
-        a.remove();
+        save("anno-layout.png", blob!);
     });
 }
 

@@ -12,139 +12,265 @@
                         "imagePath": "assets/images/1800/farmer/dirt_road.png",
                         "width": 1,
                         "height": 1,
-                        "colour": "#FFF"
+                        "colour": "#888888"
                     },
                     "1800_farmer_marketplace": {
                         "name": "1800_farmer_marketplace",
                         "imagePath": "assets/images/1800/farmer/marketplace.png",
                         "width": 5,
                         "height": 6,
-                        "colour": "#FFF"
+                        "colour": "#ffff88"
                     },
                     "1800_farmer_farmer_residence": {
                         "name": "1800_farmer_farmer_residence",
                         "imagePath": "assets/images/1800/farmer/farmer_residence.png",
                         "width": 3,
                         "height": 3,
-                        "colour": "#FFF"
+                        "colour": "#cccc00"
                     },
                     "1800_farmer_warehouse": {
                         "name": "1800_farmer_warehouse",
                         "imagePath": "assets/images/1800/farmer/warehouse.png",
                         "width": 5,
                         "height": 5,
-                        "colour": "#FFF"
+                        "colour": "#dddd88"
                     },
                     "1800_farmer_lumberjacks_hut": {
                         "name": "1800_farmer_lumberjacks_hut",
                         "imagePath": "assets/images/1800/farmer/lumberjacks_hut.png",
                         "width": 4,
                         "height": 4,
-                        "colour": "#FFF"
+                        "colour": "#dddd88"
                     },
                     "1800_farmer_sawmill": {
                         "name": "1800_farmer_sawmill",
                         "imagePath": "assets/images/1800/farmer/sawmill.png",
                         "width": 3,
                         "height": 4,
-                        "colour": "#FFF"
+                        "colour": "#dddd88"
                     },
                     "1800_farmer_fishery": {
                         "name": "1800_farmer_fishery",
                         "imagePath": "assets/images/1800/farmer/fishery.png",
                         "width": 5,
                         "height": 11,
-                        "colour": "#FFF"
+                        "colour": "#ffff88"
                     },
                     "1800_farmer_potato_farm": {
                         "name": "1800_farmer_potato_farm",
                         "imagePath": "assets/images/1800/farmer/potato_farm.png",
                         "width": 3,
                         "height": 3,
-                        "colour": "#FFF"
+                        "colour": "#ffff88"
                     },
                     "1800_farmer_schnapps_distillery": {
                         "name": "1800_farmer_schnapps_distillery",
                         "imagePath": "assets/images/1800/farmer/schnapps_distillery.png",
                         "width": 3,
                         "height": 4,
-                        "colour": "#FFF"
+                        "colour": "#ffff88"
                     },
                     "1800_farmer_sheep_farm": {
                         "name": "1800_farmer_sheep_farm",
                         "imagePath": "assets/images/1800/farmer/sheep_farm.png",
                         "width": 3,
                         "height": 3,
-                        "colour": "#FFF"
+                        "colour": "#ffff88"
                     },
                     "1800_farmer_framework_knitters": {
                         "name": "1800_farmer_framework_knitters",
                         "imagePath": "assets/images/1800/farmer/framework_knitters.png",
                         "width": 4,
                         "height": 4,
-                        "colour": "#FFF"
+                        "colour": "#ffff88"
                     },
                     "1800_farmer_fire_station": {
                         "name": "1800_farmer_fire_station",
                         "imagePath": "assets/images/1800/farmer/fire_station.png",
                         "width": 3,
                         "height": 5,
-                        "colour": "#FFF"
+                        "colour": "#ffff88"
                     },
                     "1800_farmer_pub": {
                         "name": "1800_farmer_pub",
                         "imagePath": "assets/images/1800/farmer/pub.png",
                         "width": 4,
                         "height": 6,
-                        "colour": "#FFF"
+                        "colour": "#ffff88"
                     }
                 }
             },
-            "1800_jornalero": {
-                "name": "1800_jornalero",
-                "imagePath": "assets/images/1800/jornalero/jornalero.png",
+            "1800_worker": {
+                "name": "1800_worker",
+                "imagePath": "assets/images/1800/worker/worker.png",
                 "buildings": {
-                    "1800_jornalero_Alpaca_wool": {
-                        "name": "1800_jornalero_Alpaca_wool",
-                        "imagePath": "assets/images/1800/jornalero/Alpaca_wool.png",
+                    "1800_worker_paved_street": {
+                        "name": "1800_worker_paved_street",
+                        "imagePath": "assets/images/1800/worker/paved_street.png",
                         "width": 1,
                         "height": 1,
-                        "colour": "#FFF"
+                        "colour": "#888888"
                     },
-                    "1800_jornalero_jornalero": {
-                        "name": "1800_jornalero_jornalero",
-                        "imagePath": "assets/images/1800/jornalero/jornalero.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
+                    "1800_worker_worker": {
+                        "name": "1800_worker_worker",
+                        "imagePath": "assets/images/1800/worker/worker.png",
+                        "width": 3,
+                        "height": 3,
+                        "colour": "#00cccc"
                     },
-                    "1800_jornalero_Poncho": {
-                        "name": "1800_jornalero_Poncho",
-                        "imagePath": "assets/images/1800/jornalero/Poncho.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
+                    "1800_worker_clay_pit": {
+                        "name": "1800_worker_clay_pit",
+                        "imagePath": "assets/images/1800/worker/clay_pit.png",
+                        "width": 5,
+                        "height": 5,
+                        "colour": "#88dddd"
                     },
-                    "1800_jornalero_Fried_plantains": {
-                        "name": "1800_jornalero_Fried_plantains",
-                        "imagePath": "assets/images/1800/jornalero/Fried_plantains.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
+                    "1800_worker_brick_factory": {
+                        "name": "1800_worker_brick_factory",
+                        "imagePath": "assets/images/1800/worker/brick_factory.png",
+                        "width": 5,
+                        "height": 5,
+                        "colour": "#88dddd"
                     },
-                    "1800_jornalero_Fish_Oil": {
-                        "name": "1800_jornalero_Fish_Oil",
-                        "imagePath": "assets/images/1800/jornalero/Fish_Oil.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
+                    "1800_worker_pig_farm": {
+                        "name": "1800_worker_pig_farm",
+                        "imagePath": "assets/images/1800/worker/pig_farm.png",
+                        "width": 3,
+                        "height": 4,
+                        "colour": "#88ffff"
                     },
-                    "1800_jornalero_Plantains": {
-                        "name": "1800_jornalero_Plantains",
-                        "imagePath": "assets/images/1800/jornalero/Plantains.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
+                    "1800_worker_slaughterhouse": {
+                        "name": "1800_worker_slaughterhouse",
+                        "imagePath": "assets/images/1800/worker/slaughterhouse.png",
+                        "width": 3,
+                        "height": 4,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_trade_union": {
+                        "name": "1800_worker_trade_union",
+                        "imagePath": "assets/images/1800/worker/trade_union.png",
+                        "width": 4,
+                        "height": 4,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_grain_farm": {
+                        "name": "1800_worker_grain_farm",
+                        "imagePath": "assets/images/1800/worker/grain_farm.png",
+                        "width": 3,
+                        "height": 4,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_flour_mill": {
+                        "name": "1800_worker_flour_mill",
+                        "imagePath": "assets/images/1800/worker/flour_mill.png",
+                        "width": 3,
+                        "height": 4,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_bakery": {
+                        "name": "1800_worker_bakery",
+                        "imagePath": "assets/images/1800/worker/bakery.png",
+                        "width": 3,
+                        "height": 4,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_church": {
+                        "name": "1800_worker_church",
+                        "imagePath": "assets/images/1800/worker/church.png",
+                        "width": 6,
+                        "height": 8,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_sailmakers": {
+                        "name": "1800_worker_sailmakers",
+                        "imagePath": "assets/images/1800/worker/sailmakers.png",
+                        "width": 5,
+                        "height": 5,
+                        "colour": "#88dddd"
+                    },
+                    "1800_worker_iron_mine": {
+                        "name": "1800_worker_iron_mine",
+                        "imagePath": "assets/images/1800/worker/iron_mine.png",
+                        "width": 3,
+                        "height": 3,
+                        "colour": "#88dddd"
+                    },
+                    "1800_worker_charcoal_kiln": {
+                        "name": "1800_worker_charcoal_kiln",
+                        "imagePath": "assets/images/1800/worker/charcoal_kiln.png",
+                        "width": 5,
+                        "height": 5,
+                        "colour": "#88dddd"
+                    },
+                    "1800_worker_furnace": {
+                        "name": "1800_worker_furnace",
+                        "imagePath": "assets/images/1800/worker/furnace.png",
+                        "width": 4,
+                        "height": 7,
+                        "colour": "#88dddd"
+                    },
+                    "1800_worker_steelworks": {
+                        "name": "1800_worker_steelworks",
+                        "imagePath": "assets/images/1800/worker/steelworks.png",
+                        "width": 5,
+                        "height": 10,
+                        "colour": "#88dddd"
+                    },
+                    "1800_worker_rendering_works": {
+                        "name": "1800_worker_rendering_works",
+                        "imagePath": "assets/images/1800/worker/rendering_works.png",
+                        "width": 3,
+                        "height": 3,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_soap_factory": {
+                        "name": "1800_worker_soap_factory",
+                        "imagePath": "assets/images/1800/worker/soap_factory.png",
+                        "width": 4,
+                        "height": 4,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_weapon_factory": {
+                        "name": "1800_worker_weapon_factory",
+                        "imagePath": "assets/images/1800/worker/weapon_factory.png",
+                        "width": 5,
+                        "height": 7,
+                        "colour": "#88dddd"
+                    },
+                    "1800_worker_malthouse": {
+                        "name": "1800_worker_malthouse",
+                        "imagePath": "assets/images/1800/worker/malthouse.png",
+                        "width": 4,
+                        "height": 5,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_hop_farm": {
+                        "name": "1800_worker_hop_farm",
+                        "imagePath": "assets/images/1800/worker/hop_farm.png",
+                        "width": 3,
+                        "height": 4,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_brewery": {
+                        "name": "1800_worker_brewery",
+                        "imagePath": "assets/images/1800/worker/brewery.png",
+                        "width": 4,
+                        "height": 5,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_police_station": {
+                        "name": "1800_worker_police_station",
+                        "imagePath": "assets/images/1800/worker/police_station.png",
+                        "width": 4,
+                        "height": 6,
+                        "colour": "#88ffff"
+                    },
+                    "1800_worker_school": {
+                        "name": "1800_worker_school",
+                        "imagePath": "assets/images/1800/worker/school.png",
+                        "width": 5,
+                        "height": 6,
+                        "colour": "#88ffff"
                     }
                 }
             },
@@ -295,339 +421,6 @@
                     "1800_artisan_Sewing_machines": {
                         "name": "1800_artisan_Sewing_machines",
                         "imagePath": "assets/images/1800/artisan/Sewing_machines.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    }
-                }
-            },
-            "1800_obrero": {
-                "name": "1800_obrero",
-                "imagePath": "assets/images/1800/obrero/obrero.png",
-                "buildings": {
-                    "1800_obrero_Tortilla": {
-                        "name": "1800_obrero_Tortilla",
-                        "imagePath": "assets/images/1800/obrero/Tortilla.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_obrero_Cocoa": {
-                        "name": "1800_obrero_Cocoa",
-                        "imagePath": "assets/images/1800/obrero/Cocoa.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_obrero_Sugar": {
-                        "name": "1800_obrero_Sugar",
-                        "imagePath": "assets/images/1800/obrero/Sugar.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_obrero_Corn": {
-                        "name": "1800_obrero_Corn",
-                        "imagePath": "assets/images/1800/obrero/Corn.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_obrero_Bowler_hats": {
-                        "name": "1800_obrero_Bowler_hats",
-                        "imagePath": "assets/images/1800/obrero/Bowler_hats.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_obrero_Felt": {
-                        "name": "1800_obrero_Felt",
-                        "imagePath": "assets/images/1800/obrero/Felt.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_obrero_Boxing_Arena": {
-                        "name": "1800_obrero_Boxing_Arena",
-                        "imagePath": "assets/images/1800/obrero/Boxing_Arena.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_obrero_obrero": {
-                        "name": "1800_obrero_obrero",
-                        "imagePath": "assets/images/1800/obrero/obrero.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_obrero_Chocolate": {
-                        "name": "1800_obrero_Chocolate",
-                        "imagePath": "assets/images/1800/obrero/Chocolate.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    }
-                }
-            },
-            "1800_investor": {
-                "name": "1800_investor",
-                "imagePath": "assets/images/1800/investor/investor.png",
-                "buildings": {
-                    "1800_investor_Jewelry": {
-                        "name": "1800_investor_Jewelry",
-                        "imagePath": "assets/images/1800/investor/Jewelry.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_investor_investor": {
-                        "name": "1800_investor_investor",
-                        "imagePath": "assets/images/1800/investor/investor.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_investor_Steam_carriages": {
-                        "name": "1800_investor_Steam_carriages",
-                        "imagePath": "assets/images/1800/investor/Steam_carriages.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_investor_Tobacco": {
-                        "name": "1800_investor_Tobacco",
-                        "imagePath": "assets/images/1800/investor/Tobacco.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_investor_Grapes": {
-                        "name": "1800_investor_Grapes",
-                        "imagePath": "assets/images/1800/investor/Grapes.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_investor_Gramophone": {
-                        "name": "1800_investor_Gramophone",
-                        "imagePath": "assets/images/1800/investor/Gramophone.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_investor_Cigars": {
-                        "name": "1800_investor_Cigars",
-                        "imagePath": "assets/images/1800/investor/Cigars.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_investor_Chassis": {
-                        "name": "1800_investor_Chassis",
-                        "imagePath": "assets/images/1800/investor/Chassis.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_investor_Members_club": {
-                        "name": "1800_investor_Members_club",
-                        "imagePath": "assets/images/1800/investor/Members_club.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_investor_Pearls": {
-                        "name": "1800_investor_Pearls",
-                        "imagePath": "assets/images/1800/investor/Pearls.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_investor_Champagne": {
-                        "name": "1800_investor_Champagne",
-                        "imagePath": "assets/images/1800/investor/Champagne.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_investor_Wood_veneers": {
-                        "name": "1800_investor_Wood_veneers",
-                        "imagePath": "assets/images/1800/investor/Wood_veneers.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    }
-                }
-            },
-            "1800_worker": {
-                "name": "1800_worker",
-                "imagePath": "assets/images/1800/worker/worker.png",
-                "buildings": {
-                    "1800_worker_school": {
-                        "name": "1800_worker_school",
-                        "imagePath": "assets/images/1800/worker/school.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_malthouse": {
-                        "name": "1800_worker_malthouse",
-                        "imagePath": "assets/images/1800/worker/malthouse.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_charcoal_kiln": {
-                        "name": "1800_worker_charcoal_kiln",
-                        "imagePath": "assets/images/1800/worker/charcoal_kiln.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_brewery": {
-                        "name": "1800_worker_brewery",
-                        "imagePath": "assets/images/1800/worker/brewery.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_sailmakers": {
-                        "name": "1800_worker_sailmakers",
-                        "imagePath": "assets/images/1800/worker/sailmakers.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_clay_pit": {
-                        "name": "1800_worker_clay_pit",
-                        "imagePath": "assets/images/1800/worker/clay_pit.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_church": {
-                        "name": "1800_worker_church",
-                        "imagePath": "assets/images/1800/worker/church.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_bakery": {
-                        "name": "1800_worker_bakery",
-                        "imagePath": "assets/images/1800/worker/bakery.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_police_station": {
-                        "name": "1800_worker_police_station",
-                        "imagePath": "assets/images/1800/worker/police_station.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_paved_street": {
-                        "name": "1800_worker_paved_street",
-                        "imagePath": "assets/images/1800/worker/paved_street.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_furnace": {
-                        "name": "1800_worker_furnace",
-                        "imagePath": "assets/images/1800/worker/furnace.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_steelworks": {
-                        "name": "1800_worker_steelworks",
-                        "imagePath": "assets/images/1800/worker/steelworks.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_pig_farm": {
-                        "name": "1800_worker_pig_farm",
-                        "imagePath": "assets/images/1800/worker/pig_farm.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_worker": {
-                        "name": "1800_worker_worker",
-                        "imagePath": "assets/images/1800/worker/worker.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_trade_union": {
-                        "name": "1800_worker_trade_union",
-                        "imagePath": "assets/images/1800/worker/trade_union.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_soap_factory": {
-                        "name": "1800_worker_soap_factory",
-                        "imagePath": "assets/images/1800/worker/soap_factory.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_grain_farm": {
-                        "name": "1800_worker_grain_farm",
-                        "imagePath": "assets/images/1800/worker/grain_farm.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_weapon_factory": {
-                        "name": "1800_worker_weapon_factory",
-                        "imagePath": "assets/images/1800/worker/weapon_factory.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_iron_mine": {
-                        "name": "1800_worker_iron_mine",
-                        "imagePath": "assets/images/1800/worker/iron_mine.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_flour_mill": {
-                        "name": "1800_worker_flour_mill",
-                        "imagePath": "assets/images/1800/worker/flour_mill.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_hop_farm": {
-                        "name": "1800_worker_hop_farm",
-                        "imagePath": "assets/images/1800/worker/hop_farm.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_slaughterhouse": {
-                        "name": "1800_worker_slaughterhouse",
-                        "imagePath": "assets/images/1800/worker/slaughterhouse.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_rendering_works": {
-                        "name": "1800_worker_rendering_works",
-                        "imagePath": "assets/images/1800/worker/rendering_works.png",
-                        "width": 1,
-                        "height": 1,
-                        "colour": "#FFF"
-                    },
-                    "1800_worker_brick_factory": {
-                        "name": "1800_worker_brick_factory",
-                        "imagePath": "assets/images/1800/worker/brick_factory.png",
                         "width": 1,
                         "height": 1,
                         "colour": "#FFF"
@@ -814,7 +607,215 @@
                         "colour": "#FFF"
                     }
                 }
-            }
+            },
+            "1800_investor": {
+                "name": "1800_investor",
+                "imagePath": "assets/images/1800/investor/investor.png",
+                "buildings": {
+                    "1800_investor_Jewelry": {
+                        "name": "1800_investor_Jewelry",
+                        "imagePath": "assets/images/1800/investor/Jewelry.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_investor_investor": {
+                        "name": "1800_investor_investor",
+                        "imagePath": "assets/images/1800/investor/investor.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_investor_Steam_carriages": {
+                        "name": "1800_investor_Steam_carriages",
+                        "imagePath": "assets/images/1800/investor/Steam_carriages.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_investor_Tobacco": {
+                        "name": "1800_investor_Tobacco",
+                        "imagePath": "assets/images/1800/investor/Tobacco.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_investor_Grapes": {
+                        "name": "1800_investor_Grapes",
+                        "imagePath": "assets/images/1800/investor/Grapes.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_investor_Gramophone": {
+                        "name": "1800_investor_Gramophone",
+                        "imagePath": "assets/images/1800/investor/Gramophone.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_investor_Cigars": {
+                        "name": "1800_investor_Cigars",
+                        "imagePath": "assets/images/1800/investor/Cigars.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_investor_Chassis": {
+                        "name": "1800_investor_Chassis",
+                        "imagePath": "assets/images/1800/investor/Chassis.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_investor_Members_club": {
+                        "name": "1800_investor_Members_club",
+                        "imagePath": "assets/images/1800/investor/Members_club.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_investor_Pearls": {
+                        "name": "1800_investor_Pearls",
+                        "imagePath": "assets/images/1800/investor/Pearls.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_investor_Champagne": {
+                        "name": "1800_investor_Champagne",
+                        "imagePath": "assets/images/1800/investor/Champagne.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_investor_Wood_veneers": {
+                        "name": "1800_investor_Wood_veneers",
+                        "imagePath": "assets/images/1800/investor/Wood_veneers.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    }
+                }
+            },
+            "1800_jornalero": {
+                "name": "1800_jornalero",
+                "imagePath": "assets/images/1800/jornalero/jornalero.png",
+                "buildings": {
+                    "1800_jornalero_Alpaca_wool": {
+                        "name": "1800_jornalero_Alpaca_wool",
+                        "imagePath": "assets/images/1800/jornalero/Alpaca_wool.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_jornalero_jornalero": {
+                        "name": "1800_jornalero_jornalero",
+                        "imagePath": "assets/images/1800/jornalero/jornalero.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_jornalero_Poncho": {
+                        "name": "1800_jornalero_Poncho",
+                        "imagePath": "assets/images/1800/jornalero/Poncho.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_jornalero_Fried_plantains": {
+                        "name": "1800_jornalero_Fried_plantains",
+                        "imagePath": "assets/images/1800/jornalero/Fried_plantains.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_jornalero_Fish_Oil": {
+                        "name": "1800_jornalero_Fish_Oil",
+                        "imagePath": "assets/images/1800/jornalero/Fish_Oil.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_jornalero_Plantains": {
+                        "name": "1800_jornalero_Plantains",
+                        "imagePath": "assets/images/1800/jornalero/Plantains.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    }
+                }
+            },
+            
+            "1800_obrero": {
+                "name": "1800_obrero",
+                "imagePath": "assets/images/1800/obrero/obrero.png",
+                "buildings": {
+                    "1800_obrero_Tortilla": {
+                        "name": "1800_obrero_Tortilla",
+                        "imagePath": "assets/images/1800/obrero/Tortilla.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_obrero_Cocoa": {
+                        "name": "1800_obrero_Cocoa",
+                        "imagePath": "assets/images/1800/obrero/Cocoa.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_obrero_Sugar": {
+                        "name": "1800_obrero_Sugar",
+                        "imagePath": "assets/images/1800/obrero/Sugar.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_obrero_Corn": {
+                        "name": "1800_obrero_Corn",
+                        "imagePath": "assets/images/1800/obrero/Corn.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_obrero_Bowler_hats": {
+                        "name": "1800_obrero_Bowler_hats",
+                        "imagePath": "assets/images/1800/obrero/Bowler_hats.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_obrero_Felt": {
+                        "name": "1800_obrero_Felt",
+                        "imagePath": "assets/images/1800/obrero/Felt.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_obrero_Boxing_Arena": {
+                        "name": "1800_obrero_Boxing_Arena",
+                        "imagePath": "assets/images/1800/obrero/Boxing_Arena.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_obrero_obrero": {
+                        "name": "1800_obrero_obrero",
+                        "imagePath": "assets/images/1800/obrero/obrero.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    },
+                    "1800_obrero_Chocolate": {
+                        "name": "1800_obrero_Chocolate",
+                        "imagePath": "assets/images/1800/obrero/Chocolate.png",
+                        "width": 1,
+                        "height": 1,
+                        "colour": "#FFF"
+                    }
+                }
+            }  
         }
     }
 }
