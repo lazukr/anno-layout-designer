@@ -8,7 +8,7 @@ def main():
     rootDir = "../../public/assets/images/"
     gameList = write_game_json(rootDir)
     json_output = json.dumps(gameList, indent=4)
-    jsonfile = f"{os.getcwd()}/data.json"
+    jsonfile = f"{os.getcwd()}/data2.json"
     os.makedirs(os.path.dirname(jsonfile), exist_ok=True)
     with open(jsonfile, "w+") as outfile:
         outfile.write(json_output)

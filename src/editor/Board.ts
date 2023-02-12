@@ -1,8 +1,5 @@
 import "snapsvg-cjs";
-import { BuildingData } from "../data/BuildingData";
-import { getAllBuildingData } from "../data/Series";
 import { Direction, getAttrArgs, getLineArgs } from "../utils/drawing";
-import Path from "path-browserify";
 
 export interface BoardProps {
     snap: Snap.Paper;
