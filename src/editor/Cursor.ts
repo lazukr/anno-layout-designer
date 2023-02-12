@@ -26,6 +26,7 @@ export class Cursor implements EditorCursor {
     element: Snap.Element | null;
     gridSize: number;
     isSelectDeleteMode: boolean;
+    isRotated: boolean;
     
     constructor({
         snap,
@@ -40,6 +41,7 @@ export class Cursor implements EditorCursor {
         this.gridSize = gridSize;
         this.element = null;
         this.action = action;
+        this.isRotated = false;
         this.isSelectDeleteMode = true;
         
         switch (action) {
@@ -70,6 +72,18 @@ export class Cursor implements EditorCursor {
         this.elementMove(this.position);
         this.snap.mousemove(this.getElementMove());
         this.snap.mouseup(this.getElementMouseUp());
+    }
+
+    rotate() {
+        if (this.isRotated) {
+            this.buildingName = this.buildingName.replace("_rotated", "");
+        }
+        else {
+            this.buildingName = `${this.buildingName}_rotated`;
+        }
+        this.isRotated = !this.isRotated;
+        this.destroy();
+        this.actionCreate();
     }
 
     actionDelete() {
@@ -117,14 +131,20 @@ export class Cursor implements EditorCursor {
     }
 
     getElementMouseUp() {
-        return () => {
-            const element = this.element;
-            return this.elementMouseUp(element);
+        return (event: MouseEvent) => {
+            if (event.ctrlKey) {
+                this.rotate();
+            }
+            else {
+                const element = this.element;
+                return this.elementMouseUp(element);
+            }
         };
     }
 
     elementMouseUp(element: Snap.Element | null) {
         const cur = element?.clone();
+        cur?.insertBefore(this.element!);
         cur?.attr({
             opacity: "",
             placed: true,
