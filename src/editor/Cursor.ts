@@ -151,10 +151,8 @@ export class Cursor implements EditorCursor {
         });
         cur?.hover(() => {
             cur.toggleClass("highlight", true);
-            //cur.toggleClass(Action[this.action].toLowerCase(), true);
         }, () => {
             cur.toggleClass("highlight", false);
-            //cur.toggleClass(Action[this.action].toLowerCase(), false);
         });
     }
 
@@ -174,22 +172,3 @@ export class Cursor implements EditorCursor {
         this.element?.transform(`T${gridX * this.gridSize},${gridY * this.gridSize}`);
     }
 }
-
-
-/*
-
-delete
-    - find element
-    - if use, delete it
-
-create
-    - add new element
-    - continuously add new
-
-
-select
-    - find element
-    - if use, select it
-    - now behaves like create
-    - once you click, it should create and goes back to being select
-*/
