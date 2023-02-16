@@ -1,10 +1,24 @@
 svg use.highlight {
   stroke-width: 4 !important;
-  stroke-dasharray: 8;
-  filter: saturate(300%) contrast(50%);
+  stroke-dasharray: 14;
+  animation: dash 20s linear;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
 }
 
 svg use {
   stroke-width: 1;
   stroke: black;
+}
+
+svg use.delete {
+  filter: sepia(150%) hue-rotate(270deg) saturate(200%) contrast(50%);
+}
+
+svg use.select {
+  filter: opacity(70%);
 }

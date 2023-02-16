@@ -19,8 +19,8 @@ export enum Action {
     Delete,
 }
 export class Cursor implements EditorCursor {
+    static action: Action;
     snap: Snap.Paper;
-    action: Action;
     position: PositionTracker;
     buildingName: string;
     element: Snap.Element | null;
@@ -40,11 +40,11 @@ export class Cursor implements EditorCursor {
         this.buildingName = buildingName;
         this.gridSize = gridSize;
         this.element = null;
-        this.action = action;
+        Cursor.action = action;
         this.isRotated = false;
         this.isSelectDeleteMode = true;
         
-        switch (action) {
+        switch (Cursor.action) {
             case Action.Select:
                 this.actionSelect();
                 break;
@@ -142,6 +142,15 @@ export class Cursor implements EditorCursor {
         };
     }
 
+    getHighlightColour() {
+        if (Cursor.action === Action.Delete) {
+            return "delete";
+        }
+        else {
+            return "select";
+        }
+    }
+
     elementMouseUp(element: Snap.Element | null) {
         const cur = element?.clone();
         cur?.insertBefore(this.element!);
@@ -151,8 +160,10 @@ export class Cursor implements EditorCursor {
         });
         cur?.hover(() => {
             cur.toggleClass("highlight", true);
+            cur.toggleClass(this.getHighlightColour(), true);
         }, () => {
             cur.toggleClass("highlight", false);
+            cur.toggleClass(this.getHighlightColour(), false);
         });
     }
 
