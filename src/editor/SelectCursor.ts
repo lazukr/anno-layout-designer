@@ -1,5 +1,5 @@
 import "snapsvg-cjs";
-import { BuildingData } from "../data/BuildingData";
+import { Building } from "../data/BuildingData";
 import { CreateCursor } from "./CreateCursor";
 import { Action, EditorCursor } from "./Cursor";
 import { DeleteCursor } from "./DeleteCursor";
@@ -8,7 +8,7 @@ import { PositionTracker } from "./PositionTracker";
 interface SelectCursorProps {
     snap: Snap.Paper;
     position: PositionTracker;
-    buildingData: BuildingData;
+    buildingData: Building;
     gridSize: number;
 }
 

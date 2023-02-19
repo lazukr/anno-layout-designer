@@ -47,7 +47,16 @@
                         "imagePath": "assets/images/1800/farmer/sawmill.png",
                         "width": 3,
                         "height": 4,
-                        "colour": "#ffff80"
+                        "colour": "#ffff80",
+                        "productionChain": [
+                            {
+                                "name": "1800_farmer_lumberjacks_hut",
+                                "imagePath": "assets/images/1800/farmer/lumberjacks_hut.png",
+                                "width": 4,
+                                "height": 4,
+                                "colour": "#ffff80"
+                            }
+                        ]
                     },
                     "1800_farmer_fishery": {
                         "name": "1800_farmer_fishery",

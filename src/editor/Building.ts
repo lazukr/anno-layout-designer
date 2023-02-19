@@ -1,5 +1,5 @@
 import "snapsvg-cjs";
-import { BuildingData } from "../data/BuildingData";
+import { SVGBuildingData } from "../data/BuildingData";
 import { getAllBuildingData } from "../data/Series";
 import Path from "path-browserify";
 
@@ -36,12 +36,12 @@ const bakeBuildingsToSVG = (snap: Snap.Paper) => {
     });
 }
 
-const createBuilding = (snap: Snap.Paper, building: BuildingData, gridSize: number, rotated: boolean) => {
+const createBuilding = (snap: Snap.Paper, building: SVGBuildingData, gridSize: number, rotated: boolean) => {
     const {
         width,
         height,
         colour,
-        name,
+        id,
     } = building;
 
     const trueWidth = rotated ? height : width;
@@ -67,7 +67,7 @@ const createBuilding = (snap: Snap.Paper, building: BuildingData, gridSize: numb
 
     const model = snap.g(...[background, sprite])
         .attr({
-            id: rotated ? `${name}_rotated` : name,
+            id: rotated ? `${id}_rotated` : id,
         });
 
     model.toDefs();

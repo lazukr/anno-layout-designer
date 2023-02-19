@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { useEffect, useState } from "react";
 import { Editor } from "./Editor";
 import { Action } from "../editor/Cursor";
-import { getBuildingSelections, getCitizenSelections, getGame } from "../data/Series";
+import { getBuildingSelections, getCitizenSelections } from "../data/Series";
 
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
@@ -26,18 +26,15 @@ import {
 declare const Snap: typeof SNAPSVG_TYPE;
 
 const DEFAULT_GAME = "1800";
+const DEFAULT_CITIZEN = "1800_farmer";
+const DEFAULT_BUILDING = "1800_dirt_road";
 
 export const MainMenu = () => {
     const [game, setGame] = useState(DEFAULT_GAME);
-    const [gameData, setGameData] = useState(getGame(game));
-    const [citizen, setCitizen] = useState(Object.values(gameData.citizens)[0]);
-    const [building, setBuilding] = useState(Object.values(citizen.buildings)[0]);
+    const [citizen, setCitizen] = useState(DEFAULT_CITIZEN);
+    const [building, setBuilding] = useState(DEFAULT_BUILDING);
     const [action, setAction] = useState(Action.Create);
 
-    useEffect(() => {
-        setGameData(getGame(game));
-    }, [game]);
-    
     return (
         <>
             <Navbar
@@ -82,9 +79,9 @@ export const MainMenu = () => {
                         </Button>
                     </ButtonGroup>
                     {getCitizenSelections({
-                        citizens: Object.values(gameData.citizens),
-                        defaultSelectValue: citizen.name,
-                        setSelect: (value: string) => setCitizen(gameData.citizens[value])
+                        game: game,
+                        currentSelect: citizen,
+                        setSelect: (citizen: string) => setCitizen(citizen)
                     })}
                     </Nav>
                     <Nav className="justify-content-end">
@@ -102,10 +99,11 @@ export const MainMenu = () => {
                 variant="dark"
             >
                 {getBuildingSelections({
-                    buildings: Object.values(citizen.buildings),
-                    defaultSelectValue: action === Action.Create ? building.name : action.toString(),
-                    setSelect: (value: string) => {
-                        setBuilding(citizen.buildings[value]);
+                    game: game,
+                    citizen: citizen,
+                    currentSelect: action === Action.Create ? building : action.toString(),
+                    setSelect: (building: string) => {
+                        setBuilding(building);
                         setAction(Action.Create);
                     },
                 })}
@@ -115,7 +113,7 @@ export const MainMenu = () => {
                 height={30}
                 gridSize={32}
                 action={action}
-                buildingName={building.name}
+                buildingName={building}
             />
         </>
     );

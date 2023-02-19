@@ -1,0 +1,494 @@
+{
+    "1800": {
+        "id": "1800",
+        "name": "Anno 1800",
+        "citizens": {
+            "1800_farmer": {
+                "id": "1800_farmer",
+                "name": "Farmer",
+                "buildings": [
+                    {
+                        "id": "1800_dirt_road",
+                        "name": "Dirt Road"
+                    },
+                    {
+                        "id": "1800_marketplace",
+                        "name": "Marketplace"
+                    },
+                    {
+                        "id": "1800_farmer_residence",
+                        "name": "Farmer Residence"
+                    },
+                    {
+                        "id": "1800_pub",
+                        "name": "Pub"
+                    },
+                    {
+                        "id": "1800_warehouse",
+                        "name": "Warehouse"
+                    },
+                    {
+                        "id": "1800_fishery",
+                        "name": "Fishery"
+                    },
+                    {
+                        "id": "1800_sawmill",
+                        "name": "Sawmill",
+                        "productionChain": [
+                            {
+                                "id": "1800_lumberjacks_hut",
+                                "name": "Lumberjacks Hut"
+                            },
+                            {
+                                "id": "1800_framework_knitters",
+                                "name": "Framework Knitters",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_sheep_farm",
+                                        "name": "Sheep Farm"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "1800_schnapps_distillery",
+                        "name": "Schnapps Distillery"
+                    },
+                    {
+                        "id": "1800_potato_farm",
+                        "name": "Potato Farm"
+                    },
+                    {
+                        "id": "1800_fire_station",
+                        "name": "Fire Station"
+                    }
+                ]
+            },
+            "1800_worker": {
+                "id": "1800_worker",
+                "name": "Worker",
+                "buildings": [
+                    {
+                        "id": "1800_school",
+                        "name": "School"
+                    },
+                    {
+                        "id": "1800_malthouse",
+                        "name": "Malthouse"
+                    },
+                    {
+                        "id": "1800_charcoal_kiln",
+                        "name": "Charcoal Kiln"
+                    },
+                    {
+                        "id": "1800_brewery",
+                        "name": "Brewery"
+                    },
+                    {
+                        "id": "1800_sailmakers",
+                        "name": "Sailmakers"
+                    },
+                    {
+                        "id": "1800_clay_pit",
+                        "name": "Clay Pit"
+                    },
+                    {
+                        "id": "1800_church",
+                        "name": "Church"
+                    },
+                    {
+                        "id": "1800_bakery",
+                        "name": "Bakery"
+                    },
+                    {
+                        "id": "1800_police_station",
+                        "name": "Police Station"
+                    },
+                    {
+                        "id": "1800_paved_street",
+                        "name": "Paved Street"
+                    },
+                    {
+                        "id": "1800_furnace",
+                        "name": "Furnace"
+                    },
+                    {
+                        "id": "1800_steelworks",
+                        "name": "Steelworks"
+                    },
+                    {
+                        "id": "1800_pig_farm",
+                        "name": "Pig Farm"
+                    },
+                    {
+                        "id": "1800_worker",
+                        "name": "Worker"
+                    },
+                    {
+                        "id": "1800_trade_union",
+                        "name": "Trade Union"
+                    },
+                    {
+                        "id": "1800_soap_factory",
+                        "name": "Soap Factory"
+                    },
+                    {
+                        "id": "1800_grain_farm",
+                        "name": "Grain Farm"
+                    },
+                    {
+                        "id": "1800_weapon_factory",
+                        "name": "Weapon Factory"
+                    },
+                    {
+                        "id": "1800_iron_mine",
+                        "name": "Iron Mine"
+                    },
+                    {
+                        "id": "1800_flour_mill",
+                        "name": "Flour Mill"
+                    },
+                    {
+                        "id": "1800_hop_farm",
+                        "name": "Hop Farm"
+                    },
+                    {
+                        "id": "1800_slaughterhouse",
+                        "name": "Slaughterhouse"
+                    },
+                    {
+                        "id": "1800_rendering_works",
+                        "name": "Rendering Works"
+                    },
+                    {
+                        "id": "1800_brick_factory",
+                        "name": "Brick Factory"
+                    }
+                ]
+            },
+            "1800_artisan": {
+                "id": "1800_artisan",
+                "name": "Artisan",
+                "buildings": [
+                    {
+                        "id": "1800_hospital",
+                        "name": "Hospital"
+                    },
+                    {
+                        "id": "1800_glassmaker",
+                        "name": "Glassmaker"
+                    },
+                    {
+                        "id": "1800_sewing_machine_factory",
+                        "name": "Sewing Machine Factory"
+                    },
+                    {
+                        "id": "1800_fur_dealer",
+                        "name": "Fur Dealer"
+                    },
+                    {
+                        "id": "1800_cattle_farm",
+                        "name": "Cattle Farm"
+                    },
+                    {
+                        "id": "1800_cotton_mill",
+                        "name": "Cotton Mill"
+                    },
+                    {
+                        "id": "1800_coal_mine",
+                        "name": "Coal Mine"
+                    },
+                    {
+                        "id": "1800_window_maker",
+                        "name": "Window Maker"
+                    },
+                    {
+                        "id": "1800_artisanal_kitchen",
+                        "name": "Artisanal Kitchen"
+                    },
+                    {
+                        "id": "1800_rum_distillery",
+                        "name": "Rum Distillery"
+                    },
+                    {
+                        "id": "1800_artisan",
+                        "name": "Artisan"
+                    },
+                    {
+                        "id": "1800_university",
+                        "name": "University"
+                    },
+                    {
+                        "id": "1800_sand_mine",
+                        "name": "Sand Mine"
+                    },
+                    {
+                        "id": "1800_hunting_cabin",
+                        "name": "Hunting Cabin"
+                    },
+                    {
+                        "id": "1800_sugar_cane_plantation",
+                        "name": "Sugar Cane Plantation"
+                    },
+                    {
+                        "id": "1800_town_hall",
+                        "name": "Town Hall"
+                    },
+                    {
+                        "id": "1800_cannery",
+                        "name": "Cannery"
+                    },
+                    {
+                        "id": "1800_museum",
+                        "name": "Museum"
+                    },
+                    {
+                        "id": "1800_variety_theatre",
+                        "name": "Variety Theatre"
+                    },
+                    {
+                        "id": "1800_cotton_plantation",
+                        "name": "Cotton Plantation"
+                    },
+                    {
+                        "id": "1800_red_pepper_farm",
+                        "name": "Red Pepper Farm"
+                    }
+                ]
+            },
+            "1800_engineer": {
+                "id": "1800_engineer",
+                "name": "Engineer",
+                "buildings": [
+                    {
+                        "id": "1800_goldsmith",
+                        "name": "Goldsmith"
+                    },
+                    {
+                        "id": "1800_coffee_plantation",
+                        "name": "Coffee Plantation"
+                    },
+                    {
+                        "id": "1800_gold_mine",
+                        "name": "Gold Mine"
+                    },
+                    {
+                        "id": "1800_saltpeter_works",
+                        "name": "Saltpeter Works"
+                    },
+                    {
+                        "id": "1800_railway",
+                        "name": "Railway"
+                    },
+                    {
+                        "id": "1800_bicycle_factory",
+                        "name": "Bicycle Factory"
+                    },
+                    {
+                        "id": "1800_oil_refinery",
+                        "name": "Oil Refinery"
+                    },
+                    {
+                        "id": "1800_concrete_factory",
+                        "name": "Concrete Factory"
+                    },
+                    {
+                        "id": "1800_heavy_weapons_factory",
+                        "name": "Heavy Weapons Factory"
+                    },
+                    {
+                        "id": "1800_limestone_quarry",
+                        "name": "Limestone Quarry"
+                    },
+                    {
+                        "id": "1800_oil_well",
+                        "name": "Oil Well"
+                    },
+                    {
+                        "id": "1800_brass_smeltery",
+                        "name": "Brass Smeltery"
+                    },
+                    {
+                        "id": "1800_clockmaker",
+                        "name": "Clockmaker"
+                    },
+                    {
+                        "id": "1800_coffee_roaster",
+                        "name": "Coffee Roaster"
+                    },
+                    {
+                        "id": "1800_dynamite_factory",
+                        "name": "Dynamite Factory"
+                    },
+                    {
+                        "id": "1800_light_bulb_factorry",
+                        "name": "Light Bulb Factorry"
+                    },
+                    {
+                        "id": "1800_spectacle_factory",
+                        "name": "Spectacle Factory"
+                    },
+                    {
+                        "id": "1800_bank",
+                        "name": "Bank"
+                    },
+                    {
+                        "id": "1800_motor_assembly_line",
+                        "name": "Motor Assembly Line"
+                    },
+                    {
+                        "id": "1800_copper_mine",
+                        "name": "Copper Mine"
+                    },
+                    {
+                        "id": "1800_engineer",
+                        "name": "Engineer"
+                    },
+                    {
+                        "id": "1800_caoutchouc_plantation",
+                        "name": "Caoutchouc Plantation"
+                    },
+                    {
+                        "id": "1800_oil_power_plant",
+                        "name": "Oil Power Plant"
+                    },
+                    {
+                        "id": "1800_filament_factory",
+                        "name": "Filament Factory"
+                    },
+                    {
+                        "id": "1800_zinc_mine",
+                        "name": "Zinc Mine"
+                    }
+                ]
+            },
+            "1800_investor": {
+                "id": "1800_investor",
+                "name": "Investor",
+                "buildings": [
+                    {
+                        "id": "1800_investor",
+                        "name": "Investor"
+                    },
+                    {
+                        "id": "1800_tobacco_plantation",
+                        "name": "Tobacco Plantation"
+                    },
+                    {
+                        "id": "1800_marquetry_workshop",
+                        "name": "Marquetry Workshop"
+                    },
+                    {
+                        "id": "1800_champagne_cellar",
+                        "name": "Champagne Cellar"
+                    },
+                    {
+                        "id": "1800_pearl_farm",
+                        "name": "Pearl Farm"
+                    },
+                    {
+                        "id": "1800_cab_assembly_line",
+                        "name": "Cab Assembly Line"
+                    },
+                    {
+                        "id": "1800_jewellers",
+                        "name": "Jewellers"
+                    },
+                    {
+                        "id": "1800_members_club",
+                        "name": "Members Club"
+                    },
+                    {
+                        "id": "1800_coachmaker",
+                        "name": "Coachmaker"
+                    },
+                    {
+                        "id": "1800_vineyard",
+                        "name": "Vineyard"
+                    },
+                    {
+                        "id": "1800_cigar_factory",
+                        "name": "Cigar Factory"
+                    },
+                    {
+                        "id": "1800_gramophone_factory",
+                        "name": "Gramophone Factory"
+                    }
+                ]
+            },
+            "1800_jornalero": {
+                "id": "1800_jornalero",
+                "name": "Jornalero",
+                "buildings": [
+                    {
+                        "id": "1800_alpaca_wool",
+                        "name": "Alpaca Wool"
+                    },
+                    {
+                        "id": "1800_jornalero",
+                        "name": "Jornalero"
+                    },
+                    {
+                        "id": "1800_plantain_plantation",
+                        "name": "Plantain Plantation"
+                    },
+                    {
+                        "id": "1800_fried_plantain_kitchen",
+                        "name": "Fried Plantain Kitchen"
+                    },
+                    {
+                        "id": "1800_fish_oil_factory",
+                        "name": "Fish Oil Factory"
+                    },
+                    {
+                        "id": "1800_poncho_darner",
+                        "name": "Poncho Darner"
+                    }
+                ]
+            },
+            "1800_obrero": {
+                "id": "1800_obrero",
+                "name": "Obrero",
+                "buildings": [
+                    {
+                        "id": "1800_chocolate_factory",
+                        "name": "Chocolate Factory"
+                    },
+                    {
+                        "id": "1800_cocoa_plantation",
+                        "name": "Cocoa Plantation"
+                    },
+                    {
+                        "id": "1800_tortilla_maker",
+                        "name": "Tortilla Maker"
+                    },
+                    {
+                        "id": "1800_boxing_arena",
+                        "name": "Boxing Arena"
+                    },
+                    {
+                        "id": "1800_felt_producer",
+                        "name": "Felt Producer"
+                    },
+                    {
+                        "id": "1800_sugar_refinery",
+                        "name": "Sugar Refinery"
+                    },
+                    {
+                        "id": "1800_corn_farm",
+                        "name": "Corn Farm"
+                    },
+                    {
+                        "id": "1800_bombin_weaver",
+                        "name": "Bombin Weaver"
+                    },
+                    {
+                        "id": "1800_obrero",
+                        "name": "Obrero"
+                    }
+                ]
+            }
+        }
+    }
+}

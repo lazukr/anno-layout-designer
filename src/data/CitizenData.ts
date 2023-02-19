@@ -1,7 +1,7 @@
-import { BuildingData } from "./BuildingData";
+import { Building } from "./BuildingData";
 
-export interface CitizenData {
+export interface Citizen {
+    id: string;
     name: string;
-    imagePath: string;
-    buildings: Record<string, BuildingData>;
+    buildings: Building[];
 }

@@ -44,6 +44,8 @@ export class Cursor implements EditorCursor {
         this.isRotated = false;
         this.isSelectDeleteMode = true;
         
+        //console.log(snap, action, position, buildingName, gridSize);
+
         switch (Cursor.action) {
             case Action.Select:
                 this.actionSelect();

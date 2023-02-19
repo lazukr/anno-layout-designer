@@ -1,78 +1,84 @@
 import data from "./data.json";
-import { SeriesData } from "./SeriesData";
-import { GameData } from "./GameData";
+import ui_data from "./ui-data.json";
+import image_data from "./image_data.json";
+import svg_data from "./svg_data.json";
+import { Game } from "./GameData";
 import { Selection } from "../components/Selection";
-import { ImageNameData } from "./ImageNameData";
-import { CitizenData } from "./CitizenData";
-import { BuildingData } from "./BuildingData";
+import { SelectionData } from "./ImageNameData";
+import { Building, SVGBuildingData, SvgData } from "./BuildingData";
 
-const series = data as SeriesData;
-
-export const getGame = (game: string): GameData => {
-    return series[game];
-}
+const UI_DATA = ui_data as Record<string, Game>;
+const IMAGE_DATA = image_data as Record<string, string>;
+const SVG_DATA = svg_data as SvgData[];
 
 interface CitizenSelectProps {
-    citizens: CitizenData[];
-    defaultSelectValue: string;
+    game: string;
+    currentSelect: string;
     setSelect: (value: string) => void;
 }
 
 export const getCitizenSelections = ({
-    citizens,
-    defaultSelectValue,
+    game,
+    currentSelect,
     setSelect,
 }: CitizenSelectProps): JSX.Element => {
-    const imageDataList = citizens.map(citizen => {
-        return <ImageNameData>citizen;
+    const citizenList = Object.values(UI_DATA[game].citizens).map(citizen => {
+        return <SelectionData>{
+            id: citizen.id,
+            name: citizen.name,
+            imagePath: IMAGE_DATA[citizen.id],
+        };
     });
-
     return Selection({
         name: "citizens",
-        defaultValue: defaultSelectValue,
-        items: imageDataList,
+        defaultValue: currentSelect,
+        items: citizenList,
         setSelect: setSelect,
     });
 }
 
 interface BuildingSelectProps {
-    buildings: BuildingData[];
-    defaultSelectValue: string;
+    game: string;
+    citizen: string;
+    currentSelect: string;
     setSelect: (value: string) => void;
 }
 
+const constructBuilding = (list: Building[]): SelectionData[] => {
+    return list.map(building => {
+        return <SelectionData>{
+            id: building.id,
+            name: building.name,
+            imagePath: IMAGE_DATA[building.id],
+            children: building.productionChain ? constructBuilding(building.productionChain!) : undefined,
+        };
+    })
+}
+
 export const getBuildingSelections = ({
-    buildings,
-    defaultSelectValue,
+    game,
+    citizen,
+    currentSelect,
     setSelect,
 }: BuildingSelectProps): JSX.Element => {
-    const imageDataList = buildings.map(building => {
-        return <ImageNameData>building;
-    });
-
+    const buildingList = constructBuilding(Object.values(UI_DATA[game].citizens[citizen].buildings));
     return Selection({
         name: "buildings",
-        defaultValue: defaultSelectValue,
-        items: imageDataList,
+        defaultValue: currentSelect,
+        items: buildingList,
         setSelect: setSelect
     });
 }
 
 export const getAllBuildingData = () => {
-    const games = Object.values(series);
-    const citizens = games
-        .map(game => Object.values(game.citizens))
-        .reduce((acc, cur) => {
-            acc.push(...cur);
-            return acc;
-        }, []);
-
-    const buildings = citizens
-        .map(citizen => Object.values(citizen.buildings))
-        .reduce((acc, cur) => {
-            acc.push(...cur);
-            return acc;
-        }, []);
-
+    const buildings = Object.values(SVG_DATA).map(building => {
+        return <SVGBuildingData>{
+            id: building.id,
+            width: building.width,
+            height: building.height,
+            colour: building.colour,
+            imagePath: IMAGE_DATA[building.id],
+        }
+    });
     return buildings;
 }

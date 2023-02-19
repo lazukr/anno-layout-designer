@@ -1,7 +1,6 @@
-import { CitizenData } from "./CitizenData";
-
-export interface GameData {
+import { Citizen } from "./CitizenData";
+export interface Game {
+    id: string;
     name: string;
-    title: string;
-    citizens: Record<string, CitizenData>;
+    citizens: Record<string, Citizen>;
 }
