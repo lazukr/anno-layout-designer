@@ -22,6 +22,7 @@ import {
     FileEarmarkArrowUp,
     FiletypePng,
  } from "react-bootstrap-icons";
+import { DropdownSelect } from "./DropdownSelect";
 
 declare const Snap: typeof SNAPSVG_TYPE;
 

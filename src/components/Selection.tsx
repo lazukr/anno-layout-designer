@@ -3,7 +3,9 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import Image from "react-bootstrap/Image";
 import Path from "path-browserify";
 import { SelectionData } from "../data/ImageNameData";
-import { Dropdown, SplitButton } from "react-bootstrap";
+import { Button, ButtonGroup, Dropdown, SplitButton } from "react-bootstrap";
+
+import "../styles/button.scss";
 
 interface SelectionProps {
     name: string;
@@ -39,20 +41,18 @@ const getDropdownToggle = (selections: SelectionData[], setSelect: (value: strin
         } else {
             return (
                 <SplitButton
-                        className="d-flex align-items-center"
-                        key={child.id}
-                        id={`radio-${child.id}`}
-                        onClick={() => setSelect(child.id)}
-                        onSelect={e => setSelect(e!)}
-                        variant="dark"
-                        drop="end"
-                        title={getImage(32, child.imagePath)}
-                    >
-                        {getDropdownToggle(child.children!, setSelect)}
-                    </SplitButton>
+                    className="d-flex align-items-center"
+                    key={child.id}
+                    id={`radio-${child.id}`}
+                    onClick={() => setSelect(child.id)}
+                    onSelect={e => setSelect(e!)}
+                    variant="dark"
+                    drop="end"
+                    title={getImage(32, child.imagePath)}
+                >
+                    {getDropdownToggle(child.children!, setSelect)}
+                </SplitButton>
             )
-
-            
         }        
     });
 }
@@ -73,8 +73,6 @@ export const Selection = ({
             }
         >
             {items.map(item => {
-
-                if (!item.children || item.children!.length === 0) {
                     return (
                         <ToggleButton
                             className="d-flex align-items-center"
@@ -87,28 +85,51 @@ export const Selection = ({
                             {getImage(32, item.imagePath)}
                         </ToggleButton>
                     );
+            })} 
+        </ToggleButtonGroup>
+    );
+}
+
+export const ButtonSelection = ({
+    name,
+    items,
+    setSelect,
+}: SelectionProps) => {
+    return (
+        <ButtonGroup
+            size="lg"
+        >
+            {items.map(item => {
+                if (!item.children || item.children!.length === 0) {
+                    return (
+                        <Button
+                            className="d-flex align-items-center"
+                            key={item.id}
+                            id={`${name}-radio-${item.id}`} 
+                            value={item.id} 
+                            variant="dark"
+                            title={item.name}
+                            onClick={e => setSelect(item.id)}
+                        >
+                            {getImage(32, item.imagePath)}
+                        </Button>
+                    );
                 }
                 else {
                     return (
                     <SplitButton
-                        as={ToggleButton}
                         className="d-flex align-items-center"
                         key={item.id}
                         id={`${name}-radio-${item.id}`}
                         onClick={() => setSelect(item.id)}
                         onSelect={e => setSelect(e!)}
                         variant="dark"
-                        size="sm"
-                        navbar
                         title={getImage(32, item.imagePath)}
                     >
-                        <Dropdown.Menu variant="dark">
-                            {getDropdownToggle(item.children!, setSelect)}
-                        </Dropdown.Menu>
+                        {getDropdownToggle(item.children!, setSelect)}
                     </SplitButton>);
                 }
             })}
-        </ToggleButtonGroup>
+        </ButtonGroup>
     );
 }
-

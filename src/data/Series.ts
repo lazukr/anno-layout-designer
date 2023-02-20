@@ -3,7 +3,7 @@ import ui_data from "./ui-data.json";
 import image_data from "./image_data.json";
 import svg_data from "./svg_data.json";
 import { Game } from "./GameData";
-import { Selection } from "../components/Selection";
+import { ButtonSelection, Selection } from "../components/Selection";
 import { SelectionData } from "./ImageNameData";
 import { Building, SVGBuildingData, SvgData } from "./BuildingData";
 
@@ -62,7 +62,7 @@ export const getBuildingSelections = ({
     setSelect,
 }: BuildingSelectProps): JSX.Element => {
     const buildingList = constructBuilding(Object.values(UI_DATA[game].citizens[citizen].buildings));
-    return Selection({
+    return ButtonSelection({
         name: "buildings",
         defaultValue: currentSelect,
         items: buildingList,
