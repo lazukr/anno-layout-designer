@@ -1,1 +1,21 @@
 @import "properties.scss";
+
+.dropdown-toggle-split.btn {
+    border: 0;
+    line-height: 0;
+}
+
+.custom-dropdown {
+    width: 100%;
+    line-height: 0;
+}
+
+.dropdown-menu {
+    min-width: min-content;
+    padding: 0;
+    background-color: #212529;
+}
+
+.dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active, .dropdown-item.active, .open>.dropdown-toggle.dropdown-item {
+    background-color: #495057;
+}

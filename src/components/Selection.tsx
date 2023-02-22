@@ -3,7 +3,7 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import Image from "react-bootstrap/Image";
 import Path from "path-browserify";
 import { SelectionData } from "../data/ImageNameData";
-import { Button, ButtonGroup, Dropdown, SplitButton } from "react-bootstrap";
+import { Button, ButtonGroup, Dropdown, DropdownButton, SplitButton } from "react-bootstrap";
 
 import "../styles/button.scss";
 
@@ -29,6 +29,7 @@ const getDropdownToggle = (selections: SelectionData[], setSelect: (value: strin
         if (!child.children || child.children!.length === 0) {
             return (
                 <Dropdown.Item
+                    className="custom-dropdown-item"
                     key={child.id}
                     id={`radio-${child.id}`}
                     variant="dark"
@@ -41,7 +42,7 @@ const getDropdownToggle = (selections: SelectionData[], setSelect: (value: strin
         } else {
             return (
                 <SplitButton
-                    className="d-flex align-items-center"
+                    className="custom-dropdown-horizontal"
                     key={child.id}
                     id={`radio-${child.id}`}
                     onClick={() => setSelect(child.id)}
@@ -118,7 +119,7 @@ export const ButtonSelection = ({
                 else {
                     return (
                     <SplitButton
-                        className="d-flex align-items-center"
+                        className="custom-dropdown-toggle"
                         key={item.id}
                         id={`${name}-radio-${item.id}`}
                         onClick={() => setSelect(item.id)}
