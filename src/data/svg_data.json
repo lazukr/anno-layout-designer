@@ -1,662 +1,662 @@
-{
-    "1800_fire_station": {
+[
+    {
         "id": "1800_fire_station",
         "width": 3,
         "height": 5,
         "colour": "#ffff80"
     },
-    "1800_framework_knitters": {
+    {
         "id": "1800_framework_knitters",
         "width": 4,
         "height": 4,
         "colour": "#ffff80"
     },
-    "1800_sheep_farm": {
+    {
         "id": "1800_sheep_farm",
         "width": 3,
         "height": 3,
         "colour": "#ffff80"
     },
-    "1800_farmer_residence": {
+    {
         "id": "1800_farmer_residence",
         "width": 3,
         "height": 3,
         "colour": "#ffff80"
     },
-    "1800_lumberjacks_hut": {
+    {
         "id": "1800_lumberjacks_hut",
         "width": 4,
         "height": 4,
         "colour": "#ffff80"
     },
-    "1800_pub": {
+    {
         "id": "1800_pub",
         "width": 4,
         "height": 6,
         "colour": "#ffff80"
     },
-    "1800_dirt_road": {
+    {
         "id": "1800_dirt_road",
         "width": 1,
         "height": 1,
         "colour": "#888888"
     },
-    "1800_schnapps_distillery": {
+    {
         "id": "1800_schnapps_distillery",
         "width": 3,
         "height": 4,
         "colour": "#ffff80"
     },
-    "1800_potato_farm": {
+    {
         "id": "1800_potato_farm",
         "width": 3,
         "height": 3,
         "colour": "#ffff80"
     },
-    "1800_marketplace": {
+    {
         "id": "1800_marketplace",
         "width": 5,
         "height": 6,
         "colour": "#ffff80"
     },
-    "1800_warehouse": {
+    {
         "id": "1800_warehouse",
         "width": 5,
         "height": 5,
         "colour": "#ffff80"
     },
-    "1800_sawmill": {
+    {
         "id": "1800_sawmill",
         "width": 3,
         "height": 4,
         "colour": "#ffff80"
     },
-    "1800_fishery": {
+    {
         "id": "1800_fishery",
         "width": 5,
         "height": 11,
         "colour": "#ffff80"
     },
-    "1800_alpaca_wool": {
+    {
         "id": "1800_alpaca_wool",
         "width": 3,
         "height": 3,
         "colour": "#ffbf80"
     },
-    "1800_jornalero": {
+    {
         "id": "1800_jornalero",
         "width": 3,
         "height": 3,
         "colour": "#ffbf80"
     },
-    "1800_plantain_plantation": {
+    {
         "id": "1800_plantain_plantation",
         "width": 3,
         "height": 3,
         "colour": "#ffbf80"
     },
-    "1800_fried_plantain_kitchen": {
+    {
         "id": "1800_fried_plantain_kitchen",
         "width": 3,
         "height": 4,
         "colour": "#ffbf80"
     },
-    "1800_fish_oil_factory": {
+    {
         "id": "1800_fish_oil_factory",
         "width": 5,
         "height": 8,
         "colour": "#ffbf80"
     },
-    "1800_poncho_darner": {
+    {
         "id": "1800_poncho_darner",
         "width": 4,
         "height": 5,
         "colour": "#ffbf80"
     },
-    "1800_hospital": {
+    {
         "id": "1800_hospital",
         "width": 6,
         "height": 6,
         "colour": "#ff8080"
     },
-    "1800_glassmaker": {
+    {
         "id": "1800_glassmaker",
         "width": 4,
         "height": 6,
         "colour": "#ff8080"
     },
-    "1800_sewing_machine_factory": {
+    {
         "id": "1800_sewing_machine_factory",
         "width": 6,
         "height": 9,
         "colour": "#ff8080"
     },
-    "1800_fur_dealer": {
+    {
         "id": "1800_fur_dealer",
         "width": 4,
         "height": 6,
         "colour": "#ff8080"
     },
-    "1800_cattle_farm": {
+    {
         "id": "1800_cattle_farm",
         "width": 4,
         "height": 5,
         "colour": "#ff8080"
     },
-    "1800_cotton_mill": {
+    {
         "id": "1800_cotton_mill",
         "width": 4,
         "height": 4,
         "colour": "#ff8080"
     },
-    "1800_coal_mine": {
+    {
         "id": "1800_coal_mine",
         "width": 3,
         "height": 3,
         "colour": "#ff8080"
     },
-    "1800_window_maker": {
+    {
         "id": "1800_window_maker",
         "width": 5,
         "height": 5,
         "colour": "#ff8080"
     },
-    "1800_artisanal_kitchen": {
+    {
         "id": "1800_artisanal_kitchen",
         "width": 5,
         "height": 5,
         "colour": "#ff8080"
     },
-    "1800_rum_distillery": {
+    {
         "id": "1800_rum_distillery",
         "width": 6,
         "height": 7,
         "colour": "#ff8080"
     },
-    "1800_artisan": {
+    {
         "id": "1800_artisan",
         "width": 3,
         "height": 3,
         "colour": "#ff8080"
     },
-    "1800_university": {
+    {
         "id": "1800_university",
         "width": 6,
         "height": 9,
         "colour": "#ff8080"
     },
-    "1800_sand_mine": {
+    {
         "id": "1800_sand_mine",
         "width": 6,
         "height": 7,
         "colour": "#ff8080"
     },
-    "1800_hunting_cabin": {
+    {
         "id": "1800_hunting_cabin",
         "width": 5,
         "height": 5,
         "colour": "#ff8080"
     },
-    "1800_sugar_cane_plantation": {
+    {
         "id": "1800_sugar_cane_plantation",
         "width": 3,
         "height": 4,
         "colour": "#ff8080"
     },
-    "1800_town_hall": {
+    {
         "id": "1800_town_hall",
         "width": 4,
         "height": 4,
         "colour": "#ff8080"
     },
-    "1800_cannery": {
+    {
         "id": "1800_cannery",
         "width": 6,
         "height": 7,
         "colour": "#ff8080"
     },
-    "1800_museum": {
+    {
         "id": "1800_museum",
         "width": 5,
         "height": 8,
         "colour": "#ff8080"
     },
-    "1800_variety_theatre": {
+    {
         "id": "1800_variety_theatre",
         "width": 4,
         "height": 5,
         "colour": "#ff8080"
     },
-    "1800_cotton_plantation": {
+    {
         "id": "1800_cotton_plantation",
         "width": 4,
         "height": 4,
         "colour": "#ff8080"
     },
-    "1800_red_pepper_farm": {
+    {
         "id": "1800_red_pepper_farm",
         "width": 3,
         "height": 3,
         "colour": "#ff8080"
     },
-    "1800_chocolate_factory": {
+    {
         "id": "1800_chocolate_factory",
         "width": 5,
         "height": 7,
         "colour": "#bf80ff"
     },
-    "1800_cocoa_plantation": {
+    {
         "id": "1800_cocoa_plantation",
         "width": 4,
         "height": 5,
         "colour": "#bf80ff"
     },
-    "1800_tortilla_maker": {
+    {
         "id": "1800_tortilla_maker",
         "width": 3,
         "height": 5,
         "colour": "#bf80ff"
     },
-    "1800_boxing_arena": {
+    {
         "id": "1800_boxing_arena",
         "width": 5,
         "height": 6,
         "colour": "#bf80ff"
     },
-    "1800_felt_producer": {
+    {
         "id": "1800_felt_producer",
         "width": 4,
         "height": 4,
         "colour": "#bf80ff"
     },
-    "1800_sugar_refinery": {
+    {
         "id": "1800_sugar_refinery",
         "width": 4,
         "height": 6,
         "colour": "#bf80ff"
     },
-    "1800_corn_farm": {
+    {
         "id": "1800_corn_farm",
         "width": 3,
         "height": 3,
         "colour": "#bf80ff"
     },
-    "1800_bombin_weaver": {
+    {
         "id": "1800_bombin_weaver",
         "width": 4,
         "height": 6,
         "colour": "#bf80ff"
     },
-    "1800_obrero": {
+    {
         "id": "1800_obrero",
         "width": 3,
         "height": 3,
         "colour": "#bf80ff"
     },
-    "1800_investor": {
+    {
         "id": "1800_investor",
         "width": 3,
         "height": 3,
         "colour": "#80ff80"
     },
-    "1800_tobacco_plantation": {
+    {
         "id": "1800_tobacco_plantation",
         "width": 3,
         "height": 4,
         "colour": "#80ff80"
     },
-    "1800_marquetry_workshop": {
+    {
         "id": "1800_marquetry_workshop",
         "width": 5,
         "height": 5,
         "colour": "#80ff80"
     },
-    "1800_champagne_cellar": {
+    {
         "id": "1800_champagne_cellar",
         "width": 5,
         "height": 6,
         "colour": "#80ff80"
     },
-    "1800_pearl_farm": {
+    {
         "id": "1800_pearl_farm",
         "width": 6,
         "height": 14,
         "colour": "#80ff80"
     },
-    "1800_cab_assembly_line": {
+    {
         "id": "1800_cab_assembly_line",
         "width": 8,
         "height": 12,
         "colour": "#80ff80"
     },
-    "1800_jewellers": {
+    {
         "id": "1800_jewellers",
         "width": 5,
         "height": 5,
         "colour": "#80ff80"
     },
-    "1800_members_club": {
+    {
         "id": "1800_members_club",
         "width": 6,
         "height": 6,
         "colour": "#80ff80"
     },
-    "1800_coachmaker": {
+    {
         "id": "1800_coachmaker",
         "width": 6,
         "height": 9,
         "colour": "#80ff80"
     },
-    "1800_vineyard": {
+    {
         "id": "1800_vineyard",
         "width": 3,
         "height": 4,
         "colour": "#80ff80"
     },
-    "1800_cigar_factory": {
+    {
         "id": "1800_cigar_factory",
         "width": 7,
         "height": 7,
         "colour": "#80ff80"
     },
-    "1800_gramophone_factory": {
+    {
         "id": "1800_gramophone_factory",
         "width": 7,
         "height": 7,
         "colour": "#80ff80"
     },
-    "1800_school": {
+    {
         "id": "1800_school",
         "width": 5,
         "height": 6,
         "colour": "#80ffff"
     },
-    "1800_malthouse": {
+    {
         "id": "1800_malthouse",
         "width": 4,
         "height": 5,
         "colour": "#80ffff"
     },
-    "1800_charcoal_kiln": {
+    {
         "id": "1800_charcoal_kiln",
         "width": 5,
         "height": 5,
         "colour": "#80ffff"
     },
-    "1800_brewery": {
+    {
         "id": "1800_brewery",
         "width": 4,
         "height": 5,
         "colour": "#80ffff"
     },
-    "1800_sailmakers": {
+    {
         "id": "1800_sailmakers",
         "width": 5,
         "height": 5,
         "colour": "#80ffff"
     },
-    "1800_clay_pit": {
+    {
         "id": "1800_clay_pit",
         "width": 5,
         "height": 5,
         "colour": "#80ffff"
     },
-    "1800_church": {
+    {
         "id": "1800_church",
         "width": 6,
         "height": 8,
         "colour": "#80ffff"
     },
-    "1800_bakery": {
+    {
         "id": "1800_bakery",
         "width": 3,
         "height": 4,
         "colour": "#80ffff"
     },
-    "1800_police_station": {
+    {
         "id": "1800_police_station",
         "width": 4,
         "height": 6,
         "colour": "#80ffff"
     },
-    "1800_paved_street": {
+    {
         "id": "1800_paved_street",
         "width": 1,
         "height": 1,
         "colour": "#888888"
     },
-    "1800_furnace": {
+    {
         "id": "1800_furnace",
         "width": 4,
         "height": 7,
         "colour": "#80ffff"
     },
-    "1800_steelworks": {
+    {
         "id": "1800_steelworks",
         "width": 5,
         "height": 10,
         "colour": "#80ffff"
     },
-    "1800_pig_farm": {
+    {
         "id": "1800_pig_farm",
         "width": 3,
         "height": 4,
         "colour": "#80ffff"
     },
-    "1800_worker": {
+    {
         "id": "1800_worker",
         "width": 3,
         "height": 3,
         "colour": "#80ffff"
     },
-    "1800_trade_union": {
+    {
         "id": "1800_trade_union",
         "width": 4,
         "height": 4,
         "colour": "#80ffff"
     },
-    "1800_soap_factory": {
+    {
         "id": "1800_soap_factory",
         "width": 4,
         "height": 4,
         "colour": "#80ffff"
     },
-    "1800_grain_farm": {
+    {
         "id": "1800_grain_farm",
         "width": 3,
         "height": 4,
         "colour": "#80ffff"
     },
-    "1800_weapon_factory": {
+    {
         "id": "1800_weapon_factory",
         "width": 5,
         "height": 7,
         "colour": "#80ffff"
     },
-    "1800_iron_mine": {
+    {
         "id": "1800_iron_mine",
         "width": 3,
         "height": 3,
         "colour": "#80ffff"
     },
-    "1800_flour_mill": {
+    {
         "id": "1800_flour_mill",
         "width": 3,
         "height": 4,
         "colour": "#80ffff"
     },
-    "1800_hop_farm": {
+    {
         "id": "1800_hop_farm",
         "width": 3,
         "height": 4,
         "colour": "#80ffff"
     },
-    "1800_slaughterhouse": {
+    {
         "id": "1800_slaughterhouse",
         "width": 3,
         "height": 4,
         "colour": "#80ffff"
     },
-    "1800_rendering_works": {
+    {
         "id": "1800_rendering_works",
         "width": 3,
         "height": 3,
         "colour": "#80ffff"
     },
-    "1800_brick_factory": {
+    {
         "id": "1800_brick_factory",
         "width": 5,
         "height": 5,
         "colour": "#80ffff"
     },
-    "1800_goldsmith": {
+    {
         "id": "1800_goldsmith",
         "width": 4,
         "height": 5,
         "colour": "#8080ff"
     },
-    "1800_coffee_plantation": {
+    {
         "id": "1800_coffee_plantation",
         "width": 3,
         "height": 4,
         "colour": "#8080ff"
     },
-    "1800_gold_mine": {
+    {
         "id": "1800_gold_mine",
         "width": 3,
         "height": 3,
         "colour": "#8080ff"
     },
-    "1800_saltpeter_works": {
+    {
         "id": "1800_saltpeter_works",
         "width": 4,
         "height": 6,
         "colour": "#8080ff"
     },
-    "1800_railway": {
+    {
         "id": "1800_railway",
         "width": 1,
         "height": 1,
         "colour": "#8080ff"
     },
-    "1800_bicycle_factory": {
+    {
         "id": "1800_bicycle_factory",
         "width": 6,
         "height": 6,
         "colour": "#8080ff"
     },
-    "1800_oil_refinery": {
+    {
         "id": "1800_oil_refinery",
         "width": 5,
         "height": 5,
         "colour": "#8080ff"
     },
-    "1800_concrete_factory": {
+    {
         "id": "1800_concrete_factory",
         "width": 5,
         "height": 6,
         "colour": "#8080ff"
     },
-    "1800_heavy_weapons_factory": {
+    {
         "id": "1800_heavy_weapons_factory",
         "width": 9,
         "height": 10,
         "colour": "#8080ff"
     },
-    "1800_limestone_quarry": {
+    {
         "id": "1800_limestone_quarry",
         "width": 3,
         "height": 3,
         "colour": "#8080ff"
     },
-    "1800_oil_well": {
+    {
         "id": "1800_oil_well",
         "width": 3,
         "height": 3,
         "colour": "#8080ff"
     },
-    "1800_brass_smeltery": {
+    {
         "id": "1800_brass_smeltery",
         "width": 5,
         "height": 5,
         "colour": "#8080ff"
     },
-    "1800_clockmaker": {
+    {
         "id": "1800_clockmaker",
         "width": 5,
         "height": 7,
         "colour": "#8080ff"
     },
-    "1800_coffee_roaster": {
+    {
         "id": "1800_coffee_roaster",
         "width": 5,
         "height": 6,
         "colour": "#8080ff"
     },
-    "1800_dynamite_factory": {
+    {
         "id": "1800_dynamite_factory",
         "width": 5,
         "height": 6,
         "colour": "#8080ff"
     },
-    "1800_light_bulb_factorry": {
+    {
         "id": "1800_light_bulb_factorry",
         "width": 6,
         "height": 6,
         "colour": "#8080ff"
     },
-    "1800_spectacle_factory": {
+    {
         "id": "1800_spectacle_factory",
         "width": 4,
         "height": 6,
         "colour": "#8080ff"
     },
-    "1800_bank": {
+    {
         "id": "1800_bank",
         "width": 12,
         "height": 10,
         "colour": "#8080ff"
     },
-    "1800_motor_assembly_line": {
+    {
         "id": "1800_motor_assembly_line",
         "width": 8,
         "height": 12,
         "colour": "#80ff80"
     },
-    "1800_copper_mine": {
+    {
         "id": "1800_copper_mine",
         "width": 3,
         "height": 3,
         "colour": "#8080ff"
     },
-    "1800_engineer": {
+    {
         "id": "1800_engineer",
         "width": 3,
         "height": 3,
         "colour": "#8080ff"
     },
-    "1800_caoutchouc_plantation": {
+    {
         "id": "1800_caoutchouc_plantation",
         "width": 3,
         "height": 3,
         "colour": "#8080ff"
     },
-    "1800_oil_power_plant": {
+    {
         "id": "1800_oil_power_plant",
         "width": 5,
         "height": 5,
         "colour": "#8080ff"
     },
-    "1800_filament_factory": {
+    {
         "id": "1800_filament_factory",
         "width": 6,
         "height": 7,
         "colour": "#8080ff"
     },
-    "1800_zinc_mine": {
+    {
         "id": "1800_zinc_mine",
         "width": 3,
         "height": 3,
         "colour": "#8080ff"
     }
-}
+]

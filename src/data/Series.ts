@@ -9,7 +9,7 @@ import { Building, SVGBuildingData, SvgData } from "./BuildingData";
 
 const UI_DATA = ui_data as Record<string, Game>;
 const IMAGE_DATA = image_data as Record<string, string>;
-const SVG_DATA = svg_data as Record<string, SvgData>;
+const SVG_DATA = svg_data as SvgData[];
 
 interface CitizenSelectProps {
     game: string;
@@ -68,10 +68,6 @@ export const getBuildingSelections = ({
         items: buildingList,
         setSelect: setSelect
     });
-}
-
-export const getBuildingById = (id: string): SvgData => {
-    return SVG_DATA[id];
 }
 
 export const getAllBuildingData = () => {
