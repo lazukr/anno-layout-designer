@@ -4,17 +4,19 @@
 
 - Currently, I am adding the basic functionality using Anno 1800.
 
-- Ideally, in the future, all the other Anno games will be added as well.
+- In the future, may consider other Anno games will be added as well.
 
 # Features to Add
-- [ ] rotating the buildings
+- [x] rotating the buildings (uses ctrl right now)
 - [x] save to png
 - [x] save to raw file
 - [ ] cache current progress
-- [ ] zoom?
-- [ ] layers to denote land and water
 - [ ] associate farms to the root building
 - [ ] drag tiling
+- [ ] drag delete
+- [ ] drag select
+- [ ] drag for roads in lines
+- [ ] change size for drawing
 # Ambitious Goals
 - Add the previous anno games
 # Credits

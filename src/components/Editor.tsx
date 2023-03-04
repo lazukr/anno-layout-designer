@@ -3,10 +3,9 @@ import SNAPSVG_TYPE from "snapsvg";
 import { useEffect, useRef } from "react";
 import { Board } from "../editor/Board";
 import { PositionTracker } from "../editor/PositionTracker";
-import { Action, Cursor, EditorCursor } from "../editor/Cursor";
+import { Action, EditorCursor, getCursor } from "../editor/Cursor";
 import "../styles/editor.scss";
 import { createAllBuildings } from "../editor/Building";
-import { DeleteCursor } from "../editor/DeleteCursor";
 
 declare const Snap: typeof SNAPSVG_TYPE;
 
@@ -32,16 +31,14 @@ export const Editor = ({
     const actionRef = useRef<Action>(Action.Create);
 
     const getHightlight = () => {
-        return () => {
-            console.log(action);
-            switch (actionRef.current) {
-                case Action.Delete:
-                    return "delete";
-                case Action.Select:
-                    return "select";
-                default:
-                    return "select";
-            }
+        console.log(action);
+        switch (actionRef.current) {
+            case Action.Delete:
+                return "delete";
+            case Action.Select:
+                return "select";
+            default:
+                return "select";
         }
     }
 
@@ -80,26 +77,14 @@ export const Editor = ({
     useEffect(() => {
         if (snap.current && position.current) {
             cursor.current?.destroy();
-
-            switch (action) {
-                case Action.Delete:
-                    cursor.current = new DeleteCursor({
-                        snap: snap.current,
-                        gridSize: gridSize,
-                    });
-                    break;
-                case Action.Select:
-                case Action.Create:
-                    cursor.current = new Cursor({
-                        snap: snap.current,
-                        position: position.current,
-                        buildingName: buildingName,
-                        gridSize: gridSize,
-                        action: action,
-                        highlighter: getHightlight(),
-                    });
-                    break;
-            }            
+            cursor.current = getCursor({
+                snap: snap.current,
+                position: position.current,
+                action: action,
+                buildingName: buildingName,
+                gridSize: gridSize,
+                getHighlight: getHightlight,
+            });
         }
     }, [gridSize, action, buildingName]);
     

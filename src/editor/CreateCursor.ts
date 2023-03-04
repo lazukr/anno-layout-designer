@@ -1,12 +1,13 @@
 import "snapsvg-cjs";
-import { Action, EditorCursor } from "./Cursor";
+import { EditorCursor } from "./Cursor";
 import { PositionTracker } from "./PositionTracker";
 
-interface CreateCursorProps {
+interface CursorProps {
     snap: Snap.Paper;
     position: PositionTracker;
     buildingName: string;
     gridSize: number;
+    getHighlighter: () => string;
 }
 
 export class CreateCursor implements EditorCursor {
@@ -15,25 +16,30 @@ export class CreateCursor implements EditorCursor {
     buildingName: string;
     element: Snap.Element | null;
     gridSize: number;
+    isRotated: boolean;
+    getHighlighter: () => string;
     
     constructor({
         snap,
         position,
         buildingName,
         gridSize,
-    }: CreateCursorProps) {
+        getHighlighter,
+    }: CursorProps) {
         this.snap = snap;
         this.position = position;
         this.buildingName = buildingName;
         this.gridSize = gridSize;
         this.element = null;
+        this.isRotated = false;
+        this.getHighlighter = getHighlighter;
         this.actionCreate();
     }
 
     destroy() {
+        this.snap.unmousemove(this.getElementMove());
         this.element?.remove();
         this.snap.unmouseup();
-        this.snap.unmousemove(this.getElementMove());
     }
 
     actionCreate() {
@@ -47,22 +53,43 @@ export class CreateCursor implements EditorCursor {
         this.snap.mouseup(this.getElementMouseUp());
     }
 
+    rotate() {
+        if (this.isRotated) {
+            this.buildingName = this.buildingName.replace("_rotated", "");
+        }
+        else {
+            this.buildingName = `${this.buildingName}_rotated`;
+        }
+        this.isRotated = !this.isRotated;
+        this.destroy();
+        this.actionCreate();
+    }
+
     getElementMouseUp() {
-        return () => {
-            const element = this.element;
-            return this.elmentMouseUp(element);
+        return (event: MouseEvent) => {
+            if (event.ctrlKey) {
+                this.rotate();
+            }
+            else {
+                const element = this.element;
+                return this.elementMouseUp(element);
+            }
         };
     }
 
-    elmentMouseUp(element: Snap.Element | null) {
+    elementMouseUp(element: Snap.Element | null) {
         const cur = element?.clone();
+        cur?.insertBefore(this.element!);
         cur?.attr({
             opacity: "",
+            placed: true,
         });
         cur?.hover(() => {
             cur.toggleClass("highlight", true);
+            cur.toggleClass(this.getHighlighter(), true);
         }, () => {
             cur.toggleClass("highlight", false);
+            cur.toggleClass(this.getHighlighter(), false);
         });
     }
 
@@ -78,6 +105,7 @@ export class CreateCursor implements EditorCursor {
             gridX,
             gridY,
         } = position;
+
         this.element?.transform(`T${gridX * this.gridSize},${gridY * this.gridSize}`);
     }
 }

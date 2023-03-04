@@ -41,20 +41,6 @@ export class SelectCursor implements EditorCursor {
     actionSelect() {
         this.snap.mouseup(event => {
             this.internalCursor.destroy();
-            if (this.selectMode) {
-                this.internalCursor = new CreateCursor({
-                    snap: this.snap,
-                    position: this.position,
-                    buildingName: "test",
-                    gridSize: this.gridSize,
-                });
-            } else {
-                this.internalCursor = new DeleteCursor({
-                    snap: this.snap,
-                    gridSize: this.gridSize,
-                });
-            }
-            this.selectMode = !this.selectMode;
         });
     }
 }

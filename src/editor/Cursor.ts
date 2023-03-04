@@ -1,4 +1,6 @@
 import "snapsvg-cjs";
+import { CreateCursor } from "./CreateCursor";
+import { DeleteCursor } from "./DeleteCursor";
 import { PositionTracker } from "./PositionTracker";
 
 interface CursorProps {
@@ -7,7 +9,7 @@ interface CursorProps {
     position: PositionTracker;
     buildingName: string;
     gridSize: number;
-    highlighter: () => string;
+    getHighlight: () => string;
 }
 
 export interface EditorCursor {
@@ -19,6 +21,42 @@ export enum Action {
     Select,
     Delete,
 }
+
+export const getCursor = ({
+    snap,
+    action,
+    position,
+    buildingName,
+    gridSize,
+    getHighlight,
+}: CursorProps) => {
+    switch (action) {
+        case Action.Delete:
+            return new DeleteCursor({
+                snap: snap,
+                gridSize: gridSize,
+            });
+        case Action.Select:
+            return new Cursor({
+                snap: snap,
+                position: position,
+                buildingName: buildingName,
+                gridSize: gridSize,
+                action: action,
+                getHighlight: getHighlight,
+            });
+        case Action.Create:
+            return new CreateCursor({
+                snap: snap,
+                position: position,
+                buildingName: buildingName,
+                gridSize: gridSize,
+                getHighlighter: getHighlight,
+            });
+    }          
+}
+
+
 export class Cursor implements EditorCursor {
     static action: Action;
     snap: Snap.Paper;
@@ -28,7 +66,7 @@ export class Cursor implements EditorCursor {
     gridSize: number;
     isSelectDeleteMode: boolean;
     isRotated: boolean;
-    highlighter: () => string;
+    getHighlight: () => string;
     
     constructor({
         snap,
@@ -36,7 +74,7 @@ export class Cursor implements EditorCursor {
         position,
         buildingName,
         gridSize,
-        highlighter,
+        getHighlight,
     }: CursorProps) {
         this.snap = snap;
         this.position = position;
@@ -46,7 +84,7 @@ export class Cursor implements EditorCursor {
         Cursor.action = action;
         this.isRotated = false;
         this.isSelectDeleteMode = true;
-        this.highlighter = highlighter;
+        this.getHighlight = getHighlight;
 
         switch (Cursor.action) {
             case Action.Select:
@@ -164,10 +202,10 @@ export class Cursor implements EditorCursor {
         });
         cur?.hover(() => {
             cur.toggleClass("highlight", true);
-            cur.toggleClass(this.highlighter(), true);
+            cur.toggleClass(this.getHighlight(), true);
         }, () => {
             cur.toggleClass("highlight", false);
-            cur.toggleClass(this.highlighter(), false);
+            cur.toggleClass(this.getHighlight(), false);
         });
     }
 
