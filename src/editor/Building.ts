@@ -1,5 +1,5 @@
 import "snapsvg-cjs";
-import { SVGBuildingData } from "../data/BuildingData";
+import { SVGBuilding } from "../data/Building";
 import { getAllBuildingData } from "../data/Series";
 import Path from "path-browserify";
 
@@ -36,7 +36,7 @@ const bakeBuildingsToSVG = (snap: Snap.Paper) => {
     });
 }
 
-const createBuilding = (snap: Snap.Paper, building: SVGBuildingData, gridSize: number, rotated: boolean) => {
+const createBuilding = (snap: Snap.Paper, building: SVGBuilding, gridSize: number, rotated: boolean) => {
     const {
         width,
         height,
@@ -72,21 +72,3 @@ const createBuilding = (snap: Snap.Paper, building: SVGBuildingData, gridSize: n
 
     model.toDefs();
 }
-
-/*
-colour schemes
-resident - cccc00
-materials - dddd88
-goods - ffff88
-
-- worker - grey? => 
-- artisan - red => 
-- engineer - blue => 
-- investor - green => 
-- jornaleros - orange => 
-- obreros - purple => 
-- 
-
-
-
-*/

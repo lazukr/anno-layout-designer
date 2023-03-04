@@ -6,6 +6,7 @@ import { PositionTracker } from "../editor/PositionTracker";
 import { Action, Cursor, EditorCursor } from "../editor/Cursor";
 import "../styles/editor.scss";
 import { createAllBuildings } from "../editor/Building";
+import { DeleteCursor } from "../editor/DeleteCursor";
 
 declare const Snap: typeof SNAPSVG_TYPE;
 
@@ -28,6 +29,25 @@ export const Editor = ({
     const bound = useRef<DOMRect>();
     const position = useRef<PositionTracker>();
     const cursor = useRef<EditorCursor>();
+    const actionRef = useRef<Action>(Action.Create);
+
+    const getHightlight = () => {
+        return () => {
+            console.log(action);
+            switch (actionRef.current) {
+                case Action.Delete:
+                    return "delete";
+                case Action.Select:
+                    return "select";
+                default:
+                    return "select";
+            }
+        }
+    }
+
+    useEffect(() => {
+        actionRef.current = action;
+    }, [action]);
 
     useEffect(() => {
         if (snap.current) {
@@ -60,13 +80,26 @@ export const Editor = ({
     useEffect(() => {
         if (snap.current && position.current) {
             cursor.current?.destroy();
-            cursor.current = new Cursor({
-                snap: snap.current,
-                position: position.current,
-                buildingName: buildingName,
-                gridSize: gridSize,
-                action: action,
-            });
+
+            switch (action) {
+                case Action.Delete:
+                    cursor.current = new DeleteCursor({
+                        snap: snap.current,
+                        gridSize: gridSize,
+                    });
+                    break;
+                case Action.Select:
+                case Action.Create:
+                    cursor.current = new Cursor({
+                        snap: snap.current,
+                        position: position.current,
+                        buildingName: buildingName,
+                        gridSize: gridSize,
+                        action: action,
+                        highlighter: getHightlight(),
+                    });
+                    break;
+            }            
         }
     }, [gridSize, action, buildingName]);
     

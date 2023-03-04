@@ -7,6 +7,7 @@ interface CursorProps {
     position: PositionTracker;
     buildingName: string;
     gridSize: number;
+    highlighter: () => string;
 }
 
 export interface EditorCursor {
@@ -27,6 +28,7 @@ export class Cursor implements EditorCursor {
     gridSize: number;
     isSelectDeleteMode: boolean;
     isRotated: boolean;
+    highlighter: () => string;
     
     constructor({
         snap,
@@ -34,6 +36,7 @@ export class Cursor implements EditorCursor {
         position,
         buildingName,
         gridSize,
+        highlighter,
     }: CursorProps) {
         this.snap = snap;
         this.position = position;
@@ -43,8 +46,7 @@ export class Cursor implements EditorCursor {
         Cursor.action = action;
         this.isRotated = false;
         this.isSelectDeleteMode = true;
-        
-        //console.log(snap, action, position, buildingName, gridSize);
+        this.highlighter = highlighter;
 
         switch (Cursor.action) {
             case Action.Select:
@@ -90,7 +92,7 @@ export class Cursor implements EditorCursor {
 
     actionDelete() {
         this.snap.mouseup(event => {
-            const elem = this.position.getUseElementFromMouseEvent(event);
+            const elem = PositionTracker.getUseElementFromMouseEvent(event);
             elem?.remove();
         });
     }
@@ -107,7 +109,7 @@ export class Cursor implements EditorCursor {
 
     actionSelectDelete() {
         this.snap.mouseup(event => {
-            const elem = this.position.getUseElementFromMouseEvent(event);
+            const elem = PositionTracker.getUseElementFromMouseEvent(event);
             if (elem) {
                 this.buildingName = elem.attr("href").replace("#", "");
                 elem.remove();
@@ -162,10 +164,10 @@ export class Cursor implements EditorCursor {
         });
         cur?.hover(() => {
             cur.toggleClass("highlight", true);
-            cur.toggleClass(this.getHighlightColour(), true);
+            cur.toggleClass(this.highlighter(), true);
         }, () => {
             cur.toggleClass("highlight", false);
-            cur.toggleClass(this.getHighlightColour(), false);
+            cur.toggleClass(this.highlighter(), false);
         });
     }
 

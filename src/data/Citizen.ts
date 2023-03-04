@@ -1,4 +1,4 @@
-import { Building } from "./BuildingData";
+import { Building } from "./Building";
 
 export interface Citizen {
     id: string;

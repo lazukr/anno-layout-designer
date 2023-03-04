@@ -4,7 +4,7 @@ export interface Building {
     productionChain?: Building[];
 }
 
-export interface SVGBuildingData {
+export interface SVGBuilding {
     id: string;
     width: number;
     height: number;

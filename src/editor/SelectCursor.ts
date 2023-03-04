@@ -1,5 +1,5 @@
 import "snapsvg-cjs";
-import { Building } from "../data/BuildingData";
+import { Building } from "../data/Building";
 import { CreateCursor } from "./CreateCursor";
 import { Action, EditorCursor } from "./Cursor";
 import { DeleteCursor } from "./DeleteCursor";
@@ -30,7 +30,6 @@ export class SelectCursor implements EditorCursor {
         this.selectMode = true;
         this.internalCursor = new DeleteCursor({
             snap: snap,
-            position: position,
             gridSize: gridSize,
         });
     }
@@ -52,7 +51,6 @@ export class SelectCursor implements EditorCursor {
             } else {
                 this.internalCursor = new DeleteCursor({
                     snap: this.snap,
-                    position: this.position,
                     gridSize: this.gridSize,
                 });
             }

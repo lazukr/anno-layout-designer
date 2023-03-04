@@ -1,11 +1,10 @@
-import data from "./data.json";
 import ui_data from "./ui-data.json";
 import image_data from "./image_data.json";
 import svg_data from "./svg_data.json";
-import { Game } from "./GameData";
+import { Game } from "./Game";
 import { ButtonSelection, Selection } from "../components/Selection";
-import { SelectionData } from "./ImageNameData";
-import { Building, SVGBuildingData, SvgData } from "./BuildingData";
+import { SelectionData } from "./Selection";
+import { Building, SVGBuilding, SvgData } from "./Building";
 
 const UI_DATA = ui_data as Record<string, Game>;
 const IMAGE_DATA = image_data as Record<string, string>;
@@ -72,7 +71,7 @@ export const getBuildingSelections = ({
 
 export const getAllBuildingData = () => {
     const buildings = Object.values(SVG_DATA).map(building => {
-        return <SVGBuildingData>{
+        return <SVGBuilding>{
             id: building.id,
             width: building.width,
             height: building.height,

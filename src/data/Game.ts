@@ -1,4 +1,4 @@
-import { Citizen } from "./CitizenData";
+import { Citizen } from "./Citizen";
 export interface Game {
     id: string;
     name: string;

@@ -37,7 +37,7 @@ export class PositionTracker {
         });
     }
 
-    getUseElementFromMouseEvent(event: MouseEvent) {
+    static getUseElementFromMouseEvent(event: MouseEvent) {
         const x = event.clientX;
         const y = event.clientY;
         const elem = Snap.getElementByPoint(x, y); 

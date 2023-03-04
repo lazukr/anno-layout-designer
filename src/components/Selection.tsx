@@ -2,7 +2,7 @@ import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import Image from "react-bootstrap/Image";
 import Path from "path-browserify";
-import { SelectionData } from "../data/ImageNameData";
+import { SelectionData } from "../data/Selection";
 import { Button, ButtonGroup, Dropdown, DropdownButton, SplitButton } from "react-bootstrap";
 
 import "../styles/button.scss";

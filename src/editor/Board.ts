@@ -1,5 +1,5 @@
 import "snapsvg-cjs";
-import { Direction, getAttrArgs, getLineArgs } from "../utils/drawing";
+import { Direction, getAttrArgs, getLineArgs } from "../editor/lines";
 
 export interface BoardProps {
     snap: Snap.Paper;
