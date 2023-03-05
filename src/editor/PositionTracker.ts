@@ -4,24 +4,20 @@ import SNAPSVG_TYPE from "snapsvg";
 declare const Snap: typeof SNAPSVG_TYPE;
 interface PositionTrackerProps {
     snap: Snap.Paper;
-    bound: DOMRect;
     gridSize: number;
 }
 
 export class PositionTracker {
     private snap: Snap.Paper;
-    private bound: DOMRect;
     private gridSize: number;
     gridX: number;
     gridY: number;
 
     constructor({
         snap,
-        bound,
         gridSize,
     }: PositionTrackerProps) {
         this.snap = snap;
-        this.bound = bound;
         this.gridSize = gridSize;
         this.gridX = 0;
         this.gridY = 0;

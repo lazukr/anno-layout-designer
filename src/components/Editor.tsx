@@ -25,7 +25,6 @@ export const Editor = ({
     action,
 }: EditorProps) => {
     const snap = useRef<Snap.Paper>();
-    const bound = useRef<DOMRect>();
     const position = useRef<PositionTracker>();
     const cursor = useRef<EditorCursor>();
     const actionRef = useRef<Action>(Action.Create);
@@ -65,10 +64,9 @@ export const Editor = ({
     }, [gridSize]);
 
     useEffect(() => {
-        if (snap.current && bound.current) {
+        if (snap.current) {
             position.current = new PositionTracker({
                 snap: snap.current!,
-                bound: bound.current!,
                 gridSize: gridSize,
             });
         }
@@ -95,7 +93,6 @@ export const Editor = ({
             ref={elem => {
                 if (!snap.current) {
                     snap.current = Snap(elem!);
-                    bound.current = snap.current.node.getBoundingClientRect();
                 } 
             }}
             width={width * gridSize}
