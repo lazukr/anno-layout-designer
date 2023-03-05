@@ -78,7 +78,7 @@
         "colour": "#ffff80"
     },
     {
-        "id": "1800_alpaca_wool",
+        "id": "1800_alpaca_farm",
         "width": 3,
         "height": 3,
         "colour": "#ffbf80"
@@ -658,5 +658,23 @@
         "width": 3,
         "height": 3,
         "colour": "#8080ff"
+    },
+    {
+        "id": "1800_3_3_farm_module",
+        "width": 3,
+        "height": 3,
+        "colour": "#ffff80"
+    },
+    {
+        "id": "1800_3_4_farm_module",
+        "width": 3,
+        "height": 4,
+        "colour": "#ffff80"
+    },
+    {
+        "id": "1800_2_3_farm_module",
+        "width": 2,
+        "height": 3,
+        "colour": "#ffff80"
     }
 ]

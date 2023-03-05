@@ -61,7 +61,13 @@
                         "productionChain": [
                             {
                                 "id": "1800_sheep_farm",
-                                "name": "Sheep Farm"
+                                "name": "Sheep Farm",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_3_3_farm_module",
+                                        "name": "Sheep Farm Module"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -111,7 +117,13 @@
                         "productionChain": [
                             {
                                 "id": "1800_pig_farm",
-                                "name": "Pig Farm"
+                                "name": "Pig Farm",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_2_3_farm_module",
+                                        "name": "Pig Farm Module"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -137,7 +149,13 @@
                         "productionChain": [
                             {
                                 "id": "1800_sheep_farm",
-                                "name": "Sheep Farm"
+                                "name": "Sheep Farm",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_3_3_farm_module",
+                                        "name": "Sheep Farm Module"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -171,7 +189,13 @@
                                 "productionChain":[
                                     {
                                         "id": "1800_pig_farm",
-                                        "name": "Pig Farm"
+                                        "name": "Pig Farm",
+                                        "productionChain": [
+                                            {
+                                                "id": "1800_2_3_farm_module",
+                                                "name": "Pig Farm Module"
+                                            }
+                                        ]
                                     }
                                 ]
                             }
@@ -277,7 +301,13 @@
                                 "productionChain": [
                                     {
                                         "id": "1800_cattle_farm",
-                                        "name": "Cattle Farm"
+                                        "name": "Cattle Farm",
+                                        "productionChain": [
+                                            {
+                                                "id": "1800_3_4_farm_module",
+                                                "name": "Cattle Farm Module"
+                                            }
+                                        ]
                                     },
                                     {
                                         "id": "1800_red_pepper_farm",
@@ -439,7 +469,13 @@
                                         "productionChain":[
                                             {
                                                 "id": "1800_pig_farm",
-                                                "name": "Pig Farm"
+                                                "name": "Pig Farm",
+                                                "productionChain": [
+                                                    {
+                                                        "id": "1800_2_3_farm_module",
+                                                        "name": "Pig Farm Module"
+                                                    }
+                                                ]
                                             }
                                         ]
                                     },
@@ -803,8 +839,14 @@
                         "name": "Poncho Darner",
                         "productionChain": [
                             {
-                                "id": "1800_alpaca_wool",
-                                "name": "Alpaca Wool"
+                                "id": "1800_alpaca_farm",
+                                "name": "Alpaca Farm",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_3_3_farm_module",
+                                        "name": "Alpaca Farm Module"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -842,7 +884,13 @@
                             },
                             {
                                 "id": "1800_cattle_farm",
-                                "name": "Cattle Farm"
+                                "name": "Cattle Farm",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_3_4_farm_module",
+                                        "name": "Cattle Farm Module"
+                                    }
+                                ]
                             }
                         ]
                     },
