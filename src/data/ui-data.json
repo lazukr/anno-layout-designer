@@ -780,6 +780,22 @@
                         "name": "Warehouse"
                     },
                     {
+                        "id": "1800_trade_union",
+                        "name": "Trade Union"
+                    },
+                    {
+                        "id": "1800_fire_station",
+                        "name": "Fire Station"
+                    },
+                    {
+                        "id": "1800_chapel",
+                        "name": "Chapel"
+                    },
+                    {
+                        "id": "1800_new_world_police_station",
+                        "name": "Police Station"
+                    },
+                    {
                         "id": "1800_sawmill",
                         "name": "Sawmill",
                         "productionChain": [
@@ -861,8 +877,16 @@
                         "name": "Obrero"
                     },
                     {
+                        "id": "1800_town_hall",
+                        "name": "Town Hall"
+                    },
+                    {
                         "id": "1800_boxing_arena",
                         "name": "Boxing Arena"
+                    },
+                    {
+                        "id": "1800_new_world_hospital",
+                        "name": "Hospital"
                     },
                     {
                         "id": "1800_brick_factory",
@@ -923,8 +947,14 @@
                                 "name": "Felt Producer",
                                 "productionChain": [
                                     {
-                                        "id": "1800_alpaca_wool",
-                                        "name": "Alpaca Wool"
+                                        "id": "1800_alpaca_farm",
+                                        "name": "Alpaca Farm",
+                                        "productionChain": [
+                                            {
+                                                "id": "1800_3_3_farm_module",
+                                                "name": "Alpaca Farm Module"
+                                            }
+                                        ]
                                     }
                                 ]
                             }

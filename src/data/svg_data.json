@@ -676,5 +676,23 @@
         "width": 2,
         "height": 3,
         "colour": "#ffff80"
+    },
+    {
+        "id": "1800_new_world_hospital",
+        "width": 5,
+        "height": 6,
+        "colour": "#ffff80"
+    },
+    {
+        "id": "1800_new_world_police_station",
+        "width": 4,
+        "height": 5,
+        "colour": "#ffff80"
+    },
+    {
+        "id": "1800_chapel",
+        "width": 3,
+        "height": 4,
+        "colour": "#ffffff"
     }
 ]

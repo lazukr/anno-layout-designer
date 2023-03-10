@@ -112,5 +112,8 @@
     "1800_zinc_mine": "assets/images/1800/zinc_mine.png",
     "1800_3_3_farm_module": "assets/images/1800/farm_module.png",
     "1800_2_3_farm_module": "assets/images/1800/farm_module.png",
-    "1800_3_4_farm_module": "assets/images/1800/farm_module.png"
+    "1800_3_4_farm_module": "assets/images/1800/farm_module.png",
+    "1800_new_world_police_station": "assets/images/1800/police_station.png",
+    "1800_new_world_hospital": "assets/images/1800/hospital.png",
+    "1800_chapel": "assets/images/1800/church.png"
 }
