@@ -1,8 +1,5 @@
 import "snapsvg-cjs";
-import { CreateCursor } from "./CreateCursor";
-import { DeleteCursor } from "./DeleteCursor";
 import { PositionTracker } from "./PositionTracker";
-
 interface CursorProps {
     snap: Snap.Paper;
     action: Action;
@@ -12,52 +9,12 @@ interface CursorProps {
     getHighlight: () => string;
 }
 
-export interface EditorCursor {
-    destroy: () => void;
-}
-
 export enum Action {
     Create,
     Select,
     Delete,
 }
-
-export const getCursor = ({
-    snap,
-    action,
-    position,
-    buildingName,
-    gridSize,
-    getHighlight,
-}: CursorProps) => {
-    switch (action) {
-        case Action.Delete:
-            return new DeleteCursor({
-                snap: snap,
-                gridSize: gridSize,
-            });
-        case Action.Select:
-            return new Cursor({
-                snap: snap,
-                position: position,
-                buildingName: buildingName,
-                gridSize: gridSize,
-                action: action,
-                getHighlight: getHighlight,
-            });
-        case Action.Create:
-            return new CreateCursor({
-                snap: snap,
-                position: position,
-                buildingName: buildingName,
-                gridSize: gridSize,
-                getHighlighter: getHighlight,
-            });
-    }          
-}
-
-
-export class Cursor implements EditorCursor {
+export class Cursor {
     static action: Action;
     snap: Snap.Paper;
     position: PositionTracker;

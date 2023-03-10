@@ -3,7 +3,7 @@ import SNAPSVG_TYPE from "snapsvg";
 import { useEffect, useRef } from "react";
 import { Board } from "../editor/Board";
 import { PositionTracker } from "../editor/PositionTracker";
-import { Action, EditorCursor, getCursor } from "../editor/Cursor";
+import { Action, Cursor } from "../editor/Cursor";
 import "../styles/editor.scss";
 import { createAllBuildings } from "../editor/Building";
 
@@ -26,11 +26,10 @@ export const Editor = ({
 }: EditorProps) => {
     const snap = useRef<Snap.Paper>();
     const position = useRef<PositionTracker>();
-    const cursor = useRef<EditorCursor>();
+    const cursor = useRef<Cursor>();
     const actionRef = useRef<Action>(Action.Create);
 
     const getHightlight = () => {
-        console.log(action);
         switch (actionRef.current) {
             case Action.Delete:
                 return "delete";
@@ -75,7 +74,7 @@ export const Editor = ({
     useEffect(() => {
         if (snap.current && position.current) {
             cursor.current?.destroy();
-            cursor.current = getCursor({
+            cursor.current = new Cursor({
                 snap: snap.current,
                 position: position.current,
                 action: action,
