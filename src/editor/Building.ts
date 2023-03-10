@@ -1,137 +1,74 @@
 import "snapsvg-cjs";
-import { BUILDINGS } from "../data/DataMapper"; 
-import { GRID, IMAGE_PATH } from "../utils/Constants";
-import {v4 as uuidv4 } from "uuid";
-interface BuildingProps {
-    dataId: string;
-    snap: Snap.Paper;
-    x: number;
-    y: number;
-    rotated: boolean;
-    placementMode: boolean;
+import { SVGBuilding } from "../data/Building";
+import { getAllBuildingData } from "../data/Series";
+import Path from "path-browserify";
+
+export const createAllBuildings = (snap: Snap.Paper, gridSize: number) => {
+    const buildings = getAllBuildingData();
+    buildings.forEach(building => {
+        createBuilding(snap, building, gridSize, true);
+        createBuilding(snap, building, gridSize, false);
+    });
+    bakeBuildingsToSVG(snap);
 }
 
-interface SpriteModelProps {
-    id: string;
-    snap: Snap.Paper;
-    rotated: boolean;
-}
+const bakeBuildingsToSVG = (snap: Snap.Paper) => {
+    const images = snap.selectAll("image");
+    images.forEach(image => {
+        const {
+            width,
+            height,
+        } = image.getBBox();
 
-export class Building {
-    bid: string;
-    snap: Snap.Paper;
-    dataId: string;
-    set: Snap.Element;
-    width: number;
-    height: number;
-    isRotated: boolean;
-    x: number;
-    y: number;
+        const img = new Image();
+        img.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = width;
+            canvas.height = height;
 
-    constructor({
-        snap,
-        dataId,
-        x,
-        y,
-        rotated,
-        placementMode,
-    }: BuildingProps) {
-        this.bid = uuidv4();
-        this.snap = snap;
-        this.isRotated = rotated;
-        this.dataId = dataId;
-        const info = BUILDINGS[dataId];
-        this.width = this.isRotated ? info.height : info.width;
-        this.height = this.isRotated ? info.width : info.height;
-        this.x = x;
-        this.y = y;
-        const rotateDataIdMap = `${this.dataId}${rotated ? "_rotated" : ""}`;
-        this.set = this.snap.use(rotateDataIdMap) as Snap.Element;
-        this.set.attr({id: this.bid});
-
-        if (placementMode) {
-            this.set.attr({
-                opacity: 0.6,
+            const context = canvas.getContext("2d");
+            context?.drawImage(img, 0, 0, width, height);
+            image.attr({
+                href: canvas.toDataURL(),
             });
         }
-
-        this.updatePosition(x, y);
-    }
-
-    clear() {
-        this.set.remove();
-    }
-
-    updatePosition(x: number, y: number) {
-        this.x = x;
-        this.y = y;
-        this.set.transform(`t${x * GRID.SIZE},${y * GRID.SIZE}`);
-    }
-
-    static clone(building: Building) {
-        const {
-            snap,
-            dataId,
-            x,
-            y,
-            isRotated,
-        } = building;
-
-        return new Building({
-            snap: snap,
-            dataId: dataId,
-            x: x,
-            y: y,
-            rotated: isRotated,
-            placementMode: false,
-        });
-    }
-    
-    static create = (snap: Snap.Paper, selection: string, x: number, y: number, rotated: boolean) => {
-        return new Building({
-            snap: snap,
-            dataId: selection,
-            x: x,
-            y: y,
-            rotated: rotated,
-            placementMode: true,
-        });
-    }
-    
-    static createSpriteModel = ({
-        snap,
-        id,
-        rotated,
-    }: SpriteModelProps) => {
-
-        const { width, height, colour } = BUILDINGS[id];
-        const actualWidth = rotated ? height : width;
-        const actualHeight = rotated ? width : height;
-        const squareSize = Math.min(actualWidth, actualHeight) / 2;
-        const centerX = actualWidth / 2 - squareSize / 2;
-        const centerY = actualHeight / 2 - squareSize / 2;
-        const background = snap.rect(
-            0.5,
-            0.5,
-            actualWidth * GRID.SIZE - 1, 
-            actualHeight * GRID.SIZE - 1)
-            .attr({
-                "fill-opacity": 1,
-                stroke: "#000",
-                fill: colour,
-                strokeWidth: 2,
-                "paint-order": "stroke"
-            });
-
-        const sprite = snap.image(
-            `${IMAGE_PATH}${id}.png`,
-            centerX * GRID.SIZE,
-            centerY * GRID.SIZE,
-            squareSize * GRID.SIZE,
-            squareSize * GRID.SIZE,
-        );
-        const set = snap.g(...[background, sprite]);
-        return set;
-    }
+        img.src = image.attr("href");
+    });
 }
 
+const createBuilding = (snap: Snap.Paper, building: SVGBuilding, gridSize: number, rotated: boolean) => {
+    const {
+        width,
+        height,
+        colour,
+        id,
+    } = building;
+
+    const trueWidth = rotated ? height : width;
+    const trueHeight = rotated ? width : height;
+    const area = trueWidth * trueHeight;
+    const squareSize = area > 1 ? Math.min(trueWidth, trueHeight) / 2 : 1;
+    const centerX = trueWidth / 2 - squareSize / 2;
+    const centerY = trueHeight / 2 - squareSize / 2;
+    
+    const background = snap
+        .rect(0.25, 0.25, trueWidth * gridSize - 0.5, trueHeight * gridSize - 0.5)
+        .attr({
+            fill: colour,
+        });
+
+    const sprite = snap.image(
+        Path.join(process.env.PUBLIC_URL, building.imagePath),
+        centerX * gridSize,
+        centerY * gridSize,
+        squareSize * gridSize,
+        squareSize * gridSize,
+    );
+
+    const model = snap.g(...[background, sprite])
+        .attr({
+            id: rotated ? `${id}_rotated` : id,
+        });
+
+    model.toDefs();
+}

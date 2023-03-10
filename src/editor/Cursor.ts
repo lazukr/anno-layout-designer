@@ -1,157 +1,184 @@
 import "snapsvg-cjs";
-import { Board } from "./Board";
-import { Building } from "./Building";
-import { getYPosition, getXPosition, SelectMode } from "../utils/Constants";
-
-export interface CursorProps { 
-    board: Board;
-    selection: string;
-};
-
-export class Cursor {
-    board: Board;
+import { PositionTracker } from "./PositionTracker";
+interface CursorProps {
     snap: Snap.Paper;
-    x: number;
-    y: number;
-    selection: Building;
-    selectMode: SelectMode;
-    isSelected: boolean;
-    point: DOMPoint;
+    action: Action;
+    position: PositionTracker;
+    buildingName: string;
+    gridSize: number;
+    getHighlight: () => string;
+}
 
+export enum Action {
+    Create,
+    Select,
+    Delete,
+}
+export class Cursor {
+    static action: Action;
+    snap: Snap.Paper;
+    position: PositionTracker;
+    buildingName: string;
+    element: Snap.Element | null;
+    gridSize: number;
+    isSelectDeleteMode: boolean;
+    isRotated: boolean;
+    getHighlight: () => string;
+    
     constructor({
-        board,
-        selection,
+        snap,
+        action,
+        position,
+        buildingName,
+        gridSize,
+        getHighlight,
     }: CursorProps) {
-        this.board = board;
-        this.snap = this.board.snap;
-        this.x = 0;
-        this.y = 0;
-        this.selection = Building.create(this.snap, selection, this.x, this.y, false);
-        this.selectMode = SelectMode.ADD;
-        this.isSelected = false;
-        this.updateSelectMode(this.selectMode);
-        this.point = new DOMPoint(0, 0);
-    }
+        this.snap = snap;
+        this.position = position;
+        this.buildingName = buildingName;
+        this.gridSize = gridSize;
+        this.element = null;
+        Cursor.action = action;
+        this.isRotated = false;
+        this.isSelectDeleteMode = true;
+        this.getHighlight = getHighlight;
 
-    private mouseMoveEvent = (event: MouseEvent) => {
-        this.point.x = event.clientX;
-        this.point.y = event.clientY;
-        const pt = this.point.matrixTransform(this.board.elem.getScreenCTM()?.inverse());
-        this.x = Math.max(Math.min(getXPosition(pt.x), this.board.width - this.selection.width), 0);
-        this.y = Math.max(Math.min(getYPosition(pt.y), this.board.height - this.selection.height), 0);
-        this.selection!.updatePosition(this.x, this.y);
-    }
-
-    private createCursorMouseDownEvent = (event: MouseEvent) => {
-        if (this.selection.dataId === "cursor") {
-            return;
+        switch (Cursor.action) {
+            case Action.Select:
+                this.actionSelect();
+                break;
+            case Action.Delete:
+                this.actionDelete();
+                break;
+            case Action.Create:
+                this.actionCreate();
+                break;
         }
-
-        if (event.ctrlKey) {
-            this.setSelection(this.selection.dataId, !this.selection.isRotated);
-            return;
-        }
-
-        this.board.addBuilding(Building.clone(this.selection));
     }
 
-    private deleteCursorMouseDownEvent = (event: MouseEvent) => {
-        this.selection.set.attr({
-            display: "none",
-        });
-
-        const elem = this.board.getBuilding(event.clientX, event.clientY);
-        this.board.deleteBuilding(elem.attr("id"));
-        this.selection.set.attr({
-            display: "",
-        });
-    }
-
-    private selectCursorMouseDownEvent = (event: MouseEvent) => {
-        if (!this.isSelected) {
-            this.selection.set.attr({
-                display: "none",
-            });
-
-            const elem = this.board.getBuilding(event.clientX, event.clientY);
-            const id = elem.attr("id");          
-            const building = this.board.buildings[id];
-
-            if (!building) {
-                this.selection.set.attr({
-                    display: "",
-                });
-                return;
-            }
-
-            this.setSelection(building.dataId, building.isRotated);
-            this.isSelected = true;
-            this.board.deleteBuilding(id);
-            return;
-        }
-
-        this.createCursorMouseDownEvent(event);
-        this.selection.set.attr({
-            display: "",
-        });
-        this.setSelection("cursor");
-        this.isSelected = false;
-    }
-
-    private doSelectMouseEvents = () => {
-        this.setSelection("cursor");
-        this.addMouseDownEvent([this.selectCursorMouseDownEvent]);
-    }
-
-    private doDeleteMouseEvents = () => {
-        this.setSelection("cursor");
-        this.addMouseMoveEvent([this.mouseMoveEvent]);
-        this.addMouseDownEvent([this.deleteCursorMouseDownEvent]);
-    }
-
-    private doCreationMouseEvents = () => {
-        this.addMouseMoveEvent([this.mouseMoveEvent]);
-        this.addMouseDownEvent([this.createCursorMouseDownEvent]);
-    }
-
-    private addMouseMoveEvent = (events: {(hander: MouseEvent): void}[]) => {
-        this.snap.unmousemove();
-        this.snap.mousemove((event: MouseEvent) => {
-            for (const action of events) {
-                action(event);
-            }
-        });
-    }
-
-    private addMouseDownEvent = (events: {(hander: MouseEvent):void}[]) => {
+    destroy() {
+        this.snap.unmousemove(this.getElementMove());
+        this.element?.remove();
         this.snap.unmouseup();
-        this.snap.mouseup((event: MouseEvent) => {
-            for (const action of events) {
-                action(event);
-            }
+    }
+
+    actionCreate() {
+        this.element = this.snap.use(this.buildingName) as Snap.Element;
+        this.element.attr({
+            opacity: 0.5,
+        });
+
+        this.elementMove(this.position);
+        this.snap.mousemove(this.getElementMove());
+        this.snap.mouseup(this.getElementMouseUp());
+    }
+
+    rotate() {
+        if (this.isRotated) {
+            this.buildingName = this.buildingName.replace("_rotated", "");
+        }
+        else {
+            this.buildingName = `${this.buildingName}_rotated`;
+        }
+        this.isRotated = !this.isRotated;
+        this.destroy();
+        this.actionCreate();
+    }
+
+    actionDelete() {
+        this.snap.mouseup(event => {
+            const elem = PositionTracker.getUseElementFromMouseEvent(event);
+            elem?.remove();
         });
     }
 
-    setSelection = (selection: string, rotated: boolean = false) => {
-        if (this.selectMode === SelectMode.ERASE) {
-            return;
+    actionSelect() {
+        this.element?.remove();
+        this.snap.unmouseup();
+        if (this.isSelectDeleteMode) {
+            this.actionSelectDelete();
+        }else {
+            this.actionSelectCreate();
         }
-        this.selection.clear();
-        this.selection = Building.create(this.snap, selection, this.x, this.y, rotated);
     }
 
-    updateSelectMode = (selectMode: SelectMode) => {
-        switch (selectMode) {
-            case SelectMode.ADD: 
-                this.doCreationMouseEvents();
-                break;
-            case SelectMode.ERASE:
-                this.doDeleteMouseEvents();
-                break;
-            case SelectMode.SELECT:
-                this.doSelectMouseEvents();
-                break;
-        }
-        this.selectMode = selectMode;
+    actionSelectDelete() {
+        this.snap.mouseup(event => {
+            const elem = PositionTracker.getUseElementFromMouseEvent(event);
+            if (elem) {
+                this.buildingName = elem.attr("href").replace("#", "");
+                elem.remove();
+                this.isSelectDeleteMode = false;
+                this.actionSelect();
+            } 
+        });
     }
-};
+
+    actionSelectCreate() {
+        this.element = this.snap.use(this.buildingName) as Snap.Element;
+        this.element.attr({
+            opacity: 0.5,
+        });
+
+        this.elementMove(this.position);
+        this.snap.mousemove(this.getElementMove());
+        this.snap.mouseup(() => {
+            this.elementMouseUp(this.element);
+            this.isSelectDeleteMode = true;
+            this.actionSelect();
+        });
+    }
+
+    getElementMouseUp() {
+        return (event: MouseEvent) => {
+            if (event.ctrlKey) {
+                this.rotate();
+            }
+            else {
+                const element = this.element;
+                return this.elementMouseUp(element);
+            }
+        };
+    }
+
+    getHighlightColour() {
+        if (Cursor.action === Action.Delete) {
+            return "delete";
+        }
+        else {
+            return "select";
+        }
+    }
+
+    elementMouseUp(element: Snap.Element | null) {
+        const cur = element?.clone();
+        cur?.insertBefore(this.element!);
+        cur?.attr({
+            opacity: "",
+            placed: true,
+        });
+        cur?.hover(() => {
+            cur.toggleClass("highlight", true);
+            cur.toggleClass(this.getHighlight(), true);
+        }, () => {
+            cur.toggleClass("highlight", false);
+            cur.toggleClass(this.getHighlight(), false);
+        });
+    }
+
+    getElementMove() {
+        return () => {
+            const position = this.position;
+            return this.elementMove(position);
+        }
+    }
+
+    elementMove(position: PositionTracker) {
+        const {
+            gridX,
+            gridY,
+        } = position;
+
+        this.element?.transform(`T${gridX * this.gridSize},${gridY * this.gridSize}`);
+    }
+}
