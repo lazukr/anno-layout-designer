@@ -26,7 +26,7 @@ const DEFAULT_CITIZEN = "1800_farmer";
 const DEFAULT_BUILDING = "1800_dirt_road";
 
 export const MainMenu = () => {
-    const [game, setGame] = useState(DEFAULT_GAME);
+    const [game] = useState(DEFAULT_GAME);
     const [citizen, setCitizen] = useState(DEFAULT_CITIZEN);
     const [building, setBuilding] = useState(DEFAULT_BUILDING);
     const [action, setAction] = useState(Action.Create);

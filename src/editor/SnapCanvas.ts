@@ -1,4 +1,4 @@
-import { Dom, SVG, Svg } from "@svgdotjs/svg.js";
+import { SVG, Svg } from "@svgdotjs/svg.js";
 import { Board } from "./Board";
 import { Action, Cursor } from "./Cursor";
 import { createAllBuildings } from "./Building";
