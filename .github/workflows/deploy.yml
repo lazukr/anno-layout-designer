@@ -27,10 +27,10 @@ jobs:
 
       - name: Build
         run: yarn build
+        env:
+          CI: false
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
-        env:
-          CI: false
