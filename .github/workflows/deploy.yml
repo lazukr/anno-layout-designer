@@ -23,4 +23,9 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Build
-        run: yarn deploy
+        run: yarn build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
