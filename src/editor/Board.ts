@@ -1,26 +1,26 @@
-import "snapsvg-cjs";
 import { Direction, getAttrArgs, getLineArgs } from "../editor/lines";
+import { Svg } from "@svgdotjs/svg.js";
 
 export interface BoardProps {
-    snap: Snap.Paper;
+    svg: Svg;
     width: number;
     height: number;
     gridSize: number;
 };
 
 export class Board {
-    snap: Snap.Paper;
+    svg: Svg;
     width: number;
     height: number;
     gridSize: number;
     
     constructor({
-        snap,
+        svg,
         width,
         height,
         gridSize,
     }: BoardProps) {
-        this.snap = snap;
+        this.svg = svg;
         this.width = width;
         this.height = height;
         this.gridSize = gridSize;
@@ -29,9 +29,7 @@ export class Board {
     }
 
     private drawGrid = () => {
-        // draw rows 
         this.drawDirection(Direction.Horizontal);
-        // draw cols
         this.drawDirection(Direction.Vertical);
     }
 
@@ -43,15 +41,16 @@ export class Board {
         for (let i = 0; i < numOfLines + 1; i++) {
             const { x1, y1, x2, y2 } = getLineArgs(isHorizontal, i, max, this.gridSize);
             const attrArgs = getAttrArgs(i, numOfLines);
-            this.snap.line(x1, y1, x2, y2).attr(attrArgs);
+            this.svg.line(x1, y1, x2, y2).stroke({
+                width: attrArgs.width,
+                color: attrArgs.colour,
+            });
         }
     }
 
     private drawBackground() {
-        this.snap
-            .rect(0, 0, this.width * this.gridSize, this.height * this.gridSize)
-            .attr({
-                fill: "#ffffff",
-            });
+        this.svg
+            .rect(this.width * this.gridSize, this.height * this.gridSize)
+            .fill("#ffffff");
     }
 }
