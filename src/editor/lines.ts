@@ -3,38 +3,29 @@ export enum Direction {
     Vertical,
 };
 
-interface SnapLineAttribute {
-    stroke: string;
-    strokeWidth: number;
+interface SvgLineAttribute {
+    colour: string;
     width: number;
 };
 
-const BORDER_LINE: SnapLineAttribute = {
-    stroke: 'black',
-    strokeWidth: 5,
-    width: 1,
+const BORDER_LINE: SvgLineAttribute = {
+    colour: "black",
+    width: 5,
 };
 
-const BOLD_LINE: SnapLineAttribute = {
-    stroke: 'black',
-    strokeWidth: 1,
-    width: 1,
+const NORMAL_LINE: SvgLineAttribute = {
+    colour: "black",
+    width: 0.25,
 };
 
-const NORMAL_LINE: SnapLineAttribute = {
-    stroke: 'black',
-    strokeWidth: 0.25,
-    width: 1,
-};
-
-interface SnapLineArguments {
+interface SvgLineArguments {
     x1: number;
     x2: number;
     y1: number;
     y2: number;
 };
 
-export const getLineArgs = (isHorizontal: boolean, index: number, max: number, gridSize: number): SnapLineArguments => {
+export const getLineArgs = (isHorizontal: boolean, index: number, max: number, gridSize: number): SvgLineArguments => {
     const indexOffset = index * gridSize;
     const maxOffset = max * gridSize;
 
@@ -46,7 +37,7 @@ export const getLineArgs = (isHorizontal: boolean, index: number, max: number, g
     };
 };
 
-export const getAttrArgs = (index: number, max: number): SnapLineAttribute => {
+export const getAttrArgs = (index: number, max: number): SvgLineAttribute => {
     if (index === 0 || index === max) {
         return BORDER_LINE;
     } else {

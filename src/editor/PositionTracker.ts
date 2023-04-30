@@ -1,46 +1,38 @@
-import "snapsvg-cjs";
-import SNAPSVG_TYPE from "snapsvg";
-
-declare const Snap: typeof SNAPSVG_TYPE;
-interface PositionTrackerProps {
-    snap: Snap.Paper;
-    gridSize: number;
-}
-
+import { Svg, Use } from "@svgdotjs/svg.js";
 export class PositionTracker {
-    private snap: Snap.Paper;
-    private gridSize: number;
+    private svg: Svg;
+    private svgElement: SVGGraphicsElement;
     gridX: number;
     gridY: number;
 
-    constructor({
-        snap,
-        gridSize,
-    }: PositionTrackerProps) {
-        this.snap = snap;
-        this.gridSize = gridSize;
+    constructor(svg: Svg) {
+        this.svg = svg;
+        this.svgElement = document.querySelector(`#${this.svg.node.id}`) as SVGGraphicsElement;
         this.gridX = 0;
         this.gridY = 0;
-        this.attachMouseMove();
     }
 
-    private attachMouseMove() {
-        this.snap.mousemove(event => {
-            const svgElement = document.querySelector(`#${this.snap.node.id}`) as SVGGraphicsElement;
-            const bound = svgElement.getBoundingClientRect();
-            this.gridX = Math.floor((event.clientX - bound.left) / this.gridSize);
-            this.gridY = Math.floor((event.clientY - bound.top) / this.gridSize);
+    attachMouseMove(use: Use, gridSize: number) {
+        // move it to current location
+        use.move(this.gridX * gridSize, this.gridY * gridSize);
+
+        // attach listener for future movement
+        this.svg.mousemove((event: MouseEvent) => {
+            const bound = this.svgElement.getBoundingClientRect();
+            this.gridX = Math.floor((event.clientX - bound.left) / gridSize);
+            this.gridY = Math.floor((event.clientY - bound.top) / gridSize);
+            use.move(this.gridX * gridSize, this.gridY * gridSize);
         });
     }
 
-    static getUseElementFromMouseEvent(event: MouseEvent) {
-        const x = event.clientX;
-        const y = event.clientY;
-        const elem = Snap.getElementByPoint(x, y); 
-        
-        if (elem.type === "use") {
-            return elem;
+    getUseElementFromMouseEvent(event: MouseEvent) {
+        const target = event.target as SVGSVGElement;
+        const use = new Svg(target);
+
+        if (use.type === "use") {
+            return use as Use;
         }
+
         return null;
     }
 }

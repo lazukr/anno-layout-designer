@@ -1,42 +1,47 @@
-import "snapsvg-cjs";
 import { SVGBuilding } from "../data/Building";
 import { getAllBuildingData } from "../data/Series";
 import Path from "path-browserify";
+import { Element as DotSVGElement, Svg } from "@svgdotjs/svg.js";
 
-export const createAllBuildings = (snap: Snap.Paper, gridSize: number) => {
+export const createAllBuildings = (svg: Svg, gridSize: number) => {
     const buildings = getAllBuildingData();
     buildings.forEach(building => {
-        createBuilding(snap, building, gridSize, true);
-        createBuilding(snap, building, gridSize, false);
-    });
-    bakeBuildingsToSVG(snap);
-}
-
-const bakeBuildingsToSVG = (snap: Snap.Paper) => {
-    const images = snap.selectAll("image");
-    images.forEach(image => {
-        const {
-            width,
-            height,
-        } = image.getBBox();
-
-        const img = new Image();
-        img.onload = () => {
-            const canvas = document.createElement("canvas");
-            canvas.width = width;
-            canvas.height = height;
-
-            const context = canvas.getContext("2d");
-            context?.drawImage(img, 0, 0, width, height);
-            image.attr({
-                href: canvas.toDataURL(),
-            });
-        }
-        img.src = image.attr("href");
+        createBuilding(svg, building, gridSize, true);
+        createBuilding(svg, building, gridSize, false);
     });
 }
 
-const createBuilding = (snap: Snap.Paper, building: SVGBuilding, gridSize: number, rotated: boolean) => {
+const replaceImage = async (image: DotSVGElement) => {
+    const {
+        width,
+        height,
+    } = image.bbox();
+
+    const img = new Image();
+    img.src = image.attr("href");
+    await img.decode();
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const context = canvas.getContext("2d");
+    context?.drawImage(img, 0, 0, width, height);
+    image.attr({
+        href: canvas.toDataURL(),
+    });
+}
+
+export const bakeBuildingsToSVG = async (svg: Svg) => {
+    const images = svg.find("image");
+    const promises = [];
+
+    for (let i = 0; i < images.length; i++) {
+        promises.push(replaceImage(images[i]));
+    }
+
+    await Promise.all(promises);
+};
+
+const createBuilding = (svg: Svg, building: SVGBuilding, gridSize: number, rotated: boolean) => {
     const {
         width,
         height,
@@ -51,24 +56,26 @@ const createBuilding = (snap: Snap.Paper, building: SVGBuilding, gridSize: numbe
     const centerX = trueWidth / 2 - squareSize / 2;
     const centerY = trueHeight / 2 - squareSize / 2;
     
-    const background = snap
-        .rect(0.25, 0.25, trueWidth * gridSize - 0.5, trueHeight * gridSize - 0.5)
+    const background = svg
+        .rect(trueWidth * gridSize - 0.5, trueHeight * gridSize - 0.5)
+        .move(0.25, 0.25)
         .attr({
             fill: colour,
         });
 
-    const sprite = snap.image(
-        Path.join(process.env.PUBLIC_URL, building.imagePath),
-        centerX * gridSize,
-        centerY * gridSize,
-        squareSize * gridSize,
-        squareSize * gridSize,
-    );
+    const sprite = svg
+        .image(Path.join(process.env.PUBLIC_URL, building.imagePath))
+        .size(squareSize * gridSize, squareSize * gridSize)
+        .move(centerX * gridSize, centerY * gridSize);
 
-    const model = snap.g(...[background, sprite])
+    const model = svg
+        .defs()
+        .group()
+        .add(background)
+        .add(sprite)
         .attr({
             id: rotated ? `${id}_rotated` : id,
         });
 
-    model.toDefs();
+    model.defs();
 }

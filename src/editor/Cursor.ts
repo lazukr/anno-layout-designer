@@ -1,9 +1,9 @@
-import "snapsvg-cjs";
+import { Svg, Use } from "@svgdotjs/svg.js";
 import { PositionTracker } from "./PositionTracker";
 interface CursorProps {
-    snap: Snap.Paper;
+    svg: Svg;
     action: Action;
-    position: PositionTracker;
+    positionTracker: PositionTracker;
     buildingName: string;
     gridSize: number;
     getHighlight: () => string;
@@ -16,28 +16,27 @@ export enum Action {
 }
 export class Cursor {
     static action: Action;
-    snap: Snap.Paper;
-    position: PositionTracker;
+    svg: Svg;
+    positionTracker: PositionTracker;
     buildingName: string;
-    element: Snap.Element | null;
+    element?: Use;
     gridSize: number;
     isSelectDeleteMode: boolean;
     isRotated: boolean;
     getHighlight: () => string;
     
     constructor({
-        snap,
+        svg,
         action,
-        position,
+        positionTracker,
         buildingName,
         gridSize,
         getHighlight,
     }: CursorProps) {
-        this.snap = snap;
-        this.position = position;
+        this.svg = svg;
+        this.positionTracker = positionTracker;
         this.buildingName = buildingName;
         this.gridSize = gridSize;
-        this.element = null;
         Cursor.action = action;
         this.isRotated = false;
         this.isSelectDeleteMode = true;
@@ -57,20 +56,19 @@ export class Cursor {
     }
 
     destroy() {
-        this.snap.unmousemove(this.getElementMove());
+        this.svg.mousemove(null);
         this.element?.remove();
-        this.snap.unmouseup();
+        this.svg.mouseup(null);
     }
 
     actionCreate() {
-        this.element = this.snap.use(this.buildingName) as Snap.Element;
+        this.element = this.svg.use(this.buildingName);
         this.element.attr({
             opacity: 0.5,
         });
 
-        this.elementMove(this.position);
-        this.snap.mousemove(this.getElementMove());
-        this.snap.mouseup(this.getElementMouseUp());
+        this.positionTracker.attachMouseMove(this.element, this.gridSize);
+        this.svg.mouseup(this.getElementMouseUp());
     }
 
     rotate() {
@@ -86,15 +84,15 @@ export class Cursor {
     }
 
     actionDelete() {
-        this.snap.mouseup(event => {
-            const elem = PositionTracker.getUseElementFromMouseEvent(event);
+        this.svg.mouseup((event: MouseEvent) => {
+            const elem = this.positionTracker.getUseElementFromMouseEvent(event);
             elem?.remove();
         });
     }
 
     actionSelect() {
         this.element?.remove();
-        this.snap.unmouseup();
+        this.svg.mouseup(null);
         if (this.isSelectDeleteMode) {
             this.actionSelectDelete();
         }else {
@@ -103,26 +101,26 @@ export class Cursor {
     }
 
     actionSelectDelete() {
-        this.snap.mouseup(event => {
-            const elem = PositionTracker.getUseElementFromMouseEvent(event);
-            if (elem) {
+        this.svg.mouseup((event: MouseEvent) => {
+            const elem = this.positionTracker.getUseElementFromMouseEvent(event);
+
+            if (elem !== null) {
                 this.buildingName = elem.attr("href").replace("#", "");
                 elem.remove();
                 this.isSelectDeleteMode = false;
                 this.actionSelect();
-            } 
+            }
         });
     }
 
     actionSelectCreate() {
-        this.element = this.snap.use(this.buildingName) as Snap.Element;
+        this.element = this.svg.use(this.buildingName);
         this.element.attr({
             opacity: 0.5,
         });
 
-        this.elementMove(this.position);
-        this.snap.mousemove(this.getElementMove());
-        this.snap.mouseup(() => {
+        this.positionTracker.attachMouseMove(this.element, this.gridSize);        
+        this.svg.mouseup(() => {
             this.elementMouseUp(this.element);
             this.isSelectDeleteMode = true;
             this.actionSelect();
@@ -150,35 +148,21 @@ export class Cursor {
         }
     }
 
-    elementMouseUp(element: Snap.Element | null) {
+    elementMouseUp(element?: Use) {
         const cur = element?.clone();
         cur?.insertBefore(this.element!);
         cur?.attr({
             opacity: "",
-            placed: true,
         });
-        cur?.hover(() => {
-            cur.toggleClass("highlight", true);
-            cur.toggleClass(this.getHighlight(), true);
-        }, () => {
-            cur.toggleClass("highlight", false);
-            cur.toggleClass(this.getHighlight(), false);
+        cur?.addClass("placed");
+        cur?.on("mouseover", () => {
+            cur.toggleClass("highlight");
+            cur.toggleClass(this.getHighlight());
         });
-    }
 
-    getElementMove() {
-        return () => {
-            const position = this.position;
-            return this.elementMove(position);
-        }
-    }
-
-    elementMove(position: PositionTracker) {
-        const {
-            gridX,
-            gridY,
-        } = position;
-
-        this.element?.transform(`T${gridX * this.gridSize},${gridY * this.gridSize}`);
+        cur?.on("mouseout", () => {
+            cur.removeClass("highlight");
+            cur.removeClass(this.getHighlight());
+        });
     }
 }
