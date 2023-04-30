@@ -22,11 +22,11 @@ export const getCitizenSelections = ({
     setSelect,
 }: CitizenSelectProps): JSX.Element => {
     const citizenList = Object.values(UI_DATA[game].citizens).map(citizen => {
-        return <SelectionData>{
+        return {
             id: citizen.id,
             name: citizen.name,
             imagePath: IMAGE_DATA[citizen.id],
-        };
+        } as SelectionData;
     });
     return Selection({
         name: "citizens",
@@ -45,12 +45,12 @@ interface BuildingSelectProps {
 
 const constructBuilding = (list: Building[]): SelectionData[] => {
     return list.map(building => {
-        return <SelectionData>{
+        return {
             id: building.id,
             name: building.name,
             imagePath: IMAGE_DATA[building.id],
             children: building.productionChain ? constructBuilding(building.productionChain!) : undefined,
-        };
+        } as SelectionData;
     })
 }
 
@@ -71,13 +71,13 @@ export const getBuildingSelections = ({
 
 export const getAllBuildingData = () => {
     const buildings = Object.values(SVG_DATA).map(building => {
-        return <SVGBuilding>{
+        return {
             id: building.id,
             width: building.width,
             height: building.height,
             colour: building.colour,
             imagePath: IMAGE_DATA[building.id],
-        }
+        } as SVGBuilding;
     });
     return buildings;
 }
