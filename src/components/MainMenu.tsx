@@ -6,6 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { 
     Github, 
@@ -14,22 +15,41 @@ import {
     FileEarmarkArrowDown, 
     FileEarmarkArrowUp,
     FiletypePng,
+    FilePlus,
  } from "react-bootstrap-icons";
 
-import { saveAsPNG, saveAsSVG } from "../editor/Serializer";
+import { saveAsPNG, saveAsJSON } from "../editor/Serializer";
 import { Editor } from "./Editor";
 import { Action } from "../editor/Cursor";
 import { getBuildingSelections, getCitizenSelections } from "../data/Series";
+import { NewLayoutModal } from "./NewLayoutModal";
 
 const DEFAULT_GAME = "1800";
 const DEFAULT_CITIZEN = "1800_farmer";
 const DEFAULT_BUILDING = "1800_dirt_road";
+const DEFAULT_BOARD_SIZE = 30;
 
 export const MainMenu = () => {
     const [game, setGame] = useState(DEFAULT_GAME);
     const [citizen, setCitizen] = useState(DEFAULT_CITIZEN);
     const [building, setBuilding] = useState(DEFAULT_BUILDING);
     const [action, setAction] = useState(Action.Create);
+    const [width, setWidth] = useState(DEFAULT_BOARD_SIZE);
+    const [height, setHeight] = useState(DEFAULT_BOARD_SIZE);
+
+    const setBoardSize = (width: number, height: number) => {
+        setWidth(width);
+        setHeight(height);
+    };
+
+    const getCurrentBoardSize = (): [number, number] => {
+        return [width, height];
+    };
+
+    const [showModal, setShowModal] = useState(false);
+
+    const handleShowModal = () => setShowModal(true);
+    const handleCloseModal = () => setShowModal(false);
 
     return (
         <>
@@ -49,28 +69,51 @@ export const MainMenu = () => {
                         onChange={e => setAction(e)}
                     >
                         <ToggleButton 
-                            id="tbg-radio-select" 
+                            id="tbg-radio-select"
+                            title="Select building"
                             value={Action.Select} 
                             variant="dark"
                         >
                             <HandIndexFill color="green"/>
                         </ToggleButton>
                         <ToggleButton 
-                            id="tbg-radio-delete" 
-                            value={Action.Delete} 
+                            id="tbg-radio-delete"
+                            title="Delete building"
+                            value={Action.Delete}
                             variant="dark"
                         >
                             <EraserFill color="red"/>
                         </ToggleButton>
                     </ToggleButtonGroup>
                     <ButtonGroup>
-                        <Button variant="dark">
+                        <Button 
+                            variant="dark" 
+                            size="lg"
+                            title="New Layout"
+                            onClick={handleShowModal}
+                        >
+                            <FilePlus />
+                        </Button>
+                        <Button 
+                            variant="dark" 
+                            size="lg"
+                            title="Import existing JSON"
+                        >
                             <FileEarmarkArrowUp />
                         </Button>
-                        <Button variant="dark" onClick={saveAsSVG}>
+                        <Button 
+                            variant="dark" 
+                            size="lg"
+                            title="Export as JSON"
+                            onClick={saveAsJSON}>
                             <FileEarmarkArrowDown />
                         </Button>
-                        <Button variant="dark" onClick={saveAsPNG}>
+                        <Button 
+                            variant="dark" 
+                            size="lg"
+                            title="Export as PNG"
+                            onClick={saveAsPNG}
+                        >
                             <FiletypePng />
                         </Button>
                     </ButtonGroup>
@@ -105,10 +148,16 @@ export const MainMenu = () => {
                 })}
             </Navbar>
             <Editor
-                width={30}
-                height={30}
+                width={width}
+                height={height}
                 action={action}
                 buildingName={building}
+            />
+            <NewLayoutModal 
+                showState={showModal}
+                hide={handleCloseModal}
+                save={setBoardSize}
+                getCurrent={getCurrentBoardSize}
             />
         </>
     );

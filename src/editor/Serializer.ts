@@ -12,7 +12,7 @@ const save = (name: string, blob: Blob) => {
     a.remove();
 };
 
-export const saveAsSVG = async () => {
+export const saveAsJSON = async () => {
     const svg = SnapCanvas.GetCurrentSVG();
     const uses = svg.find("use.placed");
     const json = uses.map(e => {
