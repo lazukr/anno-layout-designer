@@ -32,8 +32,8 @@ export const Editor = ({
     useEffect(() => {
         setCanvas(new SnapCanvas({
             id: "#svg",
-            width: 30,
-            height: 30,
+            width: width,
+            height: height,
             highlighter: getHightlighter,
         }));
     }, [width, height]);

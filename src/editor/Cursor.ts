@@ -41,6 +41,7 @@ export class Cursor {
         this.isRotated = false;
         this.isSelectDeleteMode = true;
         this.getHighlight = getHighlight;
+        this.destroy();
 
         switch (Cursor.action) {
             case Action.Select:
@@ -149,7 +150,7 @@ export class Cursor {
     }
 
     elementMouseUp(element?: Use) {
-        const cur = element?.clone();
+        const cur = element?.clone();        
         cur?.insertBefore(this.element!);
         cur?.attr({
             opacity: "",

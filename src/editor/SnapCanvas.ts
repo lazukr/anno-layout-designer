@@ -52,7 +52,6 @@ export class SnapCanvas {
     }
 
     setCursor(action: Action, buildingName: string) {
-        this.cursor?.destroy();
         this.cursor = new Cursor({
             svg: this.svg,
             action: action,
