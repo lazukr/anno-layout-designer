@@ -57,8 +57,7 @@ const createBuilding = (svg: Svg, building: SVGBuilding, gridSize: number, rotat
     const centerY = trueHeight / 2 - squareSize / 2;
     
     const background = svg
-        .rect(trueWidth * gridSize - 0.5, trueHeight * gridSize - 0.5)
-        .move(0.25, 0.25)
+        .rect(trueWidth * gridSize, trueHeight * gridSize)
         .attr({
             fill: colour,
         });
@@ -66,7 +65,10 @@ const createBuilding = (svg: Svg, building: SVGBuilding, gridSize: number, rotat
     const sprite = svg
         .image(Path.join(process.env.PUBLIC_URL, building.imagePath))
         .size(squareSize * gridSize, squareSize * gridSize)
-        .move(centerX * gridSize, centerY * gridSize);
+        .move(centerX * gridSize, centerY * gridSize)
+        .attr({
+            id: rotated ? `image_${id}_rotated` : `image_${id}`, 
+        });
 
     const model = svg
         .defs()
@@ -75,6 +77,8 @@ const createBuilding = (svg: Svg, building: SVGBuilding, gridSize: number, rotat
         .add(sprite)
         .attr({
             id: rotated ? `${id}_rotated` : id,
+            width: trueWidth * gridSize,
+            height: trueWidth * gridSize,
         });
 
     model.defs();
