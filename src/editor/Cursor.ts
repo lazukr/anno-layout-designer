@@ -69,7 +69,8 @@ export class Cursor {
         });
 
         this.positionTracker.attachMouseMove(this.element, this.gridSize);
-        this.svg.mouseup(this.getElementMouseUp());
+        this.positionTracker.attachUseDrag(this.element, this.gridSize);
+        this.svg.mouseup(this.getElementMouseUp(this.element));
     }
 
     rotate() {
@@ -122,20 +123,46 @@ export class Cursor {
 
         this.positionTracker.attachMouseMove(this.element, this.gridSize);        
         this.svg.mouseup(() => {
-            this.elementMouseUp(this.element);
+            this.elementMouseUp(this.element!);
             this.isSelectDeleteMode = true;
             this.actionSelect();
         });
     }
 
-    getElementMouseUp() {
+    getElementMouseUp(use: Use) {
+
+        const {
+            width: elemWidth,
+            height: elemHeight,
+        } = use.bbox();
+
         return (event: MouseEvent) => {
+
             if (event.ctrlKey) {
                 this.rotate();
+                return;
             }
-            else {
-                const element = this.element;
-                return this.elementMouseUp(element);
+        
+            const createRect = this.positionTracker.getCreateRect();
+
+            if (createRect === undefined) {
+                use.show();
+                Cursor.createElement(use, this.getHighlight);
+            }
+            
+            const {
+                x,
+                y,
+                width,
+                height,
+            } = createRect!.bbox();
+
+            use.show();
+            for (let i = x; i < width + x; i += elemWidth) {
+                for (let j = y; j < height + y; j += elemHeight) {
+                    use.move(i, j);
+                    Cursor.createElement(use, this.getHighlight);
+                }
             }
         };
     }
@@ -149,21 +176,25 @@ export class Cursor {
         }
     }
 
-    elementMouseUp(element?: Use) {
-        const cur = element?.clone();        
-        cur?.insertBefore(this.element!);
+    elementMouseUp(element: Use) {
+        Cursor.createElement(element, this.getHighlight);
+    }
+
+    static createElement(element: Use, highlighter: () => string) {
+        const cur = element.clone();        
+        cur?.insertBefore(element);
         cur?.attr({
             opacity: "",
         });
         cur?.addClass("placed");
         cur?.on("mouseover", () => {
             cur.toggleClass("highlight");
-            cur.toggleClass(this.getHighlight());
+            cur.toggleClass(highlighter());
         });
 
         cur?.on("mouseout", () => {
             cur.removeClass("highlight");
-            cur.removeClass(this.getHighlight());
+            cur.removeClass(highlighter());
         });
     }
 }

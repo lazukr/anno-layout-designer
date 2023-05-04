@@ -1683,7 +1683,14 @@
     magic-string "^0.25.0"
     string.prototype.matchall "^4.0.6"
 
-"@svgdotjs/svg.js@^3.1.2":
+"@svgdotjs/svg.draggable.js@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@svgdotjs/svg.draggable.js/-/svg.draggable.js-3.0.3.tgz#f8d1cf46dac9df440106e5fc940855f05897e274"
+  integrity sha512-gvktGsIe/hhU3hX7VJaB8maOV3dKLwQHtjUJN+B/4EahPBI8QWPLt3uuCUeP7sRujaOtrckZxLFhZUeQ5nK4Qw==
+  dependencies:
+    "@svgdotjs/svg.js" "^3.0.16"
+
+"@svgdotjs/svg.js@^3.0.16", "@svgdotjs/svg.js@^3.1.2":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@svgdotjs/svg.js/-/svg.js-3.1.2.tgz#acd62ebc5a6ef5b3a70e4a3912ce643a150c56e7"
   integrity sha512-0ZCWTiuRjCXT2SUoVDiu+8DLuRQlkxZbO680Y2QkV7jNsULzJajrx6A3MxA/IBQg6UGV5csgPZ8w7U57hZSK+A==
