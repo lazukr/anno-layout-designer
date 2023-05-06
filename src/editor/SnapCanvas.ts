@@ -13,14 +13,14 @@ interface SnapCanvasProps {
     highlighter: () => string;
 };
 
-
 export class SnapCanvas {
     static id: string;
+    static highlighter: () => string;
+    private static instance: SnapCanvas;
     private svg: Svg;
     private cursor?: Cursor;
     private positionTracker: PositionTracker;
     private gridSize: number;
-    private highlighter: () => string;
     
     constructor({
         id,
@@ -29,18 +29,20 @@ export class SnapCanvas {
         highlighter,
     }: SnapCanvasProps) {
         SnapCanvas.id = id;
+        SnapCanvas.highlighter = highlighter;
+        SnapCanvas.instance = this;
         this.gridSize = GRID_SIZE;
-        this.highlighter = highlighter;
+        this.svg = SVG(id) as Svg;
+        this.setBoard(width, height);
+        this.positionTracker = new PositionTracker(this.svg);  
+    }
 
+    setBoard(width: number, height: number) {
         const realWidth = this.gridSize * width;
         const realHeight = this.gridSize * height;
 
-        this.svg = SVG(id)
-            .size(realWidth, realHeight) as Svg;
-
+        this.svg.size(realWidth, realHeight);
         this.svg.clear();
-        this.positionTracker = new PositionTracker(this.svg);
-
         createAllBuildings(this.svg, GRID_SIZE);
 
         new Board({
@@ -59,11 +61,15 @@ export class SnapCanvas {
             positionTracker: this.positionTracker,
             buildingName: buildingName,
             gridSize: this.gridSize,
-            getHighlight: this.highlighter,
+            getHighlight: SnapCanvas.highlighter,
         });
     }
 
     static GetCurrentSVG() {
         return SVG(SnapCanvas.id) as Svg;
+    }
+
+    static GetInstance() {
+        return SnapCanvas.instance;
     }
 }
