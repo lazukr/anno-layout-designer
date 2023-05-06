@@ -13,11 +13,9 @@ import {
     HandIndexFill, 
     FileEarmarkArrowDown, 
     FileEarmarkArrowUp,
-    FiletypePng,
     FilePlus,
  } from "react-bootstrap-icons";
-
-import { saveAsPNG, saveAsJSONBase64 } from "../editor/Serializer";
+ 
 import { Editor } from "./Editor";
 import { Action } from "../editor/Cursor";
 import { getBuildingSelections, getCitizenSelections } from "../data/Series";
