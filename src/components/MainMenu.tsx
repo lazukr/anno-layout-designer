@@ -20,8 +20,6 @@ import { Editor } from "./Editor";
 import { Action } from "../editor/Cursor";
 import { getBuildingSelections, getCitizenSelections } from "../data/Series";
 import { NewLayoutModal } from "./NewLayoutModal";
-import { ExportModal } from "./ExportModal";
-import { ImportModal } from "./ImportModal";
 
 const DEFAULT_GAME = "1800";
 const DEFAULT_CITIZEN = "1800_farmer";
@@ -45,18 +43,10 @@ export const MainMenu = () => {
         return [width, height];
     };
 
-    const [newLayoutModal, setNewLayoutModal] = useState(false);
-    const [importModal, setImportModal] = useState(false);
-    const [exportModal, setExportModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
-    const showNewLayoutModal = () => setNewLayoutModal(true);
-    const closeNewLayoutModal = () => setNewLayoutModal(false);
-
-    const showImportModal = () => setImportModal(true);
-    const closeImportModal = () => setImportModal(false);
-
-    const showExportModal = () => setExportModal(true);
-    const closeExportModal = () => setExportModal(false);
+    const handleShowModal = () => setShowModal(true);
+    const handleCloseModal = () => setShowModal(false);
 
     return (
         <>
@@ -97,24 +87,31 @@ export const MainMenu = () => {
                             variant="dark" 
                             size="lg"
                             title="New Layout"
-                            onClick={showNewLayoutModal}
+                            onClick={handleShowModal}
                         >
                             <FilePlus />
                         </Button>
                         <Button 
                             variant="dark" 
                             size="lg"
-                            title="Import Existing Layout"
-                            onClick={showImportModal}
+                            title="Import existing JSON"
                         >
                             <FileEarmarkArrowUp />
                         </Button>
                         <Button 
                             variant="dark" 
                             size="lg"
-                            title="Export Layout"
-                            onClick={showExportModal}>
+                            title="Export as JSON"
+                            onClick={saveAsJSON}>
                             <FileEarmarkArrowDown />
+                        </Button>
+                        <Button 
+                            variant="dark" 
+                            size="lg"
+                            title="Export as PNG"
+                            onClick={saveAsPNG}
+                        >
+                            <FiletypePng />
                         </Button>
                     </ButtonGroup>
                     {getCitizenSelections({
@@ -154,18 +151,10 @@ export const MainMenu = () => {
                 buildingName={building}
             />
             <NewLayoutModal 
-                showState={newLayoutModal}
-                hide={closeNewLayoutModal}
+                showState={showModal}
+                hide={handleCloseModal}
                 save={setBoardSize}
                 getCurrent={getCurrentBoardSize}
-            />
-            <ExportModal
-                showState={exportModal}
-                hide={closeExportModal}
-            />
-            <ImportModal
-                showState={importModal}
-                hide={closeImportModal}
             />
         </>
     );

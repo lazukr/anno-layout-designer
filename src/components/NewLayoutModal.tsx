@@ -27,6 +27,7 @@ export const NewLayoutModal = ({
         setHeight(curHeight);
     };
 
+
     const [width, setWidth] = useState(curWidth);
     const [height, setHeight] = useState(curHeight);
 
