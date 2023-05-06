@@ -167,24 +167,15 @@ export class Cursor {
         };
     }
 
-    getHighlightColour() {
-        if (Cursor.action === Action.Delete) {
-            return "delete";
-        }
-        else {
-            return "select";
-        }
-    }
-
     elementMouseUp(element: Use) {
         Cursor.createElement(element, this.getHighlight);
     }
 
     static createElement(element: Use, highlighter: () => string) {
-        const cur = element.clone();        
+        const cur = element.clone();
         cur?.insertBefore(element);
         cur?.attr({
-            opacity: "",
+            opacity: null,
         });
         cur?.addClass("placed");
         cur?.on("mouseover", () => {
