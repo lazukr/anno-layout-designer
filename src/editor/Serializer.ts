@@ -1,6 +1,6 @@
 import { Element as DotSVGElement, List, Svg, SVG } from "@svgdotjs/svg.js";
 import { Buffer } from "buffer";
-import { GRID_SIZE, SnapCanvas } from "./SnapCanvas";
+import { GRID_SIZE, SvgCanvas } from "./SvgCanvas";
 import { bakeBuildingsToSVG } from "./Building";
 import { Cursor } from "./Cursor";
 
@@ -34,8 +34,8 @@ export const importSerializedBuildings = (serial: SerializedData) => {
         data,
     } = serial;
 
-    const svg = SnapCanvas.GetCurrentSVG();
-    const svgCanvas = SnapCanvas.GetInstance();
+    const svg = SvgCanvas.GetCurrentSVG();
+    const svgCanvas = SvgCanvas.GetInstance();
     svgCanvas.setBoard(width, height);
 
     data.forEach(building => {
@@ -47,13 +47,13 @@ export const importSerializedBuildings = (serial: SerializedData) => {
 
         const use = svg.use(id);
         use.move(x * GRID_SIZE, y * GRID_SIZE);
-        Cursor.createElement(use, SnapCanvas.highlighter);
+        Cursor.createElement(use, SvgCanvas.highlighter);
         use.remove();
     });
 }
 
 export const saveAsJSONBase64 = async () => {
-    const svg = SnapCanvas.GetCurrentSVG();
+    const svg = SvgCanvas.GetCurrentSVG();
     const uses = svg.find("use.placed");
     const json = uses.map(e => {
         return {
@@ -109,7 +109,7 @@ const addRectBorders = (rectList: List<DotSVGElement>) => {
 
 
 export const saveAsPNG = async () => {
-    const svg = SnapCanvas.GetCurrentSVG();
+    const svg = SvgCanvas.GetCurrentSVG();
 
     // can replace with svg.clone(deep: true, assignNewIds: false); in a future version
     const clone = SVG(svg.node.cloneNode(true)) as Svg;
