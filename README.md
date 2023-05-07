@@ -6,17 +6,21 @@
 
 - In the future, may consider other Anno games will be added as well.
 
+Since it is fully client side, you can play around with it here:
+https://lazukr.github.io/anno-layout-designer/
+
 # Features to Add
-- [x] rotating the buildings (uses ctrl right now)
+- [x] rotating the buildings (uses ctrl + click right now)
 - [x] save to png
+- [x] drag tiling
+- [x] drag for roads in lines
+- [x] change size for drawing
 - [x] save to raw file
 - [ ] cache current progress
 - [ ] associate farms to the root building
-- [ ] drag tiling
 - [ ] drag delete
 - [ ] drag select
-- [ ] drag for roads in lines
-- [ ] change size for drawing
+
 # Ambitious Goals
 - Add the previous anno games
 # Credits

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Action } from "../editor/Cursor";
-import { SnapCanvas } from "../editor/SnapCanvas";
+import { SvgCanvas } from "../editor/SvgCanvas";
 import "../styles/editor.scss";
 
 export interface EditorProps {
@@ -16,7 +16,7 @@ export const Editor = ({
     buildingName,
     action,
 }: EditorProps) => {
-    const [canvas, setCanvas] = useState<SnapCanvas>();
+    const [canvas, setCanvas] = useState<SvgCanvas>();
     const actionRef = useRef<Action>(Action.Create);
 
     const getHightlighter = () => {
@@ -30,7 +30,7 @@ export const Editor = ({
     }
 
     useEffect(() => {
-        setCanvas(new SnapCanvas({
+        setCanvas(new SvgCanvas({
             id: "#svg",
             width: width,
             height: height,

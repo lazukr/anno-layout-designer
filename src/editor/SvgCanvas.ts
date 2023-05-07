@@ -6,17 +6,17 @@ import { PositionTracker } from "./PositionTracker";
 
 export const GRID_SIZE = 32;
 
-interface SnapCanvasProps {
+interface SvgCanvasProps {
     id: string;
     width: number;
     height: number;
     highlighter: () => string;
 };
 
-export class SnapCanvas {
+export class SvgCanvas {
     static id: string;
     static highlighter: () => string;
-    private static instance: SnapCanvas;
+    private static instance: SvgCanvas;
     private svg: Svg;
     private cursor?: Cursor;
     private positionTracker: PositionTracker;
@@ -27,10 +27,10 @@ export class SnapCanvas {
         width,
         height,
         highlighter,
-    }: SnapCanvasProps) {
-        SnapCanvas.id = id;
-        SnapCanvas.highlighter = highlighter;
-        SnapCanvas.instance = this;
+    }: SvgCanvasProps) {
+        SvgCanvas.id = id;
+        SvgCanvas.highlighter = highlighter;
+        SvgCanvas.instance = this;
         this.gridSize = GRID_SIZE;
         this.svg = SVG(id) as Svg;
         this.setBoard(width, height);
@@ -61,15 +61,15 @@ export class SnapCanvas {
             positionTracker: this.positionTracker,
             buildingName: buildingName,
             gridSize: this.gridSize,
-            getHighlight: SnapCanvas.highlighter,
+            getHighlight: SvgCanvas.highlighter,
         });
     }
 
     static GetCurrentSVG() {
-        return SVG(SnapCanvas.id) as Svg;
+        return SVG(SvgCanvas.id) as Svg;
     }
 
     static GetInstance() {
-        return SnapCanvas.instance;
+        return SvgCanvas.instance;
     }
 }
