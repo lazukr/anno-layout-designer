@@ -6,6 +6,9 @@
 
 - In the future, may consider other Anno games will be added as well.
 
+Since it is fully client side, you can play around with it here:
+https://lazukr.github.io/anno-layout-designer/
+
 # Features to Add
 - [x] rotating the buildings (uses ctrl + click right now)
 - [x] save to png
