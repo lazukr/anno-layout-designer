@@ -1,4 +1,4 @@
-import { Button, Form, FormGroup, InputGroup } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import React, { useState } from "react";
 
 import { SerializedData, importSerializedBuildings, loadFromJSONBase64 } from "../editor/Serializer";
