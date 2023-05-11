@@ -1,8 +1,9 @@
-import { Button, Form, FormGroup } from "react-bootstrap";
+import { Button, Form, FormGroup, InputGroup } from "react-bootstrap";
 import React, { useState } from "react";
 
 import { SerializedData, importSerializedBuildings, loadFromJSONBase64 } from "../editor/Serializer";
 import { BaseModal, ImportExportModalProps } from "./BaseModal";
+import { Upload } from "react-bootstrap-icons";
 
 
 export const ImportModal = ({
@@ -18,10 +19,10 @@ export const ImportModal = ({
             hide={hide}
             title={"Import Layout"}
             buttonName=""
-            hideButton={true}
+            showButton={false}
             action={() => {}}
         >
-            <FormGroup controlId="import-string">
+            <InputGroup className="mb-3">
                 <Form.Control
                     type="text"
                     onChange={e => {
@@ -36,13 +37,13 @@ export const ImportModal = ({
                     required
                     isInvalid={!valid}
                 />
+                <Button variant="outline-secondary" id="export-png" disabled={!valid}>
+                    <Upload onClick={() => importSerializedBuildings(value!)}/>
+                </Button>
                 <Form.Control.Feedback type="invalid">
                     Invalid import string.
                 </Form.Control.Feedback>
-            </FormGroup>
-            <Button disabled={!valid} onClick={() => importSerializedBuildings(value!)}>
-                Import
-            </Button>
+            </InputGroup>
         </BaseModal>
     );
 };

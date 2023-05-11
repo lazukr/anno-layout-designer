@@ -6,7 +6,7 @@ export interface BaseModalProps {
     children: ReactNode;
     title: string;
     buttonName: string;
-    hideButton: boolean;
+    showButton: boolean;
     hide: () => void;
     action: () => void;
 }
@@ -21,7 +21,7 @@ export const BaseModal = ({
     children,
     title, 
     buttonName,
-    hideButton,
+    showButton,
     hide,
     action,
 }: BaseModalProps) => {
@@ -33,14 +33,14 @@ export const BaseModal = ({
         <Modal.Body>
             {children}
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" hidden={hideButton} onClick={() => {
+        {showButton && <Modal.Footer>
+          <Button variant="primary" onClick={() => {
             action();
             hide();
           }}>
             {buttonName}
           </Button>
-        </Modal.Footer>
+        </Modal.Footer>}
       </Modal>
     );
 }
