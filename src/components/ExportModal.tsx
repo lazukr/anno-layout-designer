@@ -23,7 +23,7 @@ export const ExportModal = ({
             hide={hide}
             title={"Export Layout"}
             buttonName=""
-            hideButton={true}
+            showButton={false}
             action={() => {}}
         >
             <InputGroup className="mb-3">

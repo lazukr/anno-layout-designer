@@ -1,8 +1,7 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
+import { BaseModal } from "./BaseModal";
 
 export interface NewLayoutModalProps {
     showState: boolean;
@@ -31,16 +30,20 @@ export const NewLayoutModal = ({
     const [height, setHeight] = useState(curHeight);
 
     return (
-        <Modal show={showState} onHide={() => {
-            hide();
-            reset();
-        }}>
-        <Modal.Header closeButton>
-            <Modal.Title>
-                New Layout
-            </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <BaseModal
+            showState={showState}
+            hide={() => {
+                hide();
+                reset();
+            }}
+            title={"New Layout"}
+            buttonName="Create New"
+            showButton={true}
+            action={() => {
+                hide();
+                save(width, height);
+            }}
+        >
             Set layout size between {MIN} - {MAX}.
             <InputGroup className="mb-3">
                 <InputGroup.Text id="basic-addon1">Width</InputGroup.Text>
@@ -78,21 +81,6 @@ export const NewLayoutModal = ({
                     Value can only be between {MIN} - {MAX}.
                 </Form.Control.Feedback>
             </InputGroup>
-        </Modal.Body>
-        <Modal.Footer>
-        <Button variant="secondary" onClick={() => {
-            hide();
-            reset();
-        }}>
-            Close
-        </Button>
-        <Button variant="primary" onClick={() => {
-            hide();
-            save(width, height);
-        }}>
-            Save Changes
-        </Button>
-        </Modal.Footer>
-    </Modal>
+        </BaseModal>
     );
 };
