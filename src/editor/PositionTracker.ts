@@ -1,9 +1,83 @@
-import { Svg, Use } from "@svgdotjs/svg.js";
+import { Svg } from "@svgdotjs/svg.js";
 import "@svgdotjs/svg.draggable.js";
-import { Rect } from "@svgdotjs/svg.js";
+import { Brush } from "./Brush";
+
+
 export class PositionTracker {
     private svg: Svg;
-    private svgElement: SVGGraphicsElement;
+    private svgElement: SVGSVGElement;
+    private gridSize: number;
+    private x: number;
+    private y: number;
+
+    constructor(svg: Svg, gridSize: number) {
+        this.x = 0;
+        this.y = 0;
+        this.svg = svg;
+        this.svgElement = svg.node;
+        this.gridSize = gridSize;
+    }
+
+    attachMouseMove(brush: Brush) {
+        this.svg.mousemove(null);
+
+        const move = () => {
+            const gridX = this.x - (this.x % this.gridSize);
+            const gridY = this.y - (this.y % this.gridSize);
+            brush.move(gridX, gridY);
+        };
+
+        move();
+        this.svg.mousemove((event: MouseEvent) => {
+            const bound = this.svgElement.getBoundingClientRect();
+            this.x = event.clientX - bound.left;
+            this.y = event.clientY - bound.top;
+            move();
+        });
+    }
+
+    attachCreateDrag(brush: Brush) {
+        const rect = brush.rect;
+        rect.draggable();
+        
+        const {
+            width,
+            height,
+        } = rect.bbox();
+        
+        rect.on('dragstart', e => {
+            brush.frozen = true;
+        });
+
+        rect.on('dragmove', (e) => {
+            e.preventDefault();
+            const ce = e as CustomEvent;
+            const {x, y} = ce.detail.box;
+            const widthX = x - (rect.x() as number);
+            const widthY = y - (rect.y() as number);
+            rect.size(width + Math.max(widthX - (widthX % width), 0), height + Math.max(widthY - (widthY % height), 0));
+          });
+
+        rect.on('dragend', (e) => {
+            e.preventDefault();
+            brush.frozen = false;
+            rect.size(width, height);
+        });
+    }
+
+    attachMouseUp(brush: Brush) {
+        this.svg.mouseup(null);
+        this.svg.mouseup(() => {
+            brush.mouseUpAction(this.svg);
+        });
+    }
+}
+
+
+/*
+export class PositionTracker {
+    private svg: Svg;
+    private svgElement: SVGSVGElement;
     private createRect?: Rect;
     private frozen: boolean;
 
@@ -12,15 +86,13 @@ export class PositionTracker {
 
     constructor(svg: Svg) {
         this.svg = svg;
-        this.svgElement = document.querySelector(`#${this.svg.node.id}`) as SVGGraphicsElement;
+        this.svgElement = this.svg.node;
         this.gridX = 0;
         this.gridY = 0;
         this.frozen = false;
     }
 
     attachMouseMove(use: Use, gridSize: number) {
-        // move it to current location
-        use.move(this.gridX * gridSize, this.gridY * gridSize);
 
         const doMove = () => {
             if (this.frozen) {
@@ -29,6 +101,7 @@ export class PositionTracker {
             use.move(this.gridX * gridSize, this.gridY * gridSize);
         }
 
+        // move it to current location
         doMove();
 
         // attach listener for future movement
@@ -101,3 +174,4 @@ export class PositionTracker {
         return this.createRect;
     }
 }
+*/

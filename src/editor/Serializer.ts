@@ -2,7 +2,7 @@ import { Element as DotSVGElement, List, Svg, SVG } from "@svgdotjs/svg.js";
 import { Buffer } from "buffer";
 import { GRID_SIZE, SvgCanvas } from "./SvgCanvas";
 import { bakeBuildingsToSVG } from "./Building";
-import { Cursor } from "./Cursor";
+//import { Cursor } from "./Cursor.txt";
 
 const save = (name: string, blob: Blob) => {
     const url = window.URL.createObjectURL(blob);
@@ -47,7 +47,7 @@ export const importSerializedBuildings = (serial: SerializedData) => {
 
         const use = svg.use(id);
         use.move(x * GRID_SIZE, y * GRID_SIZE);
-        Cursor.createElement(use, SvgCanvas.highlighter);
+        //Cursor.createElement(use, SvgCanvas.highlighter);
         use.remove();
     });
 }

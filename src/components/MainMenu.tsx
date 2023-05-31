@@ -17,7 +17,7 @@ import {
  } from "react-bootstrap-icons";
  
 import { Editor } from "./Editor";
-import { Action } from "../editor/Cursor";
+import { Action } from "../editor/action";
 import { getBuildingSelections, getCitizenSelections } from "../data/Series";
 import { NewLayoutModal } from "./NewLayoutModal";
 import { ExportModal } from "./ExportModal";
