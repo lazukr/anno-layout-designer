@@ -51,11 +51,21 @@ const overlaps = (rect: Rect, element: DotSVGElement): boolean => {
         y,
         width,
         height,
+    } = element.bbox();
+
+    const {
+        x: rx,
+        y: ry,
+        width: rwidth,
+        height: rheight,
     } = rect.bbox();
 
-    // offset to ensure we don't delete both items if they're on the line
-    return element.inside(x + 1, y + 1) ||
-        element.inside(x + width - 1, y + 1) ||
-        element.inside(x + 1, y + height - 1) ||
-        element.inside(x + width - 1, y + height - 1);
+    // check if it won't collide and flip it
+    const notCollide = 
+        rx + 1 > x + width ||
+        rx + rwidth - 1 < x ||
+        ry + 1 > y + height ||
+        ry + rheight - 1 < y;
+
+    return !notCollide;
 };
