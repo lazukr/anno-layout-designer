@@ -1,17 +1,17 @@
-import { Use } from "@svgdotjs/svg.js";
 import { Rect } from "@svgdotjs/svg.js";
-import { Brush } from "./Brush";
 import { Svg } from "@svgdotjs/svg.js";
 import { Pattern } from "@svgdotjs/svg.js";
+import { Brush, DraggableBrush } from "./Brush";
 import { BrushData } from "./BrushData";
+import { Cursor } from "./Cursor";
 
-export class CreateBrush implements Brush {
+export class CreateBrush implements Brush, DraggableBrush {
     rect: Rect;
     pattern: Pattern;
     frozen: boolean;
     buildingName: string;
 
-    constructor(svg: Svg, buildingName: string) {
+    constructor(svg: Svg, cursor: Cursor, buildingName: string) {
         this.frozen = false;
         this.buildingName = buildingName;
 
@@ -32,6 +32,11 @@ export class CreateBrush implements Brush {
         });
         this.rect.fill(this.pattern);
         use.remove();
+
+
+        cursor.attachMouseMove(this);
+        cursor.attachMouseUp(this);
+        cursor.attachCreateDrag(this);
     }
 
     move(x: number, y: number) {
@@ -44,11 +49,13 @@ export class CreateBrush implements Brush {
 
     mouseUpAction(svg: Svg) {
         const brushData = this.getBrushData();
+    
         for (const item of brushData) {
             const use = svg.use(item.buildingName).before(this.rect);
             use.addClass("placed");
             use.move(item.x, item.y);
         }
+        return [];
     }
 
     getBrushData(): BrushData[] {

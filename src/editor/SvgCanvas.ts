@@ -2,7 +2,7 @@ import { SVG, Svg } from "@svgdotjs/svg.js";
 import { Board } from "./Board";
 //import { Action, Cursor } from "./Cursor";
 import { createAllBuildings } from "./Building";
-import { PositionTracker } from "./PositionTracker";
+import { Cursor } from "./Cursor";
 import { Action } from "./action";
 import { Brush } from "./Brush";
 
@@ -20,7 +20,7 @@ export class SvgCanvas {
     static highlighter: () => string;
     private static instance: SvgCanvas;
     private svg: Svg;
-    private positionTracker: PositionTracker;
+    private cursor: Cursor;
     private gridSize: number;
     
     constructor({
@@ -34,7 +34,7 @@ export class SvgCanvas {
         SvgCanvas.instance = this;
         this.gridSize = GRID_SIZE;
         this.svg = SVG(id) as Svg;
-        this.positionTracker = new PositionTracker(this.svg, this.gridSize);
+        this.cursor = new Cursor(this.svg, this.gridSize);
         this.setBoard(width, height);
     }
 
@@ -67,7 +67,7 @@ export class SvgCanvas {
         this.cursor = new Cursor({
             svg: this.svg,
             action: action,
-            positionTracker: this.positionTracker,
+            cursor: this.cursor,
             buildingName: buildingName,
             gridSize: this.gridSize,
             getHighlight: SvgCanvas.highlighter,
