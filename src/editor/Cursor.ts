@@ -44,18 +44,43 @@ export class Cursor {
             width,
             height,
         } = rect.bbox();
+
+        const fixedEnd = {
+            x: 0,
+            y: 0,
+        };
         
         rect.on('dragstart', e => {
             brush.frozen = true;
+            fixedEnd.x = (rect.x() as number) + width;
+            fixedEnd.y = (rect.y() as number) + height;
         });
 
         rect.on('dragmove', (e) => {
             e.preventDefault();
             const ce = e as CustomEvent;
             const {x, y} = ce.detail.box;
-            const widthX = x - (rect.x() as number);
-            const heightY = y - (rect.y() as number);
-            rect.size(width + Math.max(widthX - (widthX % width), 0), height + Math.max(heightY - (heightY % height), 0));
+            const rectX = rect.x() as number;
+            const rectY = rect.y() as number;
+
+            const dx = x - rectX;
+            const dy = y - rectY;
+
+            const deltaGridX = dx - (dx % width);
+            const deltaGridY = dy - (dy % height);
+            
+            if (dx <= 0 || dy <= 0) {
+                const startX = rectX + deltaGridX;
+                const startY = rectY + deltaGridY;
+                rect.move(startX, startY);
+                // using max to get rid of potential negative values
+                // although it doesn't "break" the size, shoulnn't have it error every time
+                // there's probably a better way to do this
+                rect.size(Math.max(fixedEnd.x - startX, width), Math.max(fixedEnd.y - startY, height));
+            }
+            else {
+                rect.size(width + deltaGridX, height + deltaGridY);
+            }
           });
 
         rect.on('dragend', (e) => {

@@ -1,11 +1,6 @@
 import { Rect } from "@svgdotjs/svg.js";
 import { Svg } from "@svgdotjs/svg.js";
 import { Element as DotSVGElement } from "@svgdotjs/svg.js";
-import { Action } from "./action";
-import { CreateBrush } from "./CreateBrush";
-import { DeleteBrush } from "./DeleteBrush";
-import { SelectBrush } from "./SelectBrush";
-import { Cursor } from "./Cursor";
 
 export interface DraggableBrush {
     rect: Rect;
