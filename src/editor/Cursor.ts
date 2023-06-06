@@ -68,19 +68,28 @@ export class Cursor {
 
             const deltaGridX = dx - (dx % width);
             const deltaGridY = dy - (dy % height);
-            
-            if (dx <= 0 || dy <= 0) {
+
+            let sizeX = width + deltaGridX;
+            let sizeY = height + deltaGridY;
+            if (dx <= 0) {
                 const startX = rectX + deltaGridX;
+                rect.attr({
+                    x: startX,
+                });
+
+                sizeX = Math.max(fixedEnd.x - startX, width);
+            }
+            
+            if (dy <= 0) {
                 const startY = rectY + deltaGridY;
-                rect.move(startX, startY);
-                // using max to get rid of potential negative values
-                // although it doesn't "break" the size, shoulnn't have it error every time
-                // there's probably a better way to do this
-                rect.size(Math.max(fixedEnd.x - startX, width), Math.max(fixedEnd.y - startY, height));
+                rect.attr({
+                    y: startY,
+                });
+                sizeY = Math.max(fixedEnd.y - startY, height);
             }
-            else {
-                rect.size(width + deltaGridX, height + deltaGridY);
-            }
+         
+            rect.size(sizeX, sizeY);
+            
           });
 
         rect.on('dragend', (e) => {
