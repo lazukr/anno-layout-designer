@@ -1,8 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { Action } from "../editor/Cursor";
+import { Action } from "../editor/action";
 import { SvgCanvas } from "../editor/SvgCanvas";
 import "../styles/editor.scss";
+import { Svg } from "@svgdotjs/svg.js";
+import { SVG } from "@svgdotjs/svg.js";
+import { Board } from "../editor/Board";
+import { createAllBuildings } from "../editor/Building";
+import { Cursor } from "../editor/Cursor";
+import { Brush } from "../editor/Brush";
+import { CreateBrush } from "../editor/CreateBrush";
+import { DeleteBrush } from "../editor/DeleteBrush";
+import { SelectBrush } from "../editor/SelectBrush";
 
+const GRID_SIZE = 32;
 export interface EditorProps {
     width: number;
     height: number;
@@ -16,7 +26,9 @@ export const Editor = ({
     buildingName,
     action,
 }: EditorProps) => {
-    const [canvas, setCanvas] = useState<SvgCanvas>();
+    const svgRef = useRef<SVGSVGElement>(null);
+    const cursor = useRef<Cursor | null>(null);
+    const brushRef = useRef<Brush | null>(null);
     const actionRef = useRef<Action>(Action.Create);
 
     const getHightlighter = () => {
@@ -30,23 +42,46 @@ export const Editor = ({
     }
 
     useEffect(() => {
-        setCanvas(new SvgCanvas({
-            id: "#svg",
+        const svg = SVG(svgRef.current) as Svg;
+        const realWidth = width * GRID_SIZE;
+        const realHeight = height * GRID_SIZE;
+
+        svg.size(realWidth, realHeight);
+        svg.clear();
+        createAllBuildings(svg, GRID_SIZE);
+
+        new Board({
+            svg: SVG(svgRef.current) as Svg,
             width: width,
             height: height,
-            highlighter: getHightlighter,
-        }));
+            gridSize: GRID_SIZE,
+        })
     }, [width, height]);
 
     useEffect(() => {
-        actionRef.current = action;
-    }, [action]);
+        const svg = SVG(svgRef.current) as Svg;
+        cursor.current = new Cursor(svg, GRID_SIZE);
+    }, []);
 
     useEffect(() => {
-        canvas?.setCursor(action, buildingName);
-    }, [canvas, action, buildingName]);
+        const svg = SVG(svgRef.current) as Svg;
+        brushRef.current?.remove();
+        switch (action) {
+            case Action.Create:
+                brushRef.current = new CreateBrush(svg, cursor.current!, buildingName);
+                break;
+            case Action.Delete:
+                brushRef.current = new DeleteBrush(svg, cursor.current!);
+                break;
+            case Action.Select:
+                brushRef.current = new SelectBrush(svg, cursor.current!);
+                break;
+        }
+    }, [action, buildingName]);
+
+
 
     return (
-        <svg id="svg"></svg>
+        <svg id="svg" ref={svgRef}></svg>
     );
 };

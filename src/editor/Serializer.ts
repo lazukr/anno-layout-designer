@@ -2,7 +2,8 @@ import { Element as DotSVGElement, List, Svg, SVG } from "@svgdotjs/svg.js";
 import { Buffer } from "buffer";
 import { GRID_SIZE, SvgCanvas } from "./SvgCanvas";
 import { bakeBuildingsToSVG } from "./Building";
-import { Cursor } from "./Cursor";
+import { BrushData } from "./BrushData";
+import { CreateBrush } from "./CreateBrush";
 
 const save = (name: string, blob: Blob) => {
     const url = window.URL.createObjectURL(blob);
@@ -14,16 +15,10 @@ const save = (name: string, blob: Blob) => {
     a.remove();
 };
 
-export interface SerializedBuilding {
-    x: number;
-    y: number;
-    id: string;
-};
-
 export interface SerializedData {
     width: number;
     height: number;
-    data: SerializedBuilding[];
+    data: BrushData[];
 };
 
 export const importSerializedBuildings = (serial: SerializedData) => {
@@ -39,16 +34,7 @@ export const importSerializedBuildings = (serial: SerializedData) => {
     svgCanvas.setBoard(width, height);
 
     data.forEach(building => {
-        const {
-            x,
-            y,
-            id,
-        } = building;
-
-        const use = svg.use(id);
-        use.move(x * GRID_SIZE, y * GRID_SIZE);
-        Cursor.createElement(use, SvgCanvas.highlighter);
-        use.remove();
+        CreateBrush.createBuilding(svg, building);
     });
 }
 
@@ -59,8 +45,8 @@ export const saveAsJSONBase64 = async () => {
         return {
             x: (e.x() as number) / GRID_SIZE,
             y: (e.y() as number) / GRID_SIZE,
-            id: (e.attr("href") as string).replace("#", ""),
-        } as SerializedBuilding;
+            buildingName: (e.attr("href") as string).replace("#", ""),
+        } as BrushData;
     });
 
     const save = {

@@ -1,191 +1,108 @@
-import { Svg, Use } from "@svgdotjs/svg.js";
-import { PositionTracker } from "./PositionTracker";
-interface CursorProps {
-    svg: Svg;
-    action: Action;
-    positionTracker: PositionTracker;
-    buildingName: string;
-    gridSize: number;
-    getHighlight: () => string;
-}
+import { Svg } from "@svgdotjs/svg.js";
+import "@svgdotjs/svg.draggable.js";
+import { Brush, DraggableBrush } from "./Brush";
 
-export enum Action {
-    Create,
-    Select,
-    Delete,
-}
+
 export class Cursor {
-    static action: Action;
-    svg: Svg;
-    positionTracker: PositionTracker;
-    buildingName: string;
-    element?: Use;
-    gridSize: number;
-    isSelectDeleteMode: boolean;
-    isRotated: boolean;
-    getHighlight: () => string;
-    
-    constructor({
-        svg,
-        action,
-        positionTracker,
-        buildingName,
-        gridSize,
-        getHighlight,
-    }: CursorProps) {
+    private svg: Svg;
+    private svgElement: SVGSVGElement;
+    private gridSize: number;
+    private x: number;
+    private y: number;
+
+    constructor(svg: Svg, gridSize: number) {
+        this.x = 0;
+        this.y = 0;
         this.svg = svg;
-        this.positionTracker = positionTracker;
-        this.buildingName = buildingName;
+        this.svgElement = svg.node;
         this.gridSize = gridSize;
-        Cursor.action = action;
-        this.isRotated = false;
-        this.isSelectDeleteMode = true;
-        this.getHighlight = getHighlight;
-        this.destroy();
-
-        switch (Cursor.action) {
-            case Action.Select:
-                this.actionSelect();
-                break;
-            case Action.Delete:
-                this.actionDelete();
-                break;
-            case Action.Create:
-                this.actionCreate();
-                break;
-        }
     }
 
-    destroy() {
+    attachMouseMove(brush: Brush) {
         this.svg.mousemove(null);
-        this.element?.remove();
-        this.svg.mouseup(null);
-    }
 
-    actionCreate() {
-        this.element = this.svg.use(this.buildingName);
-        this.element.attr({
-            opacity: 0.5,
-        });
+        const move = () => {
+            const gridX = this.x - (this.x % this.gridSize);
+            const gridY = this.y - (this.y % this.gridSize);
+            brush.move(gridX, gridY);
+        };
 
-        this.positionTracker.attachMouseMove(this.element, this.gridSize);
-        this.positionTracker.attachUseDrag(this.element, this.gridSize);
-        this.svg.mouseup(this.getElementMouseUp(this.element));
-    }
-
-    rotate() {
-        if (this.isRotated) {
-            this.buildingName = this.buildingName.replace("_rotated", "");
-        }
-        else {
-            this.buildingName = `${this.buildingName}_rotated`;
-        }
-        this.isRotated = !this.isRotated;
-        this.destroy();
-        this.actionCreate();
-    }
-
-    actionDelete() {
-        this.svg.mouseup((event: MouseEvent) => {
-            const elem = this.positionTracker.getUseElementFromMouseEvent(event);
-            elem?.remove();
+        move();
+        this.svg.mousemove((event: MouseEvent) => {
+            const bound = this.svgElement.getBoundingClientRect();
+            this.x = event.clientX - bound.left;
+            this.y = event.clientY - bound.top;
+            move();
         });
     }
 
-    actionSelect() {
-        this.element?.remove();
-        this.svg.mouseup(null);
-        if (this.isSelectDeleteMode) {
-            this.actionSelectDelete();
-        }else {
-            this.actionSelectCreate();
-        }
-    }
-
-    actionSelectDelete() {
-        this.svg.mouseup((event: MouseEvent) => {
-            const elem = this.positionTracker.getUseElementFromMouseEvent(event);
-
-            if (elem !== null) {
-                this.buildingName = elem.attr("href").replace("#", "");
-                elem.remove();
-                this.isSelectDeleteMode = false;
-                this.actionSelect();
-            }
-        });
-    }
-
-    actionSelectCreate() {
-        this.element = this.svg.use(this.buildingName);
-        this.element.attr({
-            opacity: 0.5,
-        });
-
-        this.positionTracker.attachMouseMove(this.element, this.gridSize);        
-        this.svg.mouseup(() => {
-            this.elementMouseUp(this.element!);
-            this.isSelectDeleteMode = true;
-            this.actionSelect();
-        });
-    }
-
-    getElementMouseUp(use: Use) {
-
-        const {
-            width: elemWidth,
-            height: elemHeight,
-        } = use.bbox();
-
-        return (event: MouseEvent) => {
-
-            if (event.ctrlKey) {
-                this.rotate();
-                return;
-            }
+    attachCreateDrag(brush: DraggableBrush) {
+        const rect = brush.rect;
+        rect.draggable();
         
-            const createRect = this.positionTracker.getCreateRect();
+        const {
+            width,
+            height,
+        } = rect.bbox();
 
-            if (createRect === undefined) {
-                use.show();
-                Cursor.createElement(use, this.getHighlight);
+        const fixedEnd = {
+            x: 0,
+            y: 0,
+        };
+        
+        rect.on('dragstart', e => {
+            brush.frozen = true;
+            fixedEnd.x = (rect.x() as number) + width;
+            fixedEnd.y = (rect.y() as number) + height;
+        });
+
+        rect.on('dragmove', (e) => {
+            e.preventDefault();
+            const ce = e as CustomEvent;
+            const {x, y} = ce.detail.box;
+            const rectX = rect.x() as number;
+            const rectY = rect.y() as number;
+
+            const dx = x - rectX;
+            const dy = y - rectY;
+
+            const deltaGridX = dx - (dx % width);
+            const deltaGridY = dy - (dy % height);
+
+            let sizeX = width + deltaGridX;
+            let sizeY = height + deltaGridY;
+            if (dx <= 0) {
+                const startX = rectX + deltaGridX;
+                rect.attr({
+                    x: startX,
+                });
+
+                sizeX = Math.max(fixedEnd.x - startX, width);
             }
             
-            const {
-                x,
-                y,
-                width,
-                height,
-            } = createRect!.bbox();
-
-            use.show();
-            for (let i = x; i < width + x; i += elemWidth) {
-                for (let j = y; j < height + y; j += elemHeight) {
-                    use.move(i, j);
-                    Cursor.createElement(use, this.getHighlight);
-                }
+            if (dy <= 0) {
+                const startY = rectY + deltaGridY;
+                rect.attr({
+                    y: startY,
+                });
+                sizeY = Math.max(fixedEnd.y - startY, height);
             }
-        };
+         
+            rect.size(sizeX, sizeY);
+            
+          });
+
+        rect.on('dragend', (e) => {
+            e.preventDefault();
+            brush.frozen = false;
+            rect.size(width, height);
+        });
     }
 
-    elementMouseUp(element: Use) {
-        Cursor.createElement(element, this.getHighlight);
-    }
-
-    static createElement(element: Use, highlighter: () => string) {
-        const cur = element.clone();
-        cur?.insertBefore(element);
-        cur?.attr({
-            opacity: null,
-        });
-        cur?.addClass("placed");
-        cur?.on("mouseover", () => {
-            cur.toggleClass("highlight");
-            cur.toggleClass(highlighter());
-        });
-
-        cur?.on("mouseout", () => {
-            cur.removeClass("highlight");
-            cur.removeClass(highlighter());
+    attachMouseUp(brush: Brush) {
+        this.svg.mouseup(null);
+        this.svg.mouseup(() => {
+            brush.mouseUpAction(this.svg);
         });
     }
 }
