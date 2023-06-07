@@ -1,5 +1,5 @@
 import { Rect } from "@svgdotjs/svg.js";
-import { Svg } from "@svgdotjs/svg.js";
+import { Svg, Use } from "@svgdotjs/svg.js";
 import { Pattern } from "@svgdotjs/svg.js";
 import { Brush, DraggableBrush } from "./Brush";
 import { BrushData } from "./BrushData";
@@ -15,23 +15,23 @@ export class CreateBrush implements Brush, DraggableBrush {
         this.frozen = false;
         this.buildingName = buildingName;
 
-        // get use element
+        // get use element for dimensions
         const use = svg.use(buildingName);
         const {
             width,
             height,
         } = use.bbox();
-
+        use.remove();
         this.rect = svg.rect(width, height);
         this.rect.attr({
             opacity: 0.5,
         });
 
         this.pattern = svg.pattern(width, height, (add) => {
-            add.use(use.attr("href").replace("#", ""))
+            add.use(buildingName);
         });
         this.rect.fill(this.pattern);
-        use.remove();
+        
 
 
         cursor.attachMouseMove(this);
@@ -51,11 +51,22 @@ export class CreateBrush implements Brush, DraggableBrush {
         const brushData = this.getBrushData();
     
         for (const item of brushData) {
-            const use = svg.use(item.buildingName).before(this.rect);
-            use.addClass("placed");
-            use.move(item.x, item.y);
+            const use = CreateBrush.createBuilding(svg, item);
+            use.insertAfter(this.rect);
         }
         return [];
+    }
+
+    static createBuilding(svg: Svg, brushData: BrushData): Use {
+        const {
+            buildingName,
+            x,
+            y,
+        } = brushData;
+        const use = svg.use(buildingName);
+        use.addClass("placed");
+        use.move(x, y);
+        return use;
     }
 
     getBrushData(): BrushData[] {
