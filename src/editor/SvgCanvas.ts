@@ -1,6 +1,5 @@
 import { SVG, Svg } from "@svgdotjs/svg.js";
 import { Board } from "./Board";
-
 import { createAllBuildings } from "./Building";
 import { Cursor } from "./Cursor";
 
@@ -15,48 +14,43 @@ interface SvgCanvasProps {
 
 export class SvgCanvas {
     static id: string;
-    static highlighter: () => string;
-    private static instance: SvgCanvas;
-    private svg: Svg;
-    private cursor: Cursor;
-    private gridSize: number;
-    
-    constructor({
-        id,
-        width,
-        height,
-        highlighter,
-    }: SvgCanvasProps) {
-        SvgCanvas.id = id;
-        SvgCanvas.highlighter = highlighter;
-        SvgCanvas.instance = this;
-        this.gridSize = GRID_SIZE;
-        this.svg = SVG(id) as Svg;
-        this.cursor = new Cursor(this.svg, this.gridSize);
-        this.setBoard(width, height);
+    private static svg: Svg;
+    private static gridSize: number;
+    private static cursor: Cursor;
+
+    static setSvg(svg: SVGSVGElement) {
+        SvgCanvas.svg = SVG(svg) as Svg;
     }
 
-    setBoard(width: number, height: number) {
+    static setGridSize(gridSize: number) {
+        SvgCanvas.gridSize = gridSize;
+    }
+
+    static setCursor() {
+        SvgCanvas.cursor = new Cursor(SvgCanvas.svg, SvgCanvas.gridSize);
+    }
+    
+    static setBoard(width: number, height: number) {
         const realWidth = this.gridSize * width;
         const realHeight = this.gridSize * height;
 
-        this.svg.size(realWidth, realHeight);
-        this.svg.clear();
-        createAllBuildings(this.svg, GRID_SIZE);
+        SvgCanvas.svg.size(realWidth, realHeight);
+        SvgCanvas.svg.clear();
+        createAllBuildings(SvgCanvas.svg, GRID_SIZE);
 
         new Board({
-            svg: this.svg,
+            svg: SvgCanvas.svg,
             width: width,
             height: height,
             gridSize: GRID_SIZE,
         });
     }
 
-    static GetCurrentSVG() {
-        return SVG(SvgCanvas.id) as Svg;
+    static GetCursor() {
+        return SvgCanvas.cursor;
     }
 
-    static GetInstance() {
-        return SvgCanvas.instance;
+    static GetSVG() {
+        return SvgCanvas.svg;
     }
 }
