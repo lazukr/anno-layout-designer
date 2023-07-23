@@ -1,12 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Action } from "../editor/action";
 import { SvgCanvas } from "../editor/SvgCanvas";
 import "../styles/editor.scss";
-import { Svg } from "@svgdotjs/svg.js";
-import { SVG } from "@svgdotjs/svg.js";
-import { Board } from "../editor/Board";
-import { createAllBuildings } from "../editor/Building";
-import { Cursor } from "../editor/Cursor";
 import { Brush } from "../editor/Brush";
 import { CreateBrush } from "../editor/CreateBrush";
 import { DeleteBrush } from "../editor/DeleteBrush";
