@@ -41,3 +41,9 @@ export const overlaps = (rect: Rect, element: DotSVGElement): boolean => {
 export const isDraggableBrush = (object: any): object is DraggableBrush => {
     return true;
 }
+
+export const getBrush = (svg: Svg, width: number, height: number) => {
+    const brush = svg.rect(width, height);
+    brush.addClass("cursor");
+    return brush;
+}

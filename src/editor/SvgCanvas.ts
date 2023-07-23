@@ -5,13 +5,6 @@ import { Cursor } from "./Cursor";
 
 export const GRID_SIZE = 32;
 
-interface SvgCanvasProps {
-    id: string;
-    width: number;
-    height: number;
-    highlighter: () => string;
-};
-
 export class SvgCanvas {
     static id: string;
     private static svg: Svg;

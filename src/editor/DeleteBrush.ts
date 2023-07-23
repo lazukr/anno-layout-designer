@@ -1,7 +1,7 @@
 import { Rect } from "@svgdotjs/svg.js";
 import { Svg } from "@svgdotjs/svg.js";
 import { GRID_SIZE } from "./SvgCanvas";
-import { Brush, DraggableBrush, overlaps } from "./Brush";
+import { Brush, DraggableBrush, getBrush, overlaps } from "./Brush";
 import { Cursor } from "./Cursor";
 
 export enum DeleteMode {
@@ -16,7 +16,7 @@ export class DeleteBrush implements Brush, DraggableBrush {
     constructor(svg: Svg, cursor: Cursor, mode: DeleteMode = DeleteMode.Delete) {
         this.frozen = false;
 
-        this.rect = svg.rect(GRID_SIZE, GRID_SIZE);
+        this.rect = getBrush(svg, GRID_SIZE, GRID_SIZE);
         this.rect.attr({
             opacity: 0.5,
             fill: mode === DeleteMode.Delete ? "red" : "lightgray",

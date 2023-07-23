@@ -76,10 +76,18 @@ const downloadFromCanvas = (canvas: HTMLCanvasElement) => {
     });
 };
 
-const removeCursor = (useList: List<DotSVGElement>) => {
-    useList.forEach(use => {
-        if (use.hasClass("placed") === false) {
-            use.remove();
+// cursor can either be a rect or a group
+// remove only if it has the "cursor" class
+const removeCursor = (rectList: List<DotSVGElement>, groupList: List<DotSVGElement>) => {
+    rectList.forEach(rect => {
+        if (rect.hasClass("cursor")) {
+            rect.remove();
+        }
+    });
+
+    groupList.forEach(group => {
+        if (group.hasClass("cursor")) {
+            group.remove();
         }
     });
 };
@@ -103,13 +111,14 @@ export const saveAsPNG = async () => {
     // bake the images into the svg
     await bakeBuildingsToSVG(clone);
 
-    // add rect borders
     const rects = clone.find("rect");
-    addRectBorders(rects);
+    const groups = clone.find("g");
 
     // remove cursor
-    const uses = clone.find("use");
-    removeCursor(uses);
+    removeCursor(rects, groups);
+
+    // add rect borders
+    addRectBorders(rects);
 
     const data = clone.svg();
 
@@ -128,4 +137,5 @@ export const saveAsPNG = async () => {
         downloadFromCanvas(canvas);
     }
     image.src = `data:image/svg+xml,${encodeURIComponent(data)}`;
+    clone.remove();
 };
