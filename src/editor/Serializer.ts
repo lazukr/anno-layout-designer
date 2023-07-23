@@ -29,17 +29,17 @@ export const importSerializedBuildings = (serial: SerializedData) => {
         data,
     } = serial;
 
-    const svg = SvgCanvas.GetCurrentSVG();
-    const svgCanvas = SvgCanvas.GetInstance();
-    svgCanvas.setBoard(width, height);
-
+    SvgCanvas.setBoard(width, height);
+    const svg = SvgCanvas.GetSVG();
     data.forEach(building => {
+        building.x = building.x * GRID_SIZE;
+        building.y = building.y * GRID_SIZE;
         CreateBrush.createBuilding(svg, building);
     });
 }
 
 export const saveAsJSONBase64 = async () => {
-    const svg = SvgCanvas.GetCurrentSVG();
+    const svg = SvgCanvas.GetSVG();
     const uses = svg.find("use.placed");
     const json = uses.map(e => {
         return {
@@ -76,10 +76,18 @@ const downloadFromCanvas = (canvas: HTMLCanvasElement) => {
     });
 };
 
-const removeCursor = (useList: List<DotSVGElement>) => {
-    useList.forEach(use => {
-        if (use.hasClass("placed") === false) {
-            use.remove();
+// cursor can either be a rect or a group
+// remove only if it has the "cursor" class
+const removeCursor = (rectList: List<DotSVGElement>, groupList: List<DotSVGElement>) => {
+    rectList.forEach(rect => {
+        if (rect.hasClass("cursor")) {
+            rect.remove();
+        }
+    });
+
+    groupList.forEach(group => {
+        if (group.hasClass("cursor")) {
+            group.remove();
         }
     });
 };
@@ -95,7 +103,7 @@ const addRectBorders = (rectList: List<DotSVGElement>) => {
 
 
 export const saveAsPNG = async () => {
-    const svg = SvgCanvas.GetCurrentSVG();
+    const svg = SvgCanvas.GetSVG();
 
     // can replace with svg.clone(deep: true, assignNewIds: false); in a future version
     const clone = SVG(svg.node.cloneNode(true)) as Svg;
@@ -103,13 +111,14 @@ export const saveAsPNG = async () => {
     // bake the images into the svg
     await bakeBuildingsToSVG(clone);
 
-    // add rect borders
     const rects = clone.find("rect");
-    addRectBorders(rects);
+    const groups = clone.find("g");
 
     // remove cursor
-    const uses = clone.find("use");
-    removeCursor(uses);
+    removeCursor(rects, groups);
+
+    // add rect borders
+    addRectBorders(rects);
 
     const data = clone.svg();
 
@@ -128,4 +137,5 @@ export const saveAsPNG = async () => {
         downloadFromCanvas(canvas);
     }
     image.src = `data:image/svg+xml,${encodeURIComponent(data)}`;
+    clone.remove();
 };

@@ -13,7 +13,6 @@ export class PlaceBrush implements Brush {
         cursor.attachMouseUp(this);
     }
 
-
     move(x: number, y: number) {
         this.group.move(x, y);
     }

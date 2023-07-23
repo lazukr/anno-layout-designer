@@ -35,7 +35,9 @@ export const ExportModal = ({
                     <Files onClick={() => navigator.clipboard.writeText(value)}/>
                 </Button>
                 <Button variant="outline-secondary" id="export-png">
-                    <FiletypePng onClick={saveAsPNG}/>
+                    <FiletypePng onClick={async () => {
+                        await saveAsPNG();
+                    }}/>
                 </Button>
             </InputGroup>
         </BaseModal>

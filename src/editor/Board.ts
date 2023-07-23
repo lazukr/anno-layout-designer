@@ -24,7 +24,7 @@ export class Board {
         this.width = width;
         this.height = height;
         this.gridSize = gridSize;
-        this.drawBackground();
+        this.drawBackground("#ffffff");
         this.drawGrid();
     }
 
@@ -48,9 +48,9 @@ export class Board {
         }
     }
 
-    private drawBackground() {
+    private drawBackground(colour: string) {
         this.svg
             .rect(this.width * this.gridSize, this.height * this.gridSize)
-            .fill("#ffffff");
+            .fill(colour);
     }
 }

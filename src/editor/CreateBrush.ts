@@ -1,7 +1,7 @@
 import { Rect } from "@svgdotjs/svg.js";
 import { Svg, Use } from "@svgdotjs/svg.js";
 import { Pattern } from "@svgdotjs/svg.js";
-import { Brush, DraggableBrush } from "./Brush";
+import { Brush, DraggableBrush, getBrush } from "./Brush";
 import { BrushData } from "./BrushData";
 import { Cursor } from "./Cursor";
 
@@ -22,7 +22,7 @@ export class CreateBrush implements Brush, DraggableBrush {
             height,
         } = use.bbox();
         use.remove();
-        this.rect = svg.rect(width, height);
+        this.rect = getBrush(svg, width, height);
         this.rect.attr({
             opacity: 0.5,
         });
@@ -32,8 +32,6 @@ export class CreateBrush implements Brush, DraggableBrush {
         });
         this.rect.fill(this.pattern);
         
-
-
         cursor.attachMouseMove(this);
         cursor.attachMouseUp(this);
         cursor.attachCreateDrag(this);

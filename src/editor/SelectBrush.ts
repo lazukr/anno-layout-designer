@@ -38,6 +38,7 @@ export class SelectBrush implements Brush {
 
             this.internalBrush.remove();
             const group = svg.group();
+            group.addClass("cursor");
             for (const element of result) {
                 element.attr({
                     opacity: 0.5,
