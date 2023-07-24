@@ -38,10 +38,10 @@ export const importSerializedBuildings = (serial: SerializedData) => {
     });
 }
 
-export const saveAsJSONBase64 = async () => {
+const getSVGDataAsJson = () => {
     const svg = SvgCanvas.GetSVG();
     const uses = svg.find("use.placed");
-    const json = uses.map(e => {
+    const data = uses.map(e => {
         return {
             x: (e.x() as number) / GRID_SIZE,
             y: (e.y() as number) / GRID_SIZE,
@@ -49,12 +49,15 @@ export const saveAsJSONBase64 = async () => {
         } as BrushData;
     });
 
-    const save = {
+    return {
         width: (svg.width() as number) / GRID_SIZE,
         height: (svg.height() as number) / GRID_SIZE,
-        data: json,
-    } as SerializedData;
+        data: data,
+    };
+}
 
+export const saveAsJSONBase64 = async () => {
+    const save = getSVGDataAsJson();
     const data = JSON.stringify(save);
     const encoded = Buffer.from(data, "utf8").toString("base64");
     return encoded;

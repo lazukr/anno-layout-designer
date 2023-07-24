@@ -26,6 +26,10 @@ interface SvgLineArguments {
 };
 
 export const getLineArgs = (isHorizontal: boolean, index: number, max: number, gridSize: number): SvgLineArguments => {
+    if (index > max) {
+        throw new RangeError("index cannot be greater than max.");
+    }
+
     const indexOffset = index * gridSize;
     const maxOffset = max * gridSize;
 
@@ -37,7 +41,11 @@ export const getLineArgs = (isHorizontal: boolean, index: number, max: number, g
     };
 };
 
-export const getAttrArgs = (index: number, max: number): SvgLineAttribute => {
+export const getLineAttributeArgs = (index: number, max: number): SvgLineAttribute => {
+    if (index > max) {
+        throw new RangeError("index cannot be greater than max.");
+    }
+
     if (index === 0 || index === max) {
         return BORDER_LINE;
     } else {

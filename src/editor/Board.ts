@@ -1,4 +1,4 @@
-import { Direction, getAttrArgs, getLineArgs } from "../editor/lines";
+import { Direction, getLineAttributeArgs, getLineArgs } from "../editor/lines";
 import { Svg } from "@svgdotjs/svg.js";
 
 export interface BoardProps {
@@ -40,7 +40,7 @@ export class Board {
 
         for (let i = 0; i < numOfLines + 1; i++) {
             const { x1, y1, x2, y2 } = getLineArgs(isHorizontal, i, max, this.gridSize);
-            const attrArgs = getAttrArgs(i, numOfLines);
+            const attrArgs = getLineAttributeArgs(i, numOfLines);
             this.svg.line(x1, y1, x2, y2).stroke({
                 width: attrArgs.width,
                 color: attrArgs.colour,
