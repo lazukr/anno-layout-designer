@@ -26,18 +26,27 @@ export const BaseModal = ({
     action,
 }: BaseModalProps) => {
     return (
-        <Modal show={showState} onHide={() => hide()}>
+        <Modal 
+          show={showState} 
+          onHide={() => hide()}
+          data-testid="modal"
+        >
         <Modal.Header closeButton>
-          <Modal.Title>{title}</Modal.Title>
+          <Modal.Title data-testid="title">{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             {children}
         </Modal.Body>
-        {showButton && <Modal.Footer>
-          <Button variant="primary" onClick={() => {
-            action();
-            hide();
-          }}>
+        {showButton && 
+        <Modal.Footer data-testid="footer">
+          <Button
+            data-testid="button"
+            variant="primary" 
+            onClick={() => {
+              action();
+              hide();
+            }}
+          >
             {buttonName}
           </Button>
         </Modal.Footer>}
