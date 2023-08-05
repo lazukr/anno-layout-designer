@@ -3,7 +3,7 @@ import type { JestConfigWithTsJest } from "ts-jest";
 const jestConfig: JestConfigWithTsJest = {
   verbose: true,
   extensionsToTreatAsEsm: [".ts"],
-  testMatch: ["**/src/**/*.test.ts"],
+  testMatch: ["**/src/**/*.test.{ts,tsx}"],
   maxWorkers: 1,
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1",
@@ -16,7 +16,7 @@ const jestConfig: JestConfigWithTsJest = {
         useESM: true,
       }
     ],
-  },
+  }
 };
 
 export default jestConfig;

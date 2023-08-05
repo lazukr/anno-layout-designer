@@ -3,9 +3,7 @@ import { Action } from "../editor/action";
 import { SvgCanvas } from "../editor/SvgCanvas";
 import "../styles/editor.scss";
 import { Brush } from "../editor/Brush";
-import { CreateBrush } from "../editor/CreateBrush";
-import { DeleteBrush } from "../editor/DeleteBrush";
-import { SelectBrush } from "../editor/SelectBrush";
+import { getBrushFromFactory } from "../editor/BrushFactory";
 
 const GRID_SIZE = 32;
 export interface EditorProps {
@@ -40,17 +38,7 @@ export const Editor = ({
         const svg = SvgCanvas.GetSVG();
         const cursor = SvgCanvas.GetCursor();
         brushRef.current?.remove();
-        switch (action) {
-            case Action.Create:
-                brushRef.current = new CreateBrush(svg, cursor, buildingName);
-                break;
-            case Action.Delete:
-                brushRef.current = new DeleteBrush(svg, cursor);
-                break;
-            case Action.Select:
-                brushRef.current = new SelectBrush(svg, cursor);
-                break;
-        }
+        brushRef.current = getBrushFromFactory(action, svg, cursor, buildingName);
     }, [action, buildingName]);
 
     return (

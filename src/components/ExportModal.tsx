@@ -4,6 +4,7 @@ import { Files, FiletypePng } from "react-bootstrap-icons";
 
 import { saveAsJSONBase64, saveAsPNG } from "../editor/Serializer";
 import { BaseModal, ImportExportModalProps } from "./BaseModal";
+import { SvgCanvas } from "../editor/SvgCanvas";
 
 export const ExportModal = ({
     showState,
@@ -12,7 +13,7 @@ export const ExportModal = ({
     const [value, setValue] = useState("");
     useEffect(() => {
         const getBase64 = async () => {
-            setValue(await saveAsJSONBase64());
+            setValue(await saveAsJSONBase64(SvgCanvas.GetSVG()));
         }
         getBase64();
     });
@@ -36,7 +37,7 @@ export const ExportModal = ({
                 </Button>
                 <Button variant="outline-secondary" id="export-png">
                     <FiletypePng onClick={async () => {
-                        await saveAsPNG();
+                        await saveAsPNG(SvgCanvas.GetSVG());
                     }}/>
                 </Button>
             </InputGroup>

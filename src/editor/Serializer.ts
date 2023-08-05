@@ -38,8 +38,7 @@ export const importSerializedBuildings = (serial: SerializedData) => {
     });
 }
 
-const getSVGDataAsJson = () => {
-    const svg = SvgCanvas.GetSVG();
+const getSVGDataAsJson = (svg: Svg) => {
     const uses = svg.find("use.placed");
     const data = uses.map(e => {
         return {
@@ -56,8 +55,8 @@ const getSVGDataAsJson = () => {
     };
 }
 
-export const saveAsJSONBase64 = async () => {
-    const save = getSVGDataAsJson();
+export const saveAsJSONBase64 = async (svg: Svg) => {
+    const save = getSVGDataAsJson(svg);
     const data = JSON.stringify(save);
     const encoded = Buffer.from(data, "utf8").toString("base64");
     return encoded;
@@ -105,9 +104,7 @@ const addRectBorders = (rectList: List<DotSVGElement>) => {
 };
 
 
-export const saveAsPNG = async () => {
-    const svg = SvgCanvas.GetSVG();
-
+export const saveAsPNG = async (svg: Svg) => {
     // can replace with svg.clone(deep: true, assignNewIds: false); in a future version
     const clone = SVG(svg.node.cloneNode(true)) as Svg;
 
