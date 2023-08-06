@@ -4,22 +4,19 @@ import { GRID_SIZE } from "./SvgCanvas";
 import { Brush, DraggableBrush, getBrush, overlaps } from "./Brush";
 import { Cursor } from "./Cursor";
 
-export enum DeleteMode {
-    Select,
-    Delete,
-};
-
-export class DeleteBrush implements Brush, DraggableBrush {
+export class ColourBrush implements Brush, DraggableBrush {
     rect: Rect;
     frozen: boolean;
+    colour: string;
 
-    constructor(svg: Svg, cursor: Cursor, mode: DeleteMode = DeleteMode.Delete) {
+    constructor(svg: Svg, cursor: Cursor, colour: string) {
         this.frozen = false;
+        this.colour = colour;
 
         this.rect = getBrush(svg, GRID_SIZE, GRID_SIZE);
         this.rect.attr({
             opacity: 0.5,
-            fill: mode === DeleteMode.Delete ? "red" : "gray",
+            fill: this.colour,
         });
 
         cursor.attachMouseMove(this);
@@ -40,7 +37,10 @@ export class DeleteBrush implements Brush, DraggableBrush {
             .filter(element => overlaps(this.rect, element));
 
         for (var element of overlappingElements) {
-            element.remove();
+            element.fill({
+                color: this.colour,
+                opacity: 1,
+            });
         };
 
         return overlappingElements;

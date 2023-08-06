@@ -28,7 +28,7 @@ export class CreateBrush implements Brush, DraggableBrush {
         });
 
         this.pattern = svg.pattern(width, height, (add) => {
-            add.use(buildingName);
+            add.use(buildingName).fill("#d8d8d8");
         });
         this.rect.fill(this.pattern);
         
@@ -51,6 +51,7 @@ export class CreateBrush implements Brush, DraggableBrush {
         for (const item of brushData) {
             const use = CreateBrush.createBuilding(svg, item);
             use.insertAfter(this.rect);
+            use.fill("#d8d8d8");
         }
         return [];
     }

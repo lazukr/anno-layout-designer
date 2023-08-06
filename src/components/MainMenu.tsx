@@ -14,6 +14,7 @@ import {
     FileEarmarkArrowDown, 
     FileEarmarkArrowUp,
     FilePlus,
+    PaintBucket,
  } from "react-bootstrap-icons";
  
 import { Editor } from "./Editor";
@@ -22,6 +23,7 @@ import { getBuildingSelections, getCitizenSelections } from "../data/Series";
 import { NewLayoutModal } from "./NewLayoutModal";
 import { ExportModal } from "./ExportModal";
 import { ImportModal } from "./ImportModal";
+import { ColourPicker } from "./ColourPicker";
 
 const DEFAULT_GAME = "1800";
 const DEFAULT_CITIZEN = "1800_farmer";
@@ -35,6 +37,7 @@ export const MainMenu = () => {
     const [action, setAction] = useState(Action.Create);
     const [width, setWidth] = useState(DEFAULT_BOARD_SIZE);
     const [height, setHeight] = useState(DEFAULT_BOARD_SIZE);
+    const [colour, setColour] = useState("#0000ff");
 
     const setBoardSize = (width: number, height: number) => {
         setWidth(width);
@@ -68,30 +71,45 @@ export const MainMenu = () => {
                 <Container fluid>
                     <Navbar.Brand>Anno 1800 Layout Planner</Navbar.Brand>
                     <Nav className="me-auto">
-                    <ToggleButtonGroup 
-                        type="radio"
-                        name="actions" 
-                        size="lg"
-                        value={action}
-                        onChange={e => setAction(e)}
-                    >
-                        <ToggleButton 
-                            id="tbg-radio-select"
-                            title="Select building"
-                            value={Action.Select} 
-                            variant="dark"
+                    <Container>
+                        <ToggleButtonGroup 
+                            type="radio"
+                            name="actions" 
+                            size="lg"
+                            value={action}
+                            onChange={e => setAction(e)}
                         >
-                            <HandIndexFill color="green"/>
-                        </ToggleButton>
-                        <ToggleButton 
-                            id="tbg-radio-delete"
-                            title="Delete building"
-                            value={Action.Delete}
-                            variant="dark"
-                        >
-                            <EraserFill color="red"/>
-                        </ToggleButton>
-                    </ToggleButtonGroup>
+                            <ToggleButton 
+                                id="tbg-radio-select"
+                                title="Select building"
+                                value={Action.Select} 
+                                variant="dark"
+                            >
+                                <HandIndexFill color="green"/>
+                            </ToggleButton>
+                            <ToggleButton 
+                                id="tbg-radio-delete"
+                                title="Delete building"
+                                value={Action.Delete}
+                                variant="dark"
+                            >
+                                <EraserFill color="red"/>
+                            </ToggleButton>
+                            <ToggleButton 
+                                id="tbg-radio-fill"
+                                title="Colour building"
+                                value={Action.Colour}
+                                variant="dark"
+                            >
+                                <PaintBucket />
+                            </ToggleButton>
+                            <ColourPicker 
+                                colour={colour}
+                                setColour={(colour: string) => setColour(colour)}
+                            />
+                        </ToggleButtonGroup>
+                    </Container>
+                    <Container>
                     <ButtonGroup>
                         <Button 
                             variant="dark" 
@@ -117,6 +135,7 @@ export const MainMenu = () => {
                             <FileEarmarkArrowDown />
                         </Button>
                     </ButtonGroup>
+                    </Container>
                     {getCitizenSelections({
                         game: game,
                         currentSelect: citizen,
@@ -152,6 +171,7 @@ export const MainMenu = () => {
                 height={height}
                 action={action}
                 buildingName={building}
+                colour={colour}
             />
             <NewLayoutModal 
                 showState={newLayoutModal}
