@@ -38,7 +38,12 @@ export const ImportModal = ({
                     isInvalid={!valid}
                 />
                 <Button variant="outline-secondary" id="export-png" disabled={!valid}>
-                    <Upload onClick={() => importSerializedBuildings(value!)}/>
+                    <Upload onClick={async () => {
+                        importSerializedBuildings(value!);
+                        setValue(undefined);
+                        setValid(false);
+                        hide();
+                    }}/>
                 </Button>
                 <Form.Control.Feedback type="invalid">
                     Invalid import string.

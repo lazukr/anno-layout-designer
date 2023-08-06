@@ -23,6 +23,7 @@ export class PlaceBrush implements Brush {
             const use = svg.use(element.buildingName).before(this.group);
             use.addClass("placed");
             use.move(element.x, element.y);
+            use.fill(element.colour);
         }
 
         return [];
@@ -35,6 +36,7 @@ export class PlaceBrush implements Brush {
                 buildingName: item.attr("href").replace("#", ""),
                 x: item.x() as number,
                 y: item.y() as number,
+                colour: item.attr("fill"),
             }
         });
     }

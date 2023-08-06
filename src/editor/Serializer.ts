@@ -45,6 +45,7 @@ const getSVGDataAsJson = (svg: Svg) => {
             x: (e.x() as number) / GRID_SIZE,
             y: (e.y() as number) / GRID_SIZE,
             buildingName: (e.attr("href") as string).replace("#", ""),
+            colour: e.attr("fill"),
         } as BrushData;
     });
 
