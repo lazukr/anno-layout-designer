@@ -22,7 +22,6 @@ export interface SerializedData {
 };
 
 export const importSerializedBuildings = (serial: SerializedData) => {
-
     const {
         width,
         height,
