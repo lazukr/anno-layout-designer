@@ -40,6 +40,10 @@ export const getLineArgs = (isHorizontal: boolean, index: number, end: number, g
 
 export const getLineAttributeArgs = (index: number, max: number): SvgLineAttribute => {
 
+    if (index > max) {
+        throw RangeError("index cannot be greater than max.");
+    }
+
     if (index === 0 || index === max) {
         return BORDER_LINE;
     } else {
