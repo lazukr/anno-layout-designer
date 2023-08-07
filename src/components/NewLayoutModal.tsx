@@ -2,6 +2,7 @@ import { useState } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 import { BaseModal } from "./BaseModal";
+import { Button, Modal } from "react-bootstrap";
 
 export interface NewLayoutModalProps {
     showState: boolean;
@@ -37,50 +38,55 @@ export const NewLayoutModal = ({
                 reset();
             }}
             title={"New Layout"}
-            buttonName="Create New"
-            showButton={true}
-            action={() => {
-                hide();
-                save(width, height);
-            }}
         >
+            <Modal.Body>
             Set layout size between {MIN} - {MAX}.
-            <InputGroup className="mb-3">
-                <InputGroup.Text id="basic-addon1">Width</InputGroup.Text>
-                <Form.Control
-                    required
-                    placeholder="Width"
-                    aria-label="Wdith"
-                    aria-describedby="basic-addon1"
-                    type="number"
-                    value={width}
-                    min={MIN}
-                    max={MAX}
-                    step="any"
-                    onChange={(e) => setWidth(Math.min(parseInt(e.target.value) || MIN, MAX))}
-                />
-                <Form.Control.Feedback type="invalid">
-                    Value can only be between {MIN} - {MAX}.
-                </Form.Control.Feedback>
-            </InputGroup>
-            <InputGroup className="mb-3">
-                <InputGroup.Text id="basic-addon1">Height</InputGroup.Text>
-                <Form.Control
-                    required
-                    placeholder="Width"
-                    aria-label="Wdith"
-                    aria-describedby="basic-addon1"
-                    type="number"
-                    value={height}
-                    min={MIN}
-                    max={MAX}
-                    step="any"
-                    onChange={(e) => setHeight(Math.min(parseInt(e.target.value) || MIN, MAX))}
-                />
-                <Form.Control.Feedback type="invalid">
-                    Value can only be between {MIN} - {MAX}.
-                </Form.Control.Feedback>
-            </InputGroup>
+                <InputGroup className="mb-3">
+                    <InputGroup.Text id="basic-addon1">Width</InputGroup.Text>
+                    <Form.Control
+                        required
+                        placeholder="Width"
+                        aria-label="Wdith"
+                        aria-describedby="basic-addon1"
+                        type="number"
+                        value={width}
+                        min={MIN}
+                        max={MAX}
+                        step="any"
+                        onChange={(e) => setWidth(Math.min(parseInt(e.target.value) || MIN, MAX))}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        Value can only be between {MIN} - {MAX}.
+                    </Form.Control.Feedback>
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    <InputGroup.Text id="basic-addon1">Height</InputGroup.Text>
+                    <Form.Control
+                        required
+                        placeholder="Width"
+                        aria-label="Wdith"
+                        aria-describedby="basic-addon1"
+                        type="number"
+                        value={height}
+                        min={MIN}
+                        max={MAX}
+                        step="any"
+                        onChange={(e) => setHeight(Math.min(parseInt(e.target.value) || MIN, MAX))}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        Value can only be between {MIN} - {MAX}.
+                    </Form.Control.Feedback>
+                </InputGroup>
+                <Button
+                    variant="primary" 
+                    onClick={() => {
+                        save(width, height);
+                        hide();
+                    }}
+                >
+                    Create New
+                </Button>
+            </Modal.Body>
         </BaseModal>
     );
 };

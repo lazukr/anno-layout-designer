@@ -1,5 +1,5 @@
 import { Rect } from "@svgdotjs/svg.js";
-import { Svg, Use } from "@svgdotjs/svg.js";
+import { Svg, Use, Element as DotSVGElement } from "@svgdotjs/svg.js";
 import { Pattern } from "@svgdotjs/svg.js";
 import { Brush, DraggableBrush, getBrush } from "./Brush";
 import { BrushData } from "./BrushData";
@@ -50,7 +50,7 @@ export class CreateBrush implements Brush, DraggableBrush {
     
         for (const item of brushData) {
             const use = CreateBrush.createBuilding(svg, item);
-            use.insertAfter(this.rect);
+            use.insertBefore(this.rect);
         }
         return [];
     }
@@ -62,6 +62,7 @@ export class CreateBrush implements Brush, DraggableBrush {
             y,
             colour,
         } = brushData;
+
         const use = svg.use(buildingName);
         use.addClass("placed");
         use.fill(colour);

@@ -41,7 +41,7 @@ export const Editor = ({
         const cursor = SvgCanvas.GetCursor();
         brushRef.current?.remove();
         brushRef.current = getBrushFromFactory(action, svg, cursor, buildingName, colour);
-    }, [action, buildingName, colour]);
+    });
 
     return (
         <svg id="svg" ref={svgRef}></svg>

@@ -19,7 +19,7 @@ export class DeleteBrush implements Brush, DraggableBrush {
         this.rect = getBrush(svg, GRID_SIZE, GRID_SIZE);
         this.rect.attr({
             opacity: 0.5,
-            fill: mode === DeleteMode.Delete ? "red" : "gray",
+            fill: mode === DeleteMode.Delete ? "red" : "green",
         });
 
         cursor.attachMouseMove(this);
