@@ -15,6 +15,8 @@ import {
     FileEarmarkArrowUp,
     FilePlus,
     PaintBucket,
+    InfoCircleFill,
+    InfoCircle,
  } from "react-bootstrap-icons";
  
 import { Editor } from "./Editor";
@@ -24,6 +26,7 @@ import { NewLayoutModal } from "./NewLayoutModal";
 import { ExportModal } from "./ExportModal";
 import { ImportModal } from "./ImportModal";
 import { ColourPicker } from "./ColourPicker";
+import { InfoModal } from "./InfoModal";
 
 const DEFAULT_GAME = "1800";
 const DEFAULT_CITIZEN = "1800_farmer";
@@ -37,7 +40,7 @@ export const MainMenu = () => {
     const [action, setAction] = useState(Action.Create);
     const [width, setWidth] = useState(DEFAULT_BOARD_SIZE);
     const [height, setHeight] = useState(DEFAULT_BOARD_SIZE);
-    const [colour, setColour] = useState("#0000ff");
+    const [colour, setColour] = useState("#00ffff");
 
     const setBoardSize = (width: number, height: number) => {
         setWidth(width);
@@ -51,6 +54,7 @@ export const MainMenu = () => {
     const [newLayoutModal, setNewLayoutModal] = useState(false);
     const [importModal, setImportModal] = useState(false);
     const [exportModal, setExportModal] = useState(false);
+    const [infoModal, setInfoModal] = useState(false);
 
     const showNewLayoutModal = () => setNewLayoutModal(true);
     const closeNewLayoutModal = () => setNewLayoutModal(false);
@@ -60,6 +64,9 @@ export const MainMenu = () => {
 
     const showExportModal = () => setExportModal(true);
     const closeExportModal = () => setExportModal(false);
+
+    const showInfoModal = () => setInfoModal(true);
+    const closeInfoModal = () => setInfoModal(false);
 
     return (
         <>
@@ -143,10 +150,17 @@ export const MainMenu = () => {
                     })}
                     </Nav>
                     <Nav className="justify-content-end">
+                        <Button
+                            variant="dark"
+                            title="Information"
+                            onClick={showInfoModal}
+                        >
+                            <InfoCircle size={32} />
+                        </Button>
                         <Nav.Link 
                             href="https://github.com/lazukr/anno-layout-designer"
                             target="_blank">
-                            <Github/>
+                            <Github size={32} />
                         </Nav.Link>
                     </Nav>
                 </Container>
@@ -186,6 +200,10 @@ export const MainMenu = () => {
             <ImportModal
                 showState={importModal}
                 hide={closeImportModal}
+            />
+            <InfoModal
+                showState={infoModal}
+                hide={closeInfoModal}
             />
         </>
     );

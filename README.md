@@ -13,13 +13,11 @@ https://lazukr.github.io/anno-layout-designer/
 - [x] rotating the buildings (uses ctrl + click right now)
 - [x] save to png
 - [x] drag tiling
-- [x] drag for roads in lines
-- [x] change size for drawing
-- [x] save to raw file
+- [x] drag delete
+- [x] drag select
+- [x] change dimensions
+- [x] save and load progress as base64 json file
 - [ ] cache current progress
-- [ ] associate farms to the root building
-- [ ] drag delete
-- [ ] drag select
 
 # Ambitious Goals
 - Add the previous anno games

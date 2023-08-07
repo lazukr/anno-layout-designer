@@ -27,7 +27,7 @@ export const ColourPicker = ({
         <div 
             style={{
                 padding: "9px",
-                background: "#f0f0f0",
+                background: "#212529",
                 borderRadius: "1px",
                 boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
                 display: "inline-block",
