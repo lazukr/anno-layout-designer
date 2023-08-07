@@ -1,5 +1,5 @@
 import { Rect } from "@svgdotjs/svg.js";
-import { Svg, Use, Element as DotSVGElement } from "@svgdotjs/svg.js";
+import { Svg, Use } from "@svgdotjs/svg.js";
 import { Pattern } from "@svgdotjs/svg.js";
 import { Brush, DraggableBrush, getBrush } from "./Brush";
 import { BrushData } from "./BrushData";
