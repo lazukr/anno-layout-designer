@@ -10,14 +10,6 @@ describe("getting line arguments.", () => {
         gridSize: number
     */
 
-    it("throws RangeError when providing an index greater than max.", () => {
-        const test = () => {
-            getLineArgs(true, 2, 1, 1);
-        }
-
-        expect(test).toThrow(RangeError);
-    });
-
     it("should return horziontal line argument when passed one.", () => {
         const result = getLineArgs(true, 0, 5, 1);
         expect(result.x1).toEqual(0);

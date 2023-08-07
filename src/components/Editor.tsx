@@ -10,6 +10,7 @@ export interface EditorProps {
     width: number;
     height: number;
     buildingName: string;
+    colour: string;
     action: Action;
 };
 
@@ -17,6 +18,7 @@ export const Editor = ({
     width,
     height,
     buildingName,
+    colour,
     action,
 }: EditorProps) => {
     const svgRef = useRef<SVGSVGElement>(null);
@@ -38,8 +40,8 @@ export const Editor = ({
         const svg = SvgCanvas.GetSVG();
         const cursor = SvgCanvas.GetCursor();
         brushRef.current?.remove();
-        brushRef.current = getBrushFromFactory(action, svg, cursor, buildingName);
-    }, [action, buildingName]);
+        brushRef.current = getBrushFromFactory(action, svg, cursor, buildingName, colour);
+    });
 
     return (
         <svg id="svg" ref={svgRef}></svg>

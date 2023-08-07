@@ -25,25 +25,23 @@ interface SvgLineArguments {
     y2: number;
 };
 
-export const getLineArgs = (isHorizontal: boolean, index: number, max: number, gridSize: number): SvgLineArguments => {
-    if (index > max) {
-        throw new RangeError("index cannot be greater than max.");
-    }
+export const getLineArgs = (isHorizontal: boolean, index: number, end: number, gridSize: number): SvgLineArguments => {    
 
     const indexOffset = index * gridSize;
-    const maxOffset = max * gridSize;
+    const endOffset = end * gridSize;
 
     return {
         x1: isHorizontal ? 0 : indexOffset,
         y1: isHorizontal ? indexOffset : 0,
-        x2: isHorizontal ? maxOffset : indexOffset,
-        y2: isHorizontal ? indexOffset : maxOffset,
+        x2: isHorizontal ? endOffset : indexOffset,
+        y2: isHorizontal ? indexOffset : endOffset,
     };
 };
 
 export const getLineAttributeArgs = (index: number, max: number): SvgLineAttribute => {
+
     if (index > max) {
-        throw new RangeError("index cannot be greater than max.");
+        throw RangeError("index cannot be greater than max.");
     }
 
     if (index === 0 || index === max) {

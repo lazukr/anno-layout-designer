@@ -76,6 +76,7 @@ export const getAllBuildingData = () => {
             width: building.width,
             height: building.height,
             colour: building.colour,
+            ignoreImage: building.ignoreImage,
             imagePath: IMAGE_DATA[building.id],
         } as SVGBuilding;
     });

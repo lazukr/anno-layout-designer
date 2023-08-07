@@ -20,9 +20,10 @@ export class PlaceBrush implements Brush {
     mouseUpAction(svg: Svg) {
         const brushData = this.getBrushData();
         for (const element of brushData) {
-            const use = svg.use(element.buildingName).before(this.group);
+            const use = svg.use(element.buildingName).insertBefore(this.group);
             use.addClass("placed");
             use.move(element.x, element.y);
+            use.fill(element.colour);
         }
 
         return [];
@@ -35,6 +36,7 @@ export class PlaceBrush implements Brush {
                 buildingName: item.attr("href").replace("#", ""),
                 x: item.x() as number,
                 y: item.y() as number,
+                colour: item.attr("fill"),
             }
         });
     }

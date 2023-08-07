@@ -21,8 +21,12 @@ export interface SerializedData {
     data: BrushData[];
 };
 
-export const importSerializedBuildings = (serial: SerializedData) => {
+interface Dimension {
+    width: number;
+    height: number;
+};
 
+export const importSerializedBuildings = (serial: SerializedData): Dimension => {
     const {
         width,
         height,
@@ -36,6 +40,11 @@ export const importSerializedBuildings = (serial: SerializedData) => {
         building.y = building.y * GRID_SIZE;
         CreateBrush.createBuilding(svg, building);
     });
+
+    return {
+        width: width,
+        height: height,
+    };
 }
 
 const getSVGDataAsJson = (svg: Svg) => {
@@ -45,6 +54,7 @@ const getSVGDataAsJson = (svg: Svg) => {
             x: (e.x() as number) / GRID_SIZE,
             y: (e.y() as number) / GRID_SIZE,
             buildingName: (e.attr("href") as string).replace("#", ""),
+            colour: e.attr("fill"),
         } as BrushData;
     });
 
@@ -105,7 +115,7 @@ const addRectBorders = (rectList: List<DotSVGElement>) => {
 
 
 export const saveAsPNG = async (svg: Svg) => {
-    // can replace with svg.clone(deep: true, assignNewIds: false); in a future version
+    // can replace with svg.clone(deep: true, assignNewIds: false); in 3.2
     const clone = SVG(svg.node.cloneNode(true)) as Svg;
 
     // bake the images into the svg

@@ -51,7 +51,13 @@
                         "productionChain": [
                             {
                                 "id": "1800_potato_farm",
-                                "name": "Potato Farm"
+                                "name": "Potato Farm",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_1_1_farm_module",
+                                        "name": "Potato Fields"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -64,7 +70,7 @@
                                 "name": "Sheep Farm",
                                 "productionChain": [
                                     {
-                                        "id": "1800_3_3_farm_module",
+                                        "id": "1800_1_1_farm_module",
                                         "name": "Sheep Farm Module"
                                     }
                                 ]
@@ -137,7 +143,13 @@
                                 "productionChain": [
                                     {
                                         "id": "1800_grain_farm",
-                                        "name": "Grain Farm"
+                                        "name": "Grain Farm",
+                                        "productionChain": [
+                                            {
+                                                "id": "1800_1_1_farm_module",
+                                                "name": "Grain Fields"
+                                            }
+                                        ]
                                     }
                                 ]
                             }
@@ -152,7 +164,7 @@
                                 "name": "Sheep Farm",
                                 "productionChain": [
                                     {
-                                        "id": "1800_3_3_farm_module",
+                                        "id": "1800_1_1_farm_module",
                                         "name": "Sheep Farm Module"
                                     }
                                 ]
@@ -231,13 +243,25 @@
                                 "productionChain": [
                                     {
                                         "id": "1800_grain_farm",
-                                        "name": "Grain Farm"
+                                        "name": "Grain Farm",
+                                        "productionChain": [
+                                            {
+                                                "id": "1800_1_1_farm_module",
+                                                "name": "Grain Fields"
+                                            }
+                                        ]
                                     }
                                 ]
                             },
                             {
                                 "id": "1800_hop_farm",
-                                "name": "Hop Farm"
+                                "name": "Hop Farm",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_1_1_farm_module",
+                                        "name": "Hop Fields"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -311,7 +335,13 @@
                                     },
                                     {
                                         "id": "1800_red_pepper_farm",
-                                        "name": "Red Pepper Farm"
+                                        "name": "Red Pepper Farm",
+                                        "productionChain": [
+                                            {
+                                                "id": "1800_1_1_farm_module",
+                                                "name": "Red Pepper Fields"
+                                            }
+                                        ]
                                     }
                                 ]
                             },
@@ -357,7 +387,13 @@
                                 "productionChain": [
                                     {
                                         "id": "1800_cotton_plantation",
-                                        "name": "Cotton Plantation"
+                                        "name": "Cotton Plantation",
+                                        "productionChain": [
+                                            {
+                                                "id": "1800_1_1_farm_module",
+                                                "name": "Cotton Fields"
+                                            }
+                                        ]
                                     }
                                 ]
                             },
@@ -521,7 +557,13 @@
                             },
                             {
                                 "id": "1800_caoutchouc_plantation",
-                                "name": "Caoutchouc Plantation"
+                                "name": "Caoutchouc Plantation",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_1_1_farm_module",
+                                        "name": "Caoutchouc Fields"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -645,7 +687,13 @@
                             },
                             {
                                 "id": "1800_vineyard",
-                                "name": "Vineyard"
+                                "name": "Vineyard",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_1_1_farm_module",
+                                        "name": "Vineyard Fields"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -751,7 +799,13 @@
                                     },
                                     {
                                         "id": "1800_caoutchouc_plantation",
-                                        "name": "Caoutchouc Plantation"
+                                        "name": "Caoutchouc Plantation",
+                                        "productionChain": [
+                                            {
+                                                "id": "1800_1_1_farm_module",
+                                                "name": "Caoutchouc Fields"
+                                            }
+                                        ]
                                     }
                                 ]
                             }
@@ -811,7 +865,13 @@
                         "productionChain": [
                             {
                                 "id": "1800_plantain_plantation",
-                                "name": "Plantain Plantation"
+                                "name": "Plantain Plantation",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_1_1_farm_module",
+                                        "name": "Plantain Fields"
+                                    }
+                                ]
                             },
                             {
                                 "id": "1800_fish_oil_factory",
@@ -829,7 +889,13 @@
                                 "productionChain": [
                                     {
                                         "id": "1800_cotton_plantation",
-                                        "name": "Cotton Plantation"
+                                        "name": "Cotton Plantation",
+                                        "productionChain": [
+                                            {
+                                                "id": "1800_1_1_farm_module",
+                                                "name": "Cotton Fields"
+                                            }
+                                        ]
                                     }
                                 ]
                             }
@@ -841,7 +907,13 @@
                         "productionChain": [
                             {
                                 "id": "1800_sugar_cane_plantation",
-                                "name": "Sugar Cane Plantation"
+                                "name": "Sugar Cane Plantation",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_1_1_farm_module",
+                                        "name": "Sugar Cane Fields"
+                                    }
+                                ]
                             },
                             {
                                 "id": "1800_lumberjacks_hut",
@@ -904,7 +976,13 @@
                         "productionChain": [
                             {
                                 "id": "1800_corn_farm",
-                                "name": "Corn Farm"
+                                "name": "Corn Farm",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_1_1_farm_module",
+                                        "name": "Corn Fields"
+                                    }
+                                ]
                             },
                             {
                                 "id": "1800_cattle_farm",
@@ -924,7 +1002,13 @@
                         "productionChain": [
                             {
                                 "id": "1800_coffee_plantation",
-                                "name": "Coffee Plantation"
+                                "name": "Coffee Plantation",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_1_1_farm_module",
+                                        "name": "Coffee Fields"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -938,7 +1022,13 @@
                                 "productionChain": [
                                     {
                                         "id": "1800_cotton_plantation",
-                                        "name": "Cotton Plantation"
+                                        "name": "Cotton Plantation",
+                                        "productionChain": [
+                                            {
+                                                "id": "1800_1_1_farm_module",
+                                                "name": "Cotton Fields"
+                                            }
+                                        ]
                                     }
                                 ]
                             },
@@ -976,7 +1066,13 @@
                             },
                             {
                                 "id": "1800_tobacco_plantation",
-                                "name": "Tobacco Plantation"
+                                "name": "Tobacco Plantation",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_1_1_farm_module",
+                                        "name": "Tobacco Fields"
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -991,13 +1087,25 @@
                                 "productionChain": [
                                     {
                                         "id": "1800_sugar_cane_plantation",
-                                        "name": "Sugar Cane Plantation"
+                                        "name": "Sugar Cane Plantation",
+                                        "productionChain": [
+                                            {
+                                                "id": "1800_1_1_farm_module",
+                                                "name": "Sugar Cane Fields"
+                                            }
+                                        ]
                                     }
                                 ]
                             },
                             {
                                 "id": "1800_cocoa_plantation",
-                                "name": "Cocoa Plantation"
+                                "name": "Cocoa Plantation",
+                                "productionChain": [
+                                    {
+                                        "id": "1800_1_1_farm_module",
+                                        "name": "Cocoa Fields"
+                                    }
+                                ]
                             }
                         ]
                     }

@@ -1,5 +1,5 @@
 import { Rect } from "@svgdotjs/svg.js";
-import { Svg, Use } from "@svgdotjs/svg.js";
+import { Svg, Use, Element as DotSVGElement } from "@svgdotjs/svg.js";
 import { Pattern } from "@svgdotjs/svg.js";
 import { Brush, DraggableBrush, getBrush } from "./Brush";
 import { BrushData } from "./BrushData";
@@ -28,7 +28,7 @@ export class CreateBrush implements Brush, DraggableBrush {
         });
 
         this.pattern = svg.pattern(width, height, (add) => {
-            add.use(buildingName);
+            add.use(buildingName).fill("#d8d8d8");
         });
         this.rect.fill(this.pattern);
         
@@ -50,7 +50,7 @@ export class CreateBrush implements Brush, DraggableBrush {
     
         for (const item of brushData) {
             const use = CreateBrush.createBuilding(svg, item);
-            use.insertAfter(this.rect);
+            use.insertBefore(this.rect);
         }
         return [];
     }
@@ -60,9 +60,12 @@ export class CreateBrush implements Brush, DraggableBrush {
             buildingName,
             x,
             y,
+            colour,
         } = brushData;
+
         const use = svg.use(buildingName);
         use.addClass("placed");
+        use.fill(colour);
         use.move(x, y);
         return use;
     }
@@ -86,6 +89,7 @@ export class CreateBrush implements Brush, DraggableBrush {
                     buildingName: this.buildingName,
                     x: i,
                     y: j,
+                    colour: "#d8d8d8"
                 });
             }
         }

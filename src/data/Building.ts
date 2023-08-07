@@ -9,7 +9,8 @@ export interface SVGBuilding {
     width: number;
     height: number;
     imagePath: string;
-    colour: string;
+    colour?: string;
+    ignoreImage: boolean;
 }
 
 export interface SvgData {
@@ -17,4 +18,5 @@ export interface SvgData {
     width: number;
     height: number;
     colour: string;
+    ignoreImage: boolean;
 }

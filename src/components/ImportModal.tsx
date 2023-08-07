@@ -1,15 +1,19 @@
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import React, { useState } from "react";
 
 import { SerializedData, importSerializedBuildings, loadFromJSONBase64 } from "../editor/Serializer";
-import { BaseModal, ImportExportModalProps } from "./BaseModal";
+import { BaseModal } from "./BaseModal";
 import { Upload } from "react-bootstrap-icons";
 
+interface ImportModalProps {
+    showState: boolean;
+    hide: () => void;
+};
 
 export const ImportModal = ({
     showState,
     hide,
-}: ImportExportModalProps) => {
+}: ImportModalProps) => {
     const [value, setValue] = useState<SerializedData>();
     const [valid, setValid] = useState(false);
 
@@ -18,32 +22,41 @@ export const ImportModal = ({
             showState={showState}
             hide={hide}
             title={"Import Layout"}
-            buttonName=""
-            showButton={false}
-            action={() => {}}
         >
-            <InputGroup className="mb-3">
-                <Form.Control
-                    type="text"
-                    onChange={e => {
-                        const current = loadFromJSONBase64(e.target.value);
-                        if (current === undefined) {
+            <Modal.Body>
+                <InputGroup className="mb-3">
+                    <Form.Control
+                        type="text"
+                        onChange={e => {
+                            const current = loadFromJSONBase64(e.target.value);
+                            if (current === undefined) {
+                                setValid(false);
+                            } else {
+                                setValid(true);
+                                setValue(current);
+                            }
+                        }}
+                        required
+                        isInvalid={!valid}
+                    />
+                    <Button 
+                        variant="outline-secondary" 
+                        id="export-png" 
+                        disabled={!valid}
+                        onClick={() => {
+                            importSerializedBuildings(value!);
+                            setValue(undefined);
                             setValid(false);
-                        } else {
-                            setValid(true);
-                            setValue(current);
-                        }
-                    }}
-                    required
-                    isInvalid={!valid}
-                />
-                <Button variant="outline-secondary" id="export-png" disabled={!valid}>
-                    <Upload onClick={() => importSerializedBuildings(value!)}/>
-                </Button>
-                <Form.Control.Feedback type="invalid">
-                    Invalid import string.
-                </Form.Control.Feedback>
-            </InputGroup>
+                            hide();
+                        }}
+                    >
+                        <Upload />
+                    </Button>
+                    <Form.Control.Feedback type="invalid">
+                        Invalid import string.
+                    </Form.Control.Feedback>
+                </InputGroup>
+            </Modal.Body>
         </BaseModal>
     );
 };
