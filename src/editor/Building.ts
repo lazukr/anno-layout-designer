@@ -64,21 +64,19 @@ const createBuilding = (svg: Svg, building: SVGBuilding, gridSize: number, rotat
         background.fill(colour);
     }
 
-    const sprite = svg
-        .image(Path.join(process.env.PUBLIC_URL, building.imagePath))
-        .size(squareSize * gridSize, squareSize * gridSize)
-        .move(centerX * gridSize, centerY * gridSize)
-        .attr({
-            id: rotated ? `image_${id}_rotated` : `image_${id}`, 
-        });
-    
-
     const model = svg
         .defs()
         .group()
         .add(background);
 
     if (!ignoreImage) {
+        const sprite = svg
+        .image(Path.join(process.env.PUBLIC_URL, building.imagePath))
+        .size(squareSize * gridSize, squareSize * gridSize)
+        .move(centerX * gridSize, centerY * gridSize)
+        .attr({
+            id: rotated ? `image_${id}_rotated` : `image_${id}`, 
+        });
         model.add(sprite);
     }
         

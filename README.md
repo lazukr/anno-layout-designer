@@ -10,7 +10,7 @@ Since it is fully client side, you can play around with it here:
 https://lazukr.github.io/anno-layout-designer/
 
 # Features to Add
-- [x] rotating the buildings (uses ctrl + click right now)
+- [x] rotating the buildings (press `R`)
 - [x] save to png
 - [x] drag tiling
 - [x] drag delete

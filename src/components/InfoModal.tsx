@@ -1,7 +1,4 @@
-import { Button, Form, InputGroup, Modal } from "react-bootstrap";
-import { useEffect, useState } from "react";
-import { Files, FiletypePng } from "react-bootstrap-icons";
-
+import { Modal } from "react-bootstrap";
 import { BaseModal } from "./BaseModal";
 
 interface InfoModalProps {
@@ -28,7 +25,7 @@ export const InfoModal = ({
                         Select a citizen to show buildings associated with that population group.
                     </li>
                     <li>
-                        Use CTRL to rotate a building.
+                        Press the `R` key to rotate a building.
                     </li>
                     <li>
                         Use the hand tool to select and move existing buildings. 
@@ -37,7 +34,6 @@ export const InfoModal = ({
                         Use the bucket tool and colour picker to colour code buildings.
                     </li>
                 </ul>    
-                
             </Modal.Body>
         </BaseModal>
     );
