@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -15,7 +15,6 @@ import {
     FileEarmarkArrowUp,
     FilePlus,
     PaintBucket,
-    InfoCircleFill,
     InfoCircle,
  } from "react-bootstrap-icons";
  
@@ -67,6 +66,26 @@ export const MainMenu = () => {
 
     const showInfoModal = () => setInfoModal(true);
     const closeInfoModal = () => setInfoModal(false);
+
+    const updateBuildingRotate = (ev: KeyboardEvent) => {
+        if (action !== Action.Create) {
+            return;
+        }
+
+        if (building.includes("_rotated")) {
+            setBuilding(building.replace("_rotated", ""));
+        }
+        else {
+            setBuilding(`${building}_rotated`);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("keydown", updateBuildingRotate, false);
+        return () => {
+            document.removeEventListener("keydown", updateBuildingRotate, false);
+        }
+    });
 
     return (
         <>
