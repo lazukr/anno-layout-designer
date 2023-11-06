@@ -20,9 +20,9 @@ https://lazukr.github.io/anno-layout-designer/
 
 - [ ] rotating the buildings (press `R`)
 - [ ] save to png
-- [ ] drag tiling
-- [ ] drag delete
-- [ ] drag select
+- [x] drag tiling
+- [x] drag delete
+- [x] drag select
 - [ ] change dimensions
 - [ ] save and load progress as base64 json file
 - [ ] cache current progress

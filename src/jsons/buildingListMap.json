@@ -1,0 +1,985 @@
+{
+    "1800_dirt_road": {
+        "id": "1800_dirt_road",
+        "name": "Dirt Road",
+        "width": 1,
+        "height": 1,
+        "children": []
+    },
+    "1800_marketplace": {
+        "id": "1800_marketplace",
+        "name": "Marketplace",
+        "width": 5,
+        "height": 6,
+        "children": []
+    },
+    "1800_farmer_residence": {
+        "id": "1800_farmer_residence",
+        "name": "Farmer Residence",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_pub": {
+        "id": "1800_pub",
+        "name": "Pub",
+        "width": 4,
+        "height": 6,
+        "children": []
+    },
+    "1800_warehouse": {
+        "id": "1800_warehouse",
+        "name": "Warehouse",
+        "width": 5,
+        "height": 5,
+        "children": []
+    },
+    "1800_fire_station": {
+        "id": "1800_fire_station",
+        "name": "Fire Station",
+        "width": 3,
+        "height": 5,
+        "children": []
+    },
+    "1800_lumberjacks_hut": {
+        "id": "1800_lumberjacks_hut",
+        "name": "Lumberjacks Hut",
+        "width": 4,
+        "height": 4,
+        "children": []
+    },
+    "1800_sawmill": {
+        "id": "1800_sawmill",
+        "name": "Sawmill",
+        "children": [
+            "1800_lumberjacks_hut"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_fishery": {
+        "id": "1800_fishery",
+        "name": "Fishery",
+        "width": 5,
+        "height": 11,
+        "children": []
+    },
+    "1800_farm_fields": {
+        "id": "1800_farm_fields",
+        "name": "Farm Fields",
+        "width": 1,
+        "height": 1,
+        "children": []
+    },
+    "1800_2_3_farm_module": {
+        "id": "1800_2_3_farm_module",
+        "name": "2 x 3 Farm Module",
+        "width": 2,
+        "height": 3,
+        "children": []
+    },
+    "1800_3_3_farm_module": {
+        "id": "1800_3_3_farm_module",
+        "name": "3 x 3 Farm Module",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_3_4_farm_module": {
+        "id": "1800_3_4_farm_module",
+        "name": "3 x 4 Farm Module",
+        "width": 3,
+        "height": 4,
+        "children": []
+    },
+    "1800_potato_farm": {
+        "id": "1800_potato_farm",
+        "name": "Potato Farm",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 3
+    },
+    "1800_schnapps_distillery": {
+        "id": "1800_schnapps_distillery",
+        "name": "Schnapps Distillery",
+        "children": [
+            "1800_potato_farm"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_sheep_farm": {
+        "id": "1800_sheep_farm",
+        "name": "Sheep Farm",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 3
+    },
+    "1800_framework_knitters": {
+        "id": "1800_framework_knitters",
+        "name": "Framework Knitters",
+        "children": [
+            "1800_sheep_farm"
+        ],
+        "width": 4,
+        "height": 4
+    },
+    "1800_paved_street": {
+        "id": "1800_paved_street",
+        "name": "Paved Street",
+        "width": 1,
+        "height": 1,
+        "children": []
+    },
+    "1800_worker_residence": {
+        "id": "1800_worker_residence",
+        "name": "Worker_residence",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_trade_union": {
+        "id": "1800_trade_union",
+        "name": "Trade Union",
+        "width": 4,
+        "height": 4,
+        "children": []
+    },
+    "1800_church": {
+        "id": "1800_church",
+        "name": "Church",
+        "width": 6,
+        "height": 8,
+        "children": []
+    },
+    "1800_police_station": {
+        "id": "1800_police_station",
+        "name": "Police Station",
+        "width": 4,
+        "height": 6,
+        "children": []
+    },
+    "1800_school": {
+        "id": "1800_school",
+        "name": "School",
+        "width": 5,
+        "height": 6,
+        "children": []
+    },
+    "1800_clay_pit": {
+        "id": "1800_clay_pit",
+        "name": "Clay Pit",
+        "width": 5,
+        "height": 5,
+        "children": []
+    },
+    "1800_brick_factory": {
+        "id": "1800_brick_factory",
+        "name": "Brick Factory",
+        "children": [
+            "1800_clay_pit"
+        ],
+        "width": 5,
+        "height": 5
+    },
+    "1800_pig_farm": {
+        "id": "1800_pig_farm",
+        "name": "Pig Farm",
+        "children": [
+            "1800_2_3_farm_module"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_slaughterhouse": {
+        "id": "1800_slaughterhouse",
+        "name": "Slaughterhouse",
+        "children": [
+            "1800_pig_farm"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_grain_farm": {
+        "id": "1800_grain_farm",
+        "name": "Grain Farm",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_flour_mill": {
+        "id": "1800_flour_mill",
+        "name": "Flour Mill",
+        "children": [
+            "1800_grain_farm"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_bakery": {
+        "id": "1800_bakery",
+        "name": "Bakery",
+        "children": [
+            "1800_flour_mill"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_sailmakers": {
+        "id": "1800_sailmakers",
+        "name": "Sailmakers",
+        "children": [
+            "1800_sheep_farm"
+        ],
+        "width": 5,
+        "height": 5
+    },
+    "1800_iron_mine": {
+        "id": "1800_iron_mine",
+        "name": "Iron Mine",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_charcoal_kiln": {
+        "id": "1800_charcoal_kiln",
+        "name": "Charcoal Kiln",
+        "width": 5,
+        "height": 5,
+        "children": []
+    },
+    "1800_furnace": {
+        "id": "1800_furnace",
+        "name": "Furnace",
+        "children": [
+            "1800_iron_mine",
+            "1800_charcoal_kiln"
+        ],
+        "width": 4,
+        "height": 7
+    },
+    "1800_steelworks": {
+        "id": "1800_steelworks",
+        "name": "Steelworks",
+        "children": [
+            "1800_furnace"
+        ],
+        "width": 5,
+        "height": 10
+    },
+    "1800_rendering_works": {
+        "id": "1800_rendering_works",
+        "name": "Rendering Works",
+        "children": [
+            "1800_pig_farm"
+        ],
+        "width": 3,
+        "height": 3
+    },
+    "1800_soap_factory": {
+        "id": "1800_soap_factory",
+        "name": "Soap Factory",
+        "children": [
+            "1800_rendering_works"
+        ],
+        "width": 4,
+        "height": 4
+    },
+    "1800_weapon_factory": {
+        "id": "1800_weapon_factory",
+        "name": "Weapon Factory",
+        "children": [
+            "1800_furnace"
+        ],
+        "width": 5,
+        "height": 7
+    },
+    "1800_malthouse": {
+        "id": "1800_malthouse",
+        "name": "Malthouse",
+        "children": [
+            "1800_grain_farm"
+        ],
+        "width": 4,
+        "height": 5
+    },
+    "1800_hop_farm": {
+        "id": "1800_hop_farm",
+        "name": "Hop Farm",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_brewery": {
+        "id": "1800_brewery",
+        "name": "Brewery",
+        "children": [
+            "1800_malthouse",
+            "1800_hop_farm"
+        ],
+        "width": 4,
+        "height": 5
+    },
+    "1800_artisan_residence": {
+        "id": "1800_artisan_residence",
+        "name": "Artisan Residence",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_hospital": {
+        "id": "1800_hospital",
+        "name": "Hospital",
+        "width": 6,
+        "height": 6,
+        "children": []
+    },
+    "1800_town_hall": {
+        "id": "1800_town_hall",
+        "name": "Town Hall",
+        "width": 4,
+        "height": 4,
+        "children": []
+    },
+    "1800_museum": {
+        "id": "1800_museum",
+        "name": "Museum",
+        "width": 5,
+        "height": 8,
+        "children": []
+    },
+    "1800_variety_theatre": {
+        "id": "1800_variety_theatre",
+        "name": "Variety Theatre",
+        "width": 4,
+        "height": 5,
+        "children": []
+    },
+    "1800_university": {
+        "id": "1800_university",
+        "name": "University",
+        "width": 6,
+        "height": 9,
+        "children": []
+    },
+    "1800_sand_mine": {
+        "id": "1800_sand_mine",
+        "name": "Sand Mine",
+        "width": 6,
+        "height": 7,
+        "children": []
+    },
+    "1800_glassmaker": {
+        "id": "1800_glassmaker",
+        "name": "Glassmaker",
+        "children": [
+            "1800_sand_mine"
+        ],
+        "width": 4,
+        "height": 6
+    },
+    "1800_window_maker": {
+        "id": "1800_window_maker",
+        "name": "Window Maker",
+        "children": [
+            "1800_glassmaker",
+            "1800_lumberjacks_hut"
+        ],
+        "width": 5,
+        "height": 5
+    },
+    "1800_cattle_farm": {
+        "id": "1800_cattle_farm",
+        "name": "Cattle Farm",
+        "children": [
+            "1800_3_4_farm_module"
+        ],
+        "width": 4,
+        "height": 5
+    },
+    "1800_red_pepper_farm": {
+        "id": "1800_red_pepper_farm",
+        "name": "Red Pepper Farm",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 3
+    },
+    "1800_artisanal_kitchen": {
+        "id": "1800_artisanal_kitchen",
+        "name": "Artisanal Kitchen",
+        "children": [
+            "1800_cattle_farm",
+            "1800_red_pepper_farm"
+        ],
+        "width": 5,
+        "height": 5
+    },
+    "1800_cannery": {
+        "id": "1800_cannery",
+        "name": "Cannery",
+        "children": [
+            "1800_artisanal_kitchen",
+            "1800_iron_mine"
+        ],
+        "width": 6,
+        "height": 7
+    },
+    "1800_coal_mine": {
+        "id": "1800_coal_mine",
+        "name": "Coal Mine",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_sewing_machine_factory": {
+        "id": "1800_sewing_machine_factory",
+        "name": "Sewing Machine Factory",
+        "children": [
+            "1800_lumberjacks_hut",
+            "1800_furnace"
+        ],
+        "width": 6,
+        "height": 9
+    },
+    "1800_cotton_plantation": {
+        "id": "1800_cotton_plantation",
+        "name": "Cotton Plantation",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 4,
+        "height": 4
+    },
+    "1800_cotton_mill": {
+        "id": "1800_cotton_mill",
+        "name": "Cotton Mill",
+        "children": [
+            "1800_cotton_plantation"
+        ],
+        "width": 4,
+        "height": 4
+    },
+    "1800_hunting_cabin": {
+        "id": "1800_hunting_cabin",
+        "name": "Hunting Cabin",
+        "width": 5,
+        "height": 5,
+        "children": []
+    },
+    "1800_fur_dealer": {
+        "id": "1800_fur_dealer",
+        "name": "Fur Dealer",
+        "children": [
+            "1800_cotton_mill",
+            "1800_hunting_cabin"
+        ],
+        "width": 4,
+        "height": 6
+    },
+    "1800_railway": {
+        "id": "1800_railway",
+        "name": "Railway",
+        "width": 1,
+        "height": 1,
+        "children": []
+    },
+    "1800_engineer_residence": {
+        "id": "1800_engineer_residence",
+        "name": "Engineer Residence",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_bank": {
+        "id": "1800_bank",
+        "name": "Bank",
+        "width": 12,
+        "height": 10,
+        "children": []
+    },
+    "1800_limestone_quarry": {
+        "id": "1800_limestone_quarry",
+        "name": "Limestone Quarry",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_concrete_factory": {
+        "id": "1800_concrete_factory",
+        "name": "Concrete Factory",
+        "children": [
+            "1800_furnace",
+            "1800_limestone_quarry"
+        ],
+        "width": 5,
+        "height": 6
+    },
+    "1800_oil_well": {
+        "id": "1800_oil_well",
+        "name": "Oil Well",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_oil_refinery": {
+        "id": "1800_oil_refinery",
+        "name": "Oil Refinery",
+        "children": [
+            "1800_oil_well"
+        ],
+        "width": 5,
+        "height": 5
+    },
+    "1800_oil_power_plant": {
+        "id": "1800_oil_power_plant",
+        "name": "Oil Power Plant",
+        "children": [
+            "1800_oil_refinery"
+        ],
+        "width": 5,
+        "height": 5
+    },
+    "1800_copper_mine": {
+        "id": "1800_copper_mine",
+        "name": "Copper Mine",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_zinc_mine": {
+        "id": "1800_zinc_mine",
+        "name": "Zinc Mine",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_brass_smeltery": {
+        "id": "1800_brass_smeltery",
+        "name": "Brass Smeltery",
+        "children": [
+            "1800_copper_mine",
+            "1800_zinc_mine"
+        ],
+        "width": 5,
+        "height": 5
+    },
+    "1800_spectacle_factory": {
+        "id": "1800_spectacle_factory",
+        "name": "Spectacle Factory",
+        "children": [
+            "1800_glassmaker",
+            "1800_brass_smeltery"
+        ],
+        "width": 4,
+        "height": 6
+    },
+    "1800_saltpeter_works": {
+        "id": "1800_saltpeter_works",
+        "name": "Saltpeter Works",
+        "width": 4,
+        "height": 6,
+        "children": []
+    },
+    "1800_dynamite_factory": {
+        "id": "1800_dynamite_factory",
+        "name": "Dynamite Factory",
+        "children": [
+            "1800_rendering_works",
+            "1800_saltpeter_works"
+        ],
+        "width": 5,
+        "height": 6
+    },
+    "1800_heavy_weapons_factory": {
+        "id": "1800_heavy_weapons_factory",
+        "name": "Heavy Weapons Factory",
+        "children": [
+            "1800_dynamite_factory",
+            "1800_furnace"
+        ],
+        "width": 9,
+        "height": 10
+    },
+    "1800_caoutchouc_plantation": {
+        "id": "1800_caoutchouc_plantation",
+        "name": "Caoutchouc Plantation",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 3
+    },
+    "1800_bicycle_factory": {
+        "id": "1800_bicycle_factory",
+        "name": "Bicycle Factory",
+        "children": [
+            "1800_furnace",
+            "1800_caoutchouc_plantation"
+        ],
+        "width": 6,
+        "height": 6
+    },
+    "1800_motor_assembly_line": {
+        "id": "1800_motor_assembly_line",
+        "name": "Motor Assembly Line",
+        "children": [
+            "1800_furnace",
+            "1800_brass_smeltery"
+        ],
+        "width": 8,
+        "height": 12
+    },
+    "1800_gold_mine": {
+        "id": "1800_gold_mine",
+        "name": "Gold Mine",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_goldsmith": {
+        "id": "1800_goldsmith",
+        "name": "Goldsmith",
+        "children": [
+            "1800_gold_mine",
+            "1800_coal_mine"
+        ],
+        "width": 4,
+        "height": 5
+    },
+    "1800_clockmaker": {
+        "id": "1800_clockmaker",
+        "name": "Clockmaker",
+        "children": [
+            "1800_goldsmith",
+            "1800_glassmaker"
+        ],
+        "width": 5,
+        "height": 7
+    },
+    "1800_filament_factory": {
+        "id": "1800_filament_factory",
+        "name": "Filament Factory",
+        "children": [
+            "1800_coal_mine"
+        ],
+        "width": 6,
+        "height": 7
+    },
+    "1800_light_bulb_factory": {
+        "id": "1800_light_bulb_factory",
+        "name": "Light Bulb Factory",
+        "children": [
+            "1800_filament_factory",
+            "1800_glassmaker"
+        ],
+        "width": 6,
+        "height": 6
+    },
+    "1800_investor_residence": {
+        "id": "1800_investor_residence",
+        "name": "Investor Residence",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_members_club": {
+        "id": "1800_members_club",
+        "name": "Members Club",
+        "width": 6,
+        "height": 6,
+        "children": []
+    },
+    "1800_vineyard": {
+        "id": "1800_vineyard",
+        "name": "Vineyard",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_champagne_cellar": {
+        "id": "1800_champagne_cellar",
+        "name": "Champagne Cellar",
+        "children": [
+            "1800_glassmaker",
+            "1800_vineyard"
+        ],
+        "width": 5,
+        "height": 6
+    },
+    "1800_pearl_farm": {
+        "id": "1800_pearl_farm",
+        "name": "Pearl Farm",
+        "width": 6,
+        "height": 14,
+        "children": []
+    },
+    "1800_jewellers": {
+        "id": "1800_jewellers",
+        "name": "Jewellers",
+        "children": [
+            "1800_goldsmith",
+            "1800_pearl_farm"
+        ],
+        "width": 5,
+        "height": 5
+    },
+    "1800_marquetry_workshop": {
+        "id": "1800_marquetry_workshop",
+        "name": "Marquetry Workshop",
+        "children": [
+            "1800_lumberjacks_hut"
+        ],
+        "width": 5,
+        "height": 5
+    },
+    "1800_gramophone_factory": {
+        "id": "1800_gramophone_factory",
+        "name": "Gramophone Factory",
+        "children": [
+            "1800_marquetry_workshop",
+            "1800_brass_smeltery"
+        ],
+        "width": 7,
+        "height": 7
+    },
+    "1800_coachmaker": {
+        "id": "1800_coachmaker",
+        "name": "Coachmaker",
+        "children": [
+            "1800_lumberjacks_hut",
+            "1800_caoutchouc_plantation"
+        ],
+        "width": 6,
+        "height": 9
+    },
+    "1800_cab_assembly_line": {
+        "id": "1800_cab_assembly_line",
+        "name": "Cab Assembly Line",
+        "children": [
+            "1800_motor_assembly_line",
+            "1800_coachmaker"
+        ],
+        "width": 8,
+        "height": 12
+    },
+    "1800_jornalero_residence": {
+        "id": "1800_jornalero_residence",
+        "name": "Jornalero Residence",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_chapel": {
+        "id": "1800_chapel",
+        "name": "Chapel",
+        "width": 3,
+        "height": 4,
+        "children": []
+    },
+    "1800_new_world_police_station": {
+        "id": "1800_new_world_police_station",
+        "name": "Police Station",
+        "width": 4,
+        "height": 5,
+        "children": []
+    },
+    "1800_plantain_plantation": {
+        "id": "1800_plantain_plantation",
+        "name": "Plantain Plantation",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 3
+    },
+    "1800_fish_oil_factory": {
+        "id": "1800_fish_oil_factory",
+        "name": "Fish Oil Factory",
+        "width": 5,
+        "height": 8,
+        "children": []
+    },
+    "1800_fried_plantain_kitchen": {
+        "id": "1800_fried_plantain_kitchen",
+        "name": "Fried Plantain Kitchen",
+        "children": [
+            "1800_plantain_plantation",
+            "1800_fish_oil_factory"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_sugar_cane_plantation": {
+        "id": "1800_sugar_cane_plantation",
+        "name": "Sugar Cane Plantation",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_rum_distillery": {
+        "id": "1800_rum_distillery",
+        "name": "Rum Distillery",
+        "children": [
+            "1800_sugar_cane_plantation",
+            "1800_lumberjacks_hut"
+        ],
+        "width": 6,
+        "height": 7
+    },
+    "1800_alpaca_farm": {
+        "id": "1800_alpaca_farm",
+        "name": "Alpaca Farm",
+        "children": [
+            "1800_3_3_farm_module"
+        ],
+        "width": 3,
+        "height": 3
+    },
+    "1800_poncho_darner": {
+        "id": "1800_poncho_darner",
+        "name": "Poncho Darner",
+        "children": [
+            "1800_alpaca_farm"
+        ],
+        "width": 4,
+        "height": 5
+    },
+    "1800_obrero_residence": {
+        "id": "1800_obrero_residence",
+        "name": "Obrero Residence",
+        "width": 3,
+        "height": 3,
+        "children": []
+    },
+    "1800_boxing_arena": {
+        "id": "1800_boxing_arena",
+        "name": "Boxing Arena",
+        "width": 5,
+        "height": 6,
+        "children": []
+    },
+    "1800_new_world_hospital": {
+        "id": "1800_new_world_hospital",
+        "name": "Hospital",
+        "width": 5,
+        "height": 6,
+        "children": []
+    },
+    "1800_corn_farm": {
+        "id": "1800_corn_farm",
+        "name": "Corn Farm",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 3
+    },
+    "1800_tortilla_maker": {
+        "id": "1800_tortilla_maker",
+        "name": "Tortilla Maker",
+        "children": [
+            "1800_corn_farm",
+            "1800_cattle_farm"
+        ],
+        "width": 3,
+        "height": 5
+    },
+    "1800_coffee_plantation": {
+        "id": "1800_coffee_plantation",
+        "name": "Coffee Plantation",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_coffee_roaster": {
+        "id": "1800_coffee_roaster",
+        "name": "Coffee Roaster",
+        "children": [
+            "1800_coffee_plantation"
+        ],
+        "width": 5,
+        "height": 6
+    },
+    "1800_felt_producer": {
+        "id": "1800_felt_producer",
+        "name": "Felt Producer",
+        "children": [
+            "1800_alpaca_farm"
+        ],
+        "width": 4,
+        "height": 4
+    },
+    "1800_bombin_weaver": {
+        "id": "1800_bombin_weaver",
+        "name": "Bombin Weaver",
+        "children": [
+            "1800_cotton_mill",
+            "1800_felt_producer"
+        ],
+        "width": 4,
+        "height": 6
+    },
+    "1800_tobacco_plantation": {
+        "id": "1800_tobacco_plantation",
+        "name": "Tobacco Plantation",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 3,
+        "height": 4
+    },
+    "1800_cigar_factory": {
+        "id": "1800_cigar_factory",
+        "name": "Cigar Factory",
+        "children": [
+            "1800_marquetry_workshop",
+            "1800_tobacco_plantation"
+        ],
+        "width": 7,
+        "height": 7
+    },
+    "1800_sugar_refinery": {
+        "id": "1800_sugar_refinery",
+        "name": "Sugar Refinery",
+        "children": [
+            "1800_sugar_cane_plantation"
+        ],
+        "width": 4,
+        "height": 6
+    },
+    "1800_cocoa_plantation": {
+        "id": "1800_cocoa_plantation",
+        "name": "Cocoa Plantation",
+        "children": [
+            "1800_farm_fields"
+        ],
+        "width": 4,
+        "height": 5
+    },
+    "1800_chocolate_factory": {
+        "id": "1800_chocolate_factory",
+        "name": "Chocolate Factory",
+        "children": [
+            "1800_sugar_refinery",
+            "1800_cocoa_plantation"
+        ],
+        "width": 5,
+        "height": 7
+    }
+}
