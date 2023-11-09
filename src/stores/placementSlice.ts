@@ -1,8 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { CursorInfo } from "../editor/CursorInfo";
-import { getBuildingFromCursorInfo } from "../components/CreateCursor";
-import { BuildingDisplayItemMap } from "../data/data";
-import { setAction } from "./cursorActionSlice";
+import { setGrid } from "./gridSlice";
 
 export interface BuildingData {
 	building: string;
@@ -27,16 +25,18 @@ const placementSlice = createSlice({
 	name: "placementSlice",
 	initialState,
 	reducers: {
-		addBuildings: (state, action: PayloadAction<BuildingData[]>) => {
+		addPlacements: (state, action: PayloadAction<BuildingData[]>) => {
 			state.placements.push(...action.payload);
 		},
-		removeBuildings: (state, action: PayloadAction<CursorInfo>) => {
+		removePlacements: (state, action: PayloadAction<CursorInfo>) => {
 			state.placements = state.placements.filter((p) => {
 				return !overlaps(p, action.payload);
 			});
 		},
-
-		colourBuildings: (state, action: PayloadAction<[CursorInfo, string]>) => {
+		setPlacements: (state, action: PayloadAction<BuildingData[]>) => {
+			state.placements = action.payload;
+		},
+		colourPlacements: (state, action: PayloadAction<[CursorInfo, string]>) => {
 			const results = state.placements.filter((p) => {
 				return overlaps(p, action.payload[0]);
 			});
@@ -54,6 +54,11 @@ const placementSlice = createSlice({
 
 			state.placements.push(...replaced);
 		},
+	},
+	extraReducers(builder) {
+		builder.addCase(setGrid, (state) => {
+			state.placements = [];
+		});
 	},
 });
 
@@ -75,6 +80,10 @@ export function overlaps(building: BuildingData, cursorInfo: CursorInfo) {
 	);
 }
 
-export const { addBuildings, removeBuildings, colourBuildings } =
-	placementSlice.actions;
+export const {
+	addPlacements,
+	removePlacements,
+	setPlacements,
+	colourPlacements,
+} = placementSlice.actions;
 export const placementReducer = placementSlice.reducer;

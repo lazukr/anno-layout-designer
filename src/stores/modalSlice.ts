@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { setGrid } from "./gridSlice";
 
-enum ModalType {
+export enum ModalType {
 	NewGrid,
 	Import,
 	Export,
@@ -28,8 +29,19 @@ const modalSlice = createSlice({
 		hideModal: (state) => {
 			state.active = false;
 		},
+
+		updateType: (state, action: PayloadAction<ModalType>) => {
+			state.type = action.payload;
+			state.active = true;
+		},
+	},
+
+	extraReducers(builder) {
+		builder.addCase(setGrid, (state) => {
+			state.active = false;
+		});
 	},
 });
 
-export const { showModal, hideModal } = modalSlice.actions;
+export const { showModal, hideModal, updateType } = modalSlice.actions;
 export const modalReducer = modalSlice.reducer;

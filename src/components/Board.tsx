@@ -18,10 +18,10 @@ import {
 } from "../stores/cursorActionSlice";
 import {
 	BuildingData,
-	addBuildings,
-	colourBuildings,
+	addPlacements,
+	colourPlacements,
 	overlaps,
-	removeBuildings,
+	removePlacements,
 } from "../stores/placementSlice";
 import { Placements } from "./Placements";
 import { SelectRect } from "./SelectRect";
@@ -29,6 +29,7 @@ import { SelectRect } from "./SelectRect";
 export const Board = () => {
 	const svg = useRef<SVGSVGElement>(null!);
 	const [dragging, drag] = useState(false);
+	const [rotated, setRotated] = useState(false);
 	const [dragStart, setDragStart] = useState<Position>({
 		x: 0,
 		y: 0,
@@ -71,14 +72,25 @@ export const Board = () => {
 	useEffect(() => {
 		if (action !== CursorAction.Place) {
 			setLocalBuildingSelection(
-				getBuildingFromCursorInfo(cursorInfo, building)
+				getBuildingFromCursorInfo(cursorInfo, building, rotated)
 			);
 		} else {
 			setLocalBuildingSelection(
 				getCopyBuildingWithCursorInfo(copySelection, cursorInfo)
 			);
 		}
-	}, [cursorInfo, building, action, copySelection]);
+	}, [cursorInfo, building, action, copySelection, rotated]);
+
+	const rotate = () => {
+		setRotated(!rotated);
+	};
+
+	useEffect(() => {
+		document.addEventListener("keydown", rotate);
+		return () => {
+			document.removeEventListener("keydown", rotate);
+		};
+	});
 
 	const getColourForSelectRectAction = useCallback(
 		(action: CursorAction, fillColour: string) => {
@@ -131,13 +143,13 @@ export const Board = () => {
 			drag(false);
 			switch (action) {
 				case CursorAction.Create:
-					dispatch(addBuildings(buildingData));
+					dispatch(addPlacements(buildingData));
 					break;
 				case CursorAction.Delete:
-					dispatch(removeBuildings(selection));
+					dispatch(removePlacements(selection));
 					break;
 				case CursorAction.Colour:
-					dispatch(colourBuildings([selection, fillColour]));
+					dispatch(colourPlacements([selection, fillColour]));
 					break;
 				case CursorAction.Select:
 					const buildings = placements
@@ -159,11 +171,11 @@ export const Board = () => {
 					}
 
 					setCopySelection(buildings);
-					dispatch(removeBuildings(selection));
+					dispatch(removePlacements(selection));
 					dispatch(setAction(CursorAction.Place));
 					break;
 				case CursorAction.Place:
-					dispatch(addBuildings(buildingData));
+					dispatch(addPlacements(buildingData));
 					dispatch(setAction(CursorAction.Select));
 					break;
 			}
@@ -239,7 +251,7 @@ export const Board = () => {
 				)
 			}
 		>
-			<Buildings />
+			<Buildings baked={false} />
 			<Grid
 				width={width}
 				height={height}

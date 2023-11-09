@@ -29,10 +29,14 @@ export const CreateCursor = ({ gridSize, buildingData }: Cursor) => {
 
 export function getBuildingFromCursorInfo(
 	cursorInfo: CursorInfo,
-	building: string
+	building: string,
+	rotated: boolean
 ) {
 	const { startX, startY, endX, endY, adjustX, adjustY } = cursorInfo;
-	const { width, height } = BuildingDisplayItemMap[building];
+	const { width: bWidth, height: bHeight } = BuildingDisplayItemMap[building];
+
+	const width = rotated ? bHeight : bWidth;
+	const height = rotated ? bWidth : bHeight;
 
 	const adjustedStartX = adjustX ? startX + ((endX - startX) % width) : startX;
 	const adjustedStartY = adjustY ? startY + ((endY - startY) % height) : startY;
@@ -46,7 +50,7 @@ export function getBuildingFromCursorInfo(
 				endX: x + width - 1,
 				endY: y + height - 1,
 				id: uuidv4(),
-				rotated: false,
+				rotated: rotated,
 				building: building,
 				fill: "lightgray",
 			});

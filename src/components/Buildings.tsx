@@ -3,7 +3,11 @@ import { BuildingDisplayItemMap } from "../data/data";
 import { Building } from "./Building";
 import { RootState } from "../stores/store";
 
-export const Buildings = () => {
+interface BuildingsProps {
+	baked: boolean;
+}
+
+export const Buildings = ({ baked }: BuildingsProps) => {
 	const gridSize = useSelector((state: RootState) => state.grid.gridSize);
 	const buildingList = Object.values(BuildingDisplayItemMap).flatMap((b) => {
 		return [
@@ -25,6 +29,7 @@ export const Buildings = () => {
 						key={b.id}
 						gridSize={gridSize}
 						buildingInfo={b}
+						baked={baked}
 					/>
 				);
 			})}

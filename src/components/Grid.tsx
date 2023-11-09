@@ -36,6 +36,11 @@ export const Grid = ({ width, height, gridSize }: GridSlice) => {
 
 	return (
 		<g>
+			<rect
+				width={width * gridSize}
+				height={height * gridSize}
+				fill={"white"}
+			></rect>
 			{lines.map(({ x1, y1, x2, y2, strokeWidth }, index) => (
 				<line
 					key={index}

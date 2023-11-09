@@ -1,12 +1,14 @@
 import path from "path-browserify";
 import { BuildingDisplayItem } from "../data/ItemDefinition";
+import { BuildingDisplayDataURIMap } from "../data/data";
 
 interface BuildingProps {
 	gridSize: number;
 	buildingInfo: BuildingDisplayItem;
+	baked: boolean;
 }
 
-export const Building = ({ gridSize, buildingInfo }: BuildingProps) => {
+export const Building = ({ gridSize, buildingInfo, baked }: BuildingProps) => {
 	const { id, width, height, imagePath } = buildingInfo;
 	const realWidth = width * gridSize;
 	const realHeight = height * gridSize;
@@ -28,7 +30,11 @@ export const Building = ({ gridSize, buildingInfo }: BuildingProps) => {
 				stroke="black"
 			></rect>
 			<image
-				href={path.join(process.env.PUBLIC_URL, imagePath)}
+				href={
+					baked
+						? BuildingDisplayDataURIMap[id.replace("^rotated", "")]
+						: path.join(process.env.PUBLIC_URL, imagePath)
+				}
 				width={imageSize}
 				height={imageSize}
 				x={centerX}

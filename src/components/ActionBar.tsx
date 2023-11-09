@@ -1,49 +1,51 @@
-import { Container, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
-import { HandIndexFill, EraserFill, PaintBucket } from "react-bootstrap-icons";
-import { setAction, CursorAction } from "../stores/cursorActionSlice";
-import { ColourPicker } from "./ColourPicker";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../stores/store";
+import { Button, ButtonGroup, Container } from "react-bootstrap";
+import {
+	FileEarmarkArrowDown,
+	FileEarmarkArrowUp,
+	FilePlus,
+	InfoSquare,
+} from "react-bootstrap-icons";
+import { useDispatch } from "react-redux";
+import { ModalType, updateType } from "../stores/modalSlice";
 
 export const ActionBar = () => {
-	const action = useSelector((state: RootState) => state.cursorAction.action);
 	const dispatch = useDispatch();
-
 	return (
 		<Container>
-			<ToggleButtonGroup
-				type="radio"
-				name="actions"
-				size="lg"
-				value={action}
-				onChange={(e) => dispatch(setAction(e))}
-			>
-				<ToggleButton
-					id="tbg-radio-select"
-					title="Select building"
-					value={CursorAction.Select}
+			<ButtonGroup>
+				<Button
 					variant="dark"
+					size="lg"
+					title="New Layout"
+					onClick={() => dispatch(updateType(ModalType.NewGrid))}
 				>
-					<HandIndexFill color="green" />
-				</ToggleButton>
-				<ToggleButton
-					id="tbg-radio-delete"
-					title="Delete building"
-					value={CursorAction.Delete}
+					<FilePlus />
+				</Button>
+				<Button
 					variant="dark"
+					size="lg"
+					title="Import Layout"
+					onClick={() => dispatch(updateType(ModalType.Import))}
 				>
-					<EraserFill color="red" />
-				</ToggleButton>
-				<ToggleButton
-					id="tbg-radio-fill"
-					title="Colour building"
-					value={CursorAction.Colour}
+					<FileEarmarkArrowUp />
+				</Button>
+				<Button
 					variant="dark"
+					size="lg"
+					title="Export Layout"
+					onClick={() => dispatch(updateType(ModalType.Export))}
 				>
-					<PaintBucket />
-				</ToggleButton>
-				<ColourPicker />
-			</ToggleButtonGroup>
+					<FileEarmarkArrowDown />
+				</Button>
+				<Button
+					variant="dark"
+					size="lg"
+					title="Info"
+					onClick={() => dispatch(updateType(ModalType.Info))}
+				>
+					<InfoSquare />
+				</Button>
+			</ButtonGroup>
 		</Container>
 	);
 };

@@ -1,151 +1,65 @@
-import { Element as DotSVGElement, List, Svg, SVG } from "@svgdotjs/svg.js";
 import { Buffer } from "buffer";
-import { GRID_SIZE, SvgCanvas } from "./SvgCanvas";
-import { bakeBuildingsToSVG } from "./Building";
-import { BrushData } from "./BrushData";
-import { CreateBrush } from "./CreateBrush";
-
-const save = (name: string, blob: Blob) => {
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = name;
-    a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
-};
-
+import { BuildingData } from "../stores/placementSlice";
 export interface SerializedData {
-    width: number;
-    height: number;
-    data: BrushData[];
-};
-
-interface Dimension {
-    width: number;
-    height: number;
-};
-
-export const importSerializedBuildings = (serial: SerializedData): Dimension => {
-    const {
-        width,
-        height,
-        data,
-    } = serial;
-
-    SvgCanvas.setBoard(width, height);
-    const svg = SvgCanvas.GetSVG();
-    data.forEach(building => {
-        building.x = building.x * GRID_SIZE;
-        building.y = building.y * GRID_SIZE;
-        CreateBrush.createBuilding(svg, building);
-    });
-
-    return {
-        width: width,
-        height: height,
-    };
+	width: number;
+	height: number;
+	placements: BuildingData[];
 }
 
-const getSVGDataAsJson = (svg: Svg) => {
-    const uses = svg.find("use.placed");
-    const data = uses.map(e => {
-        return {
-            x: (e.x() as number) / GRID_SIZE,
-            y: (e.y() as number) / GRID_SIZE,
-            buildingName: (e.attr("href") as string).replace("#", ""),
-            colour: e.attr("fill"),
-        } as BrushData;
-    });
+export const dataToJSONBase64 = (data: SerializedData) => {
+	const json = JSON.stringify(data);
+	const encoded = Buffer.from(json, "utf8").toString("base64");
+	return encoded;
+};
 
-    return {
-        width: (svg.width() as number) / GRID_SIZE,
-        height: (svg.height() as number) / GRID_SIZE,
-        data: data,
-    };
+export const dataFromJSONBase64 = (load: string) => {
+	try {
+		const decoded = Buffer.from(load, "base64").toString("utf-8");
+		const data = JSON.parse(decoded);
+		return data as SerializedData;
+	} catch {
+		return undefined;
+	}
+};
+
+// https://stackoverflow.com/questions/28226677/save-inline-svg-as-jpeg-png-svg
+
+export const saveAsPNG = async (svg: SVGSVGElement) => {
+	console.log(svg.outerHTML);
+	const svgString = new XMLSerializer().serializeToString(svg);
+	console.log(svgString);
+	const svgBlob = new Blob([svgString], {
+		type: "image/svg+xml;charset=utf-8",
+	});
+	const DOMURL = window.URL || window.webkitURL || window;
+	const url = DOMURL.createObjectURL(svgBlob);
+	const image = new Image();
+
+	image.width = svg.width.baseVal.value;
+	image.height = svg.height.baseVal.value;
+	image.src = url;
+	image.onload = function () {
+		const canvas = document.createElement("canvas");
+		canvas.width = image.width;
+		canvas.height = image.height;
+
+		const ctx = canvas.getContext("2d");
+		ctx!.drawImage(image, 0, 0);
+		DOMURL.revokeObjectURL(url);
+
+		const imgURI = canvas
+			.toDataURL("image/png")
+			.replace("image/png", "image/octet-stream");
+		triggerDownload(imgURI);
+		image.remove();
+	};
+};
+
+function triggerDownload(imgURI: string) {
+	const a = document.createElement("a");
+	a.download = "anno_layout.png";
+	a.target = "_blank";
+	a.href = imgURI;
+	a.click();
+	a.remove();
 }
-
-export const saveAsJSONBase64 = async (svg: Svg) => {
-    const save = getSVGDataAsJson(svg);
-    const data = JSON.stringify(save);
-    const encoded = Buffer.from(data, "utf8").toString("base64");
-    return encoded;
-};
-
-export const loadFromJSONBase64 = (load: string) => {
-    try {
-        const decoded = Buffer.from(load, "base64").toString("utf-8");
-        const data = JSON.parse(decoded);
-        return data as SerializedData;
-    } catch {
-        return undefined;
-    }
-};
-
-const downloadFromCanvas = (canvas: HTMLCanvasElement) => {
-    canvas.toBlob(blob => {
-        save("anno-layout.png", blob!);
-    });
-};
-
-// cursor can either be a rect or a group
-// remove only if it has the "cursor" class
-const removeCursor = (rectList: List<DotSVGElement>, groupList: List<DotSVGElement>) => {
-    rectList.forEach(rect => {
-        if (rect.hasClass("cursor")) {
-            rect.remove();
-        }
-    });
-
-    groupList.forEach(group => {
-        if (group.hasClass("cursor")) {
-            group.remove();
-        }
-    });
-};
-
-const addRectBorders = (rectList: List<DotSVGElement>) => {
-    rectList.forEach(rect => {
-        rect.stroke({
-            color: "black",
-            width: 1,
-        });
-    });
-};
-
-
-export const saveAsPNG = async (svg: Svg) => {
-    // can replace with svg.clone(deep: true, assignNewIds: false); in 3.2
-    const clone = SVG(svg.node.cloneNode(true)) as Svg;
-
-    // bake the images into the svg
-    await bakeBuildingsToSVG(clone);
-
-    const rects = clone.find("rect");
-    const groups = clone.find("g");
-
-    // remove cursor
-    removeCursor(rects, groups);
-
-    // add rect borders
-    addRectBorders(rects);
-
-    const data = clone.svg();
-
-    const image = new Image();
-    image.onload = () => {
-        const {
-            width,
-            height,
-        } = svg.bbox();
-
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        const context = canvas.getContext("2d");
-        context!.drawImage(image, 0, 0);
-        downloadFromCanvas(canvas);
-    }
-    image.src = `data:image/svg+xml,${encodeURIComponent(data)}`;
-    clone.remove();
-};

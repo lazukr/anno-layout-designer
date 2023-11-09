@@ -2,21 +2,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import {
-	Github,
-	EraserFill,
-	HandIndexFill,
-	FileEarmarkArrowDown,
-	FileEarmarkArrowUp,
-	FilePlus,
-	PaintBucket,
-	InfoCircle,
-} from "react-bootstrap-icons";
+import { Github } from "react-bootstrap-icons";
 
 import { CitizenSelect } from "./CitizenSelect";
 import { BuildingSelect } from "./BuildingSelect";
 import { Board } from "./Board";
+import { CursorActionBar } from "./CursorActionBar";
 import { ActionBar } from "./ActionBar";
+import { BaseModal } from "./BaseModal";
 
 export const MainMenu = () => {
 	return (
@@ -29,6 +22,7 @@ export const MainMenu = () => {
 				<Container fluid>
 					<Navbar.Brand>Anno 1800 Layout Planner</Navbar.Brand>
 					<Nav className="me-auto">
+						<CursorActionBar />
 						<ActionBar />
 						<CitizenSelect />
 					</Nav>
@@ -50,6 +44,7 @@ export const MainMenu = () => {
 				<BuildingSelect />
 			</Navbar>
 			<Board />
+			<BaseModal />
 		</>
 	);
 };

@@ -1,5 +1,5 @@
 import fs from "fs";
-import path from "path";
+import path from "path-browserify";
 
 import {
 	Item,
@@ -62,7 +62,8 @@ function generateJsons() {
 		JSON.stringify(BuildingImageItemMap)
 	);
 
-	// building map containing display size
+	const BuildingDisplayDataURIMap: Record<string, string> = {};
+
 	const BuildingDisplayItemMap: Record<string, BuildingDisplayItem> =
 		Object.entries(_buildingListMap as Record<string, BuildingItem>).reduce(
 			(acc, [bid, building]) => {
@@ -72,15 +73,29 @@ function generateJsons() {
 					height: building.height,
 					imagePath: ImageMap[bid],
 				};
+
+				BuildingDisplayDataURIMap[bid] = getDataUrl(ImageMap[bid]);
 				return acc;
 			},
 			{} as Record<string, BuildingDisplayItem>
 		);
 
+	// building map containing display size
 	fs.writeFileSync(
 		getWritePath("buildingDisplayItemsMap.json"),
 		JSON.stringify(BuildingDisplayItemMap)
 	);
+
+	// building map containing the datauri of the images
+	fs.writeFileSync(
+		getWritePath("buildingDisplayDataURIMap.json"),
+		JSON.stringify(BuildingDisplayDataURIMap)
+	);
+}
+
+function getDataUrl(imagePath: string) {
+	const fullPath = path.join(__dirname, "..", "..", "public", imagePath);
+	return `data:image/png;base64,${fs.readFileSync(fullPath, "base64")}`;
 }
 
 generateJsons();
