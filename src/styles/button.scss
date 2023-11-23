@@ -1,25 +1,28 @@
 .dropdown-toggle-split.btn {
-    border: 0;
-    line-height: 0;
+	border: 0;
+	line-height: 0;
 }
 
 .custom-dropdown {
-    width: 100%;
-    line-height: 0;
+	width: 100%;
+	line-height: 0;
 }
 
 .dropend .dropdown-menu[data-bs-popper] {
-    margin-left: 0;
-    border: 0;
+	margin-left: 0;
+	border: 0;
 }
 
 .dropdown-menu {
-    min-width: min-content;
-    padding: 0;
-    background-color: #212529;
+	min-width: min-content;
+	padding: 0;
+	background-color: #212529;
 }
 
-
-.dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active, .dropdown-item.active, .open>.dropdown-toggle.dropdown-item {
-    background-color: #495057;
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item:active,
+.dropdown-item.active,
+.open > .dropdown-toggle.dropdown-item {
+	background-color: #495057;
 }

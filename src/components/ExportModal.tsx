@@ -1,51 +1,99 @@
 import { Button, Form, InputGroup, Modal } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { Files, FiletypePng } from "react-bootstrap-icons";
 
-import { saveAsJSONBase64, saveAsPNG } from "../editor/Serializer";
-import { BaseModal } from "./BaseModal";
-import { SvgCanvas } from "../editor/SvgCanvas";
+import {
+	SerializedData,
+	dataToJSONBase64,
+	saveAsPNG,
+} from "../editor/Serializer";
+import { useSelector } from "react-redux";
+import { RootState } from "../stores/store";
+import { Grid } from "./Grid";
+import { Placements } from "./Placements";
+import { Buildings } from "./Buildings";
 
+export const ExportModal = () => {
+	const { width, height, gridSize } = useSelector(
+		(state: RootState) => state.grid
+	);
+	const placements = useSelector(
+		(state: RootState) => state.placements.placements
+	);
 
-interface ExportModalProps {
-    showState: boolean;
-    hide: () => void;
+	const [value, setValue] = useState("");
+
+	const svgRef = useRef<SVGSVGElement>(null!);
+
+	useEffect(() => {
+		const exportData: SerializedData = {
+			width: width,
+			height: height,
+			placements: placements,
+		};
+
+		setValue(dataToJSONBase64(exportData));
+	}, [width, height, placements]);
+
+	return (
+		<Modal.Body>
+			<InputGroup className="mb-3">
+				<Form.Control
+					readOnly={true}
+					value={value}
+				/>
+				<Button
+					variant="outline-secondary"
+					id="export-json-base64"
+				>
+					<Files onClick={() => navigator.clipboard.writeText(value)} />
+				</Button>
+				<Button
+					variant="outline-secondary"
+					id="export-png"
+				>
+					<FiletypePng
+						onClick={() => {
+							saveAsPNG(svgRef.current);
+						}}
+					/>
+				</Button>
+			</InputGroup>
+			<div hidden={true}>
+				<ExportSvg
+					gridSize={gridSize}
+					width={width}
+					height={height}
+					ref={svgRef}
+				/>
+			</div>
+		</Modal.Body>
+	);
 };
 
-export const ExportModal = ({
-    showState,
-    hide,
-}: ExportModalProps) => {
-    const [value, setValue] = useState("");
-    useEffect(() => {
-        const getBase64 = async () => {
-            setValue(await saveAsJSONBase64(SvgCanvas.GetSVG()));
-        }
-        getBase64();
-    });
+interface ExportSvgProps {
+	gridSize: number;
+	width: number;
+	height: number;
+}
 
-    return (
-        <BaseModal
-            showState={showState}
-            hide={hide}
-            title={"Export Layout"}
-        >
-            <Modal.Body>
-                <InputGroup className="mb-3">
-                    <Form.Control
-                        readOnly={true}
-                        value={value}
-                    />
-                    <Button variant="outline-secondary" id="export-json-base64">
-                        <Files onClick={() => navigator.clipboard.writeText(value)}/>
-                    </Button>
-                    <Button variant="outline-secondary" id="export-png">
-                        <FiletypePng onClick={async () => {
-                            await saveAsPNG(SvgCanvas.GetSVG());
-                        }}/>
-                    </Button>
-                </InputGroup>
-            </Modal.Body>
-        </BaseModal>
-    );
-};
+const ExportSvg = forwardRef<SVGSVGElement, ExportSvgProps>(
+	({ gridSize, width, height }, ref) => {
+		return (
+			<svg
+				id="exportsvg"
+				ref={ref}
+				width={gridSize * width}
+				height={gridSize * height}
+			>
+				<Buildings baked={true} />
+				<Grid
+					width={width}
+					height={height}
+					gridSize={gridSize}
+				/>
+				<Placements gridSize={gridSize} />
+			</svg>
+		);
+	}
+);
