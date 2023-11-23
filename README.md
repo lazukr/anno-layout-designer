@@ -9,9 +9,11 @@
 # Redesign
 
 - Incorporating some newer things I learnt
-- Removing svg.js completely in favour of manipulating it directly as it's been somewhat weird to use with React
-- Introduce Redux for state management
-- Introduce Jest for testing
+  [x] Removing svg.js completely in favour of manipulating it directly as it's been somewhat weird to use with React
+  [x] Remove python files
+  [x] Introduce Redux for state management
+  [x] Setup React Testing Library for React / Redux testing
+  [ ] Add more tests for the project
 
 Since it is fully client side, you can play around with it here:
 https://lazukr.github.io/anno-layout-designer/
